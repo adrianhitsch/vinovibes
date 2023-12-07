@@ -144,5 +144,33 @@ h2 {
   box-shadow: 0 0 0 0.2rem #3b4045;
 }
 
+.logo-container {
+  height: 180px;
+  width: 100%;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-size: 18px;
+  height: 56px;
+  display: block;
+  line-height: 57px;
+  text-align: center;
+}
+
+nav ul li a.active {
+  color: #FC9181;
+  background: #FFFFFF19;
+  border-radius: 5px;
+  height: 56px;
+  width: calc(100% - 32px);
+ 
+}
+
 
 
