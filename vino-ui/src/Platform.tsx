@@ -4,7 +4,7 @@ import Navigation from "./layout/navigation";
 
 const Platform = () => {
   return (
-    <div>
+    <div className="platform">
       <Navigation />
       <Router />
     </div>
