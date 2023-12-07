@@ -20,6 +20,8 @@ body {
 .main-nav {
   min-width: 355px;
   height: 100%;
+  position: sticky;
+  top: 0px;
 }
 
 .platform {
@@ -153,6 +155,7 @@ ul li {
   list-style-type: none;
 }
 
+
 nav ul li a {
   text-decoration: none;
   color: #f0f0f0;
@@ -160,7 +163,7 @@ nav ul li a {
   height: 56px;
   display: block;
   line-height: 57px;
-  text-align: center;
+  padding-left: 73px;
 }
 
 nav ul li a.active {
@@ -168,8 +171,8 @@ nav ul li a.active {
   background: #FFFFFF19;
   border-radius: 5px;
   height: 56px;
-  width: calc(100% - 32px);
- 
+  width: 250px;
+
 }
 
 

@@ -2,22 +2,34 @@ import { Toast } from "primereact/toast";
 import React, { useEffect } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Button } from "primereact/button";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Navigation = () => {
+  const navigate = useNavigate();
+
   const setActive = (e: any) => {
     const elements = document.querySelectorAll("a");
-    console.log(elements);
     elements.forEach((el) => {
-      el.classList.add("active");
+      el.classList.remove("active");
     });
+
+    if (e.target.classList.contains("vino.logo")) {
+      navigate("/");
+      return;
+    }
+
     e.target.classList.add("active");
   };
 
   return (
     <div className="main-nav">
       <div className="logo-container">
-        <img src="vinoVibes.png" alt="VinoLogo" className="vino-logo" />
+        <img
+          src="vinoVibes.png"
+          alt="VinoLogo"
+          className="vino-logo"
+          onClick={setActive}
+        />
       </div>
       <nav>
         <ul>
@@ -26,6 +38,7 @@ const Navigation = () => {
           </li>
           <li>
             <li onClick={setActive}>
+              {/* <img src="svg/wine-glass-solid.svg" alt="Wein" /> */}
               <Link to="/vino">Meine Weine</Link>
             </li>
             <ul>
