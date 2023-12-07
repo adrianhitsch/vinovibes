@@ -1,0 +1,212 @@
+@import "assets/styles/font-faces.css";
+
+* {
+  font-family: Rubik, sans-serif;
+}
+
+body {
+  background: #0f1924;
+  color: #f0f0f0;
+}
+
+.vino-logo {
+  position: absolute;
+  top: 37px;
+  left: 120px;
+  width: 99px;
+  height: 87px;
+}
+
+.main-nav {
+  min-width: 355px;
+  height: 100dvh;
+  position: sticky;
+  top: 0px;
+}
+
+.main-nav .footer {
+  position: absolute;
+  bottom: 0;
+  height: 160px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.platform {
+  display: flex;
+  height: 100%;
+}
+
+.content {
+  height: 100%;
+  width: 100%;
+}
+
+.content-header {
+  height: 126px;
+  padding-top: 35px;
+  padding-left: 24px;
+  display: flex;
+}
+
+.content-header h1 {
+  font-size: 36px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.content-header h2 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 16px;
+}
+
+.content-header > div:first-child {
+  flex-shrink: 0;  
+}
+
+.content-card {
+  background: #ffffff19;
+  margin-left: 24px;
+  margin-bottom: 24px;
+  width: calc(100% - 48px);
+  min-height: calc(100dvh - 190px);
+  border-radius: 25px;
+}
+
+.searchbar {
+  width: 100%;
+  float: right;
+  top: 35px;
+  right: 104px;
+  border: unset;
+  outline: unset;
+  flex-shrink: 0 1;
+}
+
+.search-button,
+.bell-button {
+  height: 39px;
+  width: 39px;
+  border-radius: 10px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  border: none;
+  overflow: unset;
+}
+.search-button {
+  right: 111px;
+}
+
+.button {
+  background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
+    0% no-repeat padding-box;
+}
+
+.search-button img {
+  width: 19px;
+  height: 19px;
+}
+
+.search-input {
+  position: relative;
+}
+
+
+.bell-button {
+  height: 56px;
+  width: 56px;
+  background-color: #ffffff19;
+  position: absolute;
+  top: 35px;
+  right: 24px;
+}
+
+.bell-button img {
+  width: 36px;
+  height: 36px;
+}
+
+h1,
+h2 {
+  margin: unset;
+}
+
+.p-inputtext {
+  height: 56px;
+  width: 100%;
+  background: #ffffff19;
+  color: #ffffff4d;
+  overflow: unset;
+  border: none;
+  color: #f0f0f0;
+  box-shadow: 0 #3b4045;
+  transition: box-shadow 0.3s ease-in-out;
+  border-radius: 10px;
+  margin-right: 103px;
+}
+
+.p-autocomplete {
+  width: 90%;
+  max-width: 420px;
+  float: right;
+}
+
+.p-inputtext:focus {
+  box-shadow: 0 0 0 0.2rem #3b4045;
+}
+
+.logo-container {
+  height: 180px;
+  width: 100%;
+}
+
+ul li {
+  list-style-type: none;
+  background-color: #0f1924;
+}
+
+ul li ul {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+ul li ul.my-vino.expand {
+  height: 112px;
+  overflow: hidden;
+}
+
+ul li ul.all-vino.expand {
+  height: 224px;
+  overflow: hidden;
+}
+
+
+
+nav ul li a {
+  text-decoration: none;
+  color: #f0f0f0;
+  font-size: 18px;
+  height: 56px;
+  display: block;
+  line-height: 57px;
+  padding-left: 73px;
+}
+
+nav ul li a.active {
+  color: #FC9181;
+  background: #FFFFFF19;
+  border-radius: 5px;
+  height: 56px;
+  width: 250px;
+
+}
+
+
+
