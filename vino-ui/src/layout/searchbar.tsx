@@ -6,18 +6,20 @@ const Searchbar = () => {
   return (
     <>
       <div className="searchbar">
-        <AutoComplete placeholder="Suche hier deinen Wein" />
-        <button
-          type="button"
-          className="search-button"
-          onClick={() => toast.error("Keine Weine gefunden")}
-        >
-          <img src="svg/magnifying-glass-solid.svg" />
+        <div className="search-input">
+          <AutoComplete placeholder="Suche hier deinen Wein" />
+          <button
+            type="button"
+            className="search-button"
+            onClick={() => toast.error("Keine Weine gefunden")}
+          >
+            <img src="svg/magnifying-glass-solid.svg" />
+          </button>
+        </div>
+        <button type="button" className="bell-button">
+          <img src="svg/bell-solid.svg" />
         </button>
       </div>
-      <button type="button" className="bell-button">
-        <img src="svg/bell-solid.svg" />
-      </button>
       <Toaster />
     </>
   );

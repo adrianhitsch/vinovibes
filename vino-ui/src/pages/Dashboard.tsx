@@ -1,11 +1,15 @@
 import React from "react";
+import Searchbar from "../layout/searchbar";
 
 const Dashboard = () => {
   return (
     <div className="content">
       <div className="content-header">
-        <h1>Mein Dashboard</h1>
-        <h2>Willkommen auf deinem persönlichen Dashboard</h2>
+        <div>
+          <h1>Mein Dashboard</h1>
+          <h2>Willkommen auf deinem persönlichen Dashboard</h2>
+        </div>
+        <Searchbar />
       </div>
 
       <div className="content-container">

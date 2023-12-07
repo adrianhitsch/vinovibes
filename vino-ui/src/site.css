@@ -36,6 +36,7 @@ body {
   height: 126px;
   padding-top: 35px;
   padding-left: 24px;
+  display: flex;
 }
 
 .content-header h1 {
@@ -50,6 +51,10 @@ body {
   margin-bottom: 16px;
 }
 
+.content-header > div:first-child {
+  flex-shrink: 0;  
+}
+
 .content-card {
   background: #ffffff19;
   margin-left: 24px;
@@ -60,11 +65,13 @@ body {
 }
 
 .searchbar {
-  position: absolute;
+  width: 100%;
+  float: right;
   top: 35px;
   right: 104px;
   border: unset;
   outline: unset;
+  flex-shrink: 0 1;
 }
 
 .search-button,
@@ -81,12 +88,18 @@ body {
 .search-button {
   background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
     0% no-repeat padding-box;
+  right: 111px;
 }
 
 .search-button img {
   width: 19px;
   height: 19px;
 }
+
+.search-input {
+  position: relative;
+}
+
 
 .bell-button {
   height: 56px;
@@ -109,7 +122,7 @@ h2 {
 
 .p-inputtext {
   height: 56px;
-  width: 490px;
+  width: 100%;
   background: #ffffff19;
   color: #ffffff4d;
   overflow: unset;
@@ -117,8 +130,19 @@ h2 {
   color: #f0f0f0;
   box-shadow: 0 #3b4045;
   transition: box-shadow 0.3s ease-in-out;
+  border-radius: 10px;
+  margin-right: 103px;
+}
+
+.p-autocomplete {
+  width: 90%;
+  max-width: 420px;
+  float: right;
 }
 
 .p-inputtext:focus {
   box-shadow: 0 0 0 0.2rem #3b4045;
 }
+
+
+
