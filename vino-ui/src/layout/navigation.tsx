@@ -19,6 +19,24 @@ const Navigation = () => {
     }
 
     e.target.classList.add("active");
+
+    console.log(e.target.parentNode);
+
+    if (e.target.id.includes("my-vino")) {
+      const submenus = document.querySelector(".expandable.menu.my-vino");
+      submenus?.classList.add("expand");
+    } else {
+      const submenus = document.querySelector(".expandable.menu.my-vino");
+      submenus?.classList.remove("expand");
+    }
+
+    if (e.target.id.includes("all-vino")) {
+      const submenus = document.querySelector(".expandable.menu.all-vino");
+      submenus?.classList.add("expand");
+    } else {
+      const submenus = document.querySelector(".expandable.menu.all-vino");
+      submenus?.classList.remove("expand");
+    }
   };
 
   return (
@@ -39,33 +57,49 @@ const Navigation = () => {
           <li>
             <li onClick={setActive}>
               {/* <img src="svg/wine-glass-solid.svg" alt="Wein" /> */}
-              <Link to="/vino">Meine Weine</Link>
+              <Link to="/vino" id="my-vino">
+                Meine Weine
+              </Link>
             </li>
-            <ul>
+            <ul className="expandable menu my-vino">
               <li onClick={setActive}>
-                <Link to="/vino">Getrunkene Weine</Link>
+                <Link to="/vino" id="my-vino drunken">
+                  Getrunkene Weine
+                </Link>
               </li>
               <li onClick={setActive}>
-                <Link to="/vino">Meine Wunschliste</Link>
+                <Link to="/vino" id="my-vino wishlist">
+                  Meine Wunschliste
+                </Link>
               </li>
             </ul>
           </li>
           <li onClick={setActive}>
-            <Link to="/vino">Alle Weine</Link>
+            <Link to="/vino" id="all-vino">
+              Alle Weine
+            </Link>
           </li>
           <li>
-            <ul>
+            <ul className="expandable menu all-vino">
               <li onClick={setActive}>
-                <Link to="/vino">Rotweine</Link>
+                <Link to="/vino" id="all-vino red">
+                  Rotweine
+                </Link>
               </li>
               <li onClick={setActive}>
-                <Link to="/vino">Weißweine</Link>
+                <Link to="/vino" id="all-vino white">
+                  Weißweine
+                </Link>
               </li>
               <li onClick={setActive}>
-                <Link to="/vino">Roséweine</Link>
+                <Link to="/vino" id="all-vino rose">
+                  Roséweine
+                </Link>
               </li>
               <li onClick={setActive}>
-                <Link to="/vino">Schaumweine</Link>
+                <Link to="/vino" id="all-vino champaign">
+                  Schaumweine
+                </Link>
               </li>
             </ul>
           </li>
@@ -77,6 +111,24 @@ const Navigation = () => {
           </li>
         </ul>
       </nav>
+
+      <div className="footer">
+        <Button
+          type="button"
+          onClick={() => toast.error("Sorry could not create vino :c")}
+          className="button"
+        >
+          Wein erstellen
+        </Button>
+
+        <Button
+          type="button"
+          onClick={() => toast.error("Sorry could not log you out :c")}
+          className="button"
+        >
+          Logout
+        </Button>
+      </div>
     </div>
   );
 };

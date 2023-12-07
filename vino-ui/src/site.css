@@ -19,9 +19,21 @@ body {
 
 .main-nav {
   min-width: 355px;
-  height: 100%;
+  height: 100dvh;
   position: sticky;
   top: 0px;
+}
+
+.main-nav .footer {
+  position: absolute;
+  bottom: 0;
+  height: 160px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
 }
 
 .platform {
@@ -88,9 +100,12 @@ body {
   overflow: unset;
 }
 .search-button {
+  right: 111px;
+}
+
+.button {
   background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
     0% no-repeat padding-box;
-  right: 111px;
 }
 
 .search-button img {
@@ -153,7 +168,25 @@ h2 {
 
 ul li {
   list-style-type: none;
+  background-color: #0f1924;
 }
+
+ul li ul {
+  height: 0px;
+  overflow: hidden;
+  transition: height 0.3s ease-in-out;
+}
+
+ul li ul.my-vino.expand {
+  height: 112px;
+  overflow: hidden;
+}
+
+ul li ul.all-vino.expand {
+  height: 224px;
+  overflow: hidden;
+}
+
 
 
 nav ul li a {

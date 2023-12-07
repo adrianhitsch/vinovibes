@@ -10,7 +10,7 @@ const Searchbar = () => {
           <AutoComplete placeholder="Suche hier deinen Wein" />
           <button
             type="button"
-            className="search-button"
+            className="button search-button"
             onClick={() => toast.error("Keine Weine gefunden")}
           >
             <img src="svg/magnifying-glass-solid.svg" />
