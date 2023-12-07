@@ -1,10 +1,11 @@
 import React from "react";
 import Router from "./Router";
+import Navigation from "./layout/navigation";
 
 const Platform = () => {
   return (
     <div>
-      <h1>Platform</h1>
+      <Navigation />
       <Router />
     </div>
   );
