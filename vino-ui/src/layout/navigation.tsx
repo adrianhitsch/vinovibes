@@ -20,8 +20,6 @@ const Navigation = () => {
 
     e.target.classList.add("active");
 
-    console.log(e.target.parentNode);
-
     if (e.target.id.includes("my-vino")) {
       const submenus = document.querySelector(".expandable.menu.my-vino");
       submenus?.classList.add("expand");
