@@ -1,9 +1,6 @@
 import React from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import toast, { Toaster } from "react-hot-toast";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import { ReactSVG } from "react-svg";
 
 const Searchbar = () => {
   return (
