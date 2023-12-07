@@ -1,9 +1,9 @@
 import React from "react";
 import "./site.css";
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
+function Router() {
   return (
     <Routes>
       <Route path="/" element={<Dashboard />} />
@@ -11,4 +11,4 @@ function App() {
   );
 }
 
-export default App;
+export default Router;
