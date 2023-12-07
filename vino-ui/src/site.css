@@ -1,3 +1,9 @@
+@import "assets/styles/font-faces.css";
+
+* {
+  font-family: Rubik, sans-serif;
+}
+
 body {
   background: #0f1924;
   color: #f0f0f0;
