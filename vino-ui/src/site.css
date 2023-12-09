@@ -210,6 +210,10 @@ ul li {
   margin-bottom: 7px;
 }
 
+.expandable li {
+  margin-top: 7px;
+}
+
 ul li a {
   width: 250px;
   height: 56px;
