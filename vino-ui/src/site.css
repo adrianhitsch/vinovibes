@@ -2,6 +2,7 @@
 
 * {
   font-family: Rubik, sans-serif;
+  font-size: 18px;
 }
 
 body {
@@ -36,6 +37,18 @@ body {
   gap: 24px;
 }
 
+.main-nav .footer .button {
+  width: 250px;
+  height: 60px;
+
+  gap: 14px;
+  justify-content: center;
+}
+
+.main-nav .footer .button .icon {
+  float: left;
+}
+
 .platform {
   display: flex;
   height: 100%;
@@ -66,14 +79,13 @@ body {
 }
 
 .content-header > div:first-child {
-  flex-shrink: 0;  
+  flex-shrink: 0;
 }
 
 .content-card {
   background: #ffffff19;
-  margin-left: 24px;
   margin-bottom: 24px;
-  width: calc(100% - 48px);
+  width: calc(100% - 24px);
   min-height: calc(100dvh - 190px);
   border-radius: 25px;
 }
@@ -98,6 +110,7 @@ body {
   right: 8px;
   border: none;
   overflow: unset;
+  cursor: pointer;
 }
 .search-button {
   right: 111px;
@@ -106,6 +119,19 @@ body {
 .button {
   background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
     0% no-repeat padding-box;
+  border: unset;
+  outline: unset;
+  box-shadow: unset;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.button.transparent {
+  background: transparent;
 }
 
 .search-button img {
@@ -116,7 +142,6 @@ body {
 .search-input {
   position: relative;
 }
-
 
 .bell-button {
   height: 56px;
@@ -130,6 +155,20 @@ body {
 .bell-button img {
   width: 36px;
   height: 36px;
+}
+
+.bell-notifications {
+  background-color: red;
+  height: 27px;
+  width: 27px;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: -7px;
+  left: 40px;
+  color: #f0f0f0;
+  font-size: 18px;
+  line-height: 26px;
 }
 
 h1,
@@ -168,7 +207,19 @@ h2 {
 
 ul li {
   list-style-type: none;
+  margin-bottom: 7px;
+}
+
+ul li a {
+  width: 250px;
+  height: 56px;
+  border-radius: 5px;
   background-color: #0f1924;
+  transition: background-color 0.2s;
+}
+
+ul li a:hover {
+  background-color: #27303945;
 }
 
 ul li ul {
@@ -178,16 +229,14 @@ ul li ul {
 }
 
 ul li ul.my-vino.expand {
-  height: 112px;
+  height: 126px;
   overflow: hidden;
 }
 
 ul li ul.all-vino.expand {
-  height: 224px;
+  height: 252px;
   overflow: hidden;
 }
-
-
 
 nav ul li a {
   text-decoration: none;
@@ -195,18 +244,11 @@ nav ul li a {
   font-size: 18px;
   height: 56px;
   display: block;
-  line-height: 57px;
-  padding-left: 73px;
+  line-height: 60px;
+  padding-left: 36px;
 }
 
 nav ul li a.active {
-  color: #FC9181;
-  background: #FFFFFF19;
-  border-radius: 5px;
-  height: 56px;
-  width: 250px;
-
+  color: #fc9181;
+  background: #ffffff19;
 }
-
-
-

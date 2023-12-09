@@ -7,6 +7,7 @@ const Dashboard = () => {
       <div className="content-container">
         <div className="content-card"></div>
         <div className="content-card"></div>
+        <span className="icon-wine-glass"></span>
       </div>
     </>
   );
