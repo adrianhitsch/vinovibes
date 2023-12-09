@@ -52,13 +52,11 @@ const Navigation = () => {
           <li onClick={setActive}>
             <Link to="/">Dashboard</Link>
           </li>
-          <li>
-            <li onClick={setActive}>
-              {/* <img src="svg/wine-glass-solid.svg" alt="Wein" /> */}
-              <Link to="/vino" id="my-vino">
-                Meine Weine
-              </Link>
-            </li>
+          <li onClick={setActive}>
+            {/* <img src="svg/wine-glass-solid.svg" alt="Wein" /> */}
+            <Link to="/vino" id="my-vino">
+              Meine Weine
+            </Link>
             <ul className="expandable menu my-vino">
               <li onClick={setActive}>
                 <Link to="/vino" id="my-vino drunken">
@@ -76,8 +74,6 @@ const Navigation = () => {
             <Link to="/vino" id="all-vino">
               Alle Weine
             </Link>
-          </li>
-          <li>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
                 <Link to="/vino" id="all-vino red">
