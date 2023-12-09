@@ -1,5 +1,6 @@
 import React from "react";
 import "./site.css";
+import "./icon.css";
 import { Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 
