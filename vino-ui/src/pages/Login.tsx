@@ -8,17 +8,17 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate();
 
   const login = async (e: any) => {
-    const name = document.getElementById('email') as HTMLInputElement;
-    const password = document.getElementById('password') as HTMLInputElement;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
+    const password = (document.getElementById('password') as HTMLInputElement).value;
 
-    await fetch(`${config.API_URL}/login`, {
+    const body = await fetch(`${config.API_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: name,
-        password: password,
+        name: email || '',
+        password: password || '',
       }),
     })
       .then((res) => res.json())
