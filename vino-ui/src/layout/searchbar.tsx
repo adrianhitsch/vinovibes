@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import toast, { Toaster } from "react-hot-toast";
 
 const Searchbar = () => {
+  const [notifications, setNotifications] = useState(0);
+
   return (
     <>
       <div className="searchbar">
@@ -16,8 +18,17 @@ const Searchbar = () => {
             <img src="svg/magnifying-glass-solid.svg" />
           </button>
         </div>
-        <button type="button" className="bell-button">
+        <button
+          type="button"
+          className="bell-button"
+          onClick={() => setNotifications((prevState) => prevState + 1)}
+        >
           <img src="svg/bell-solid.svg" />
+          {notifications > 0 && (
+            <span className="bell-notifications">
+              {notifications < 10 ? notifications : "9+"}
+            </span>
+          )}
         </button>
       </div>
       <Toaster />

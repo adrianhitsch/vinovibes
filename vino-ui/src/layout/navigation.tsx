@@ -50,15 +50,16 @@ const Navigation = () => {
       <nav>
         <ul>
           <li onClick={setActive}>
-            <Link to="/">Dashboard</Link>
+            <Link to="/">
+              {" "}
+              <span className="icon icon-dashboard"></span>Dashboard
+            </Link>
           </li>
-          <li>
-            <li onClick={setActive}>
-              {/* <img src="svg/wine-glass-solid.svg" alt="Wein" /> */}
-              <Link to="/vino" id="my-vino">
-                Meine Weine
-              </Link>
-            </li>
+          <li onClick={setActive}>
+            <Link to="/vino" id="my-vino">
+              <span className="icon icon-wine-glass"></span>
+              Meine Weine
+            </Link>
             <ul className="expandable menu my-vino">
               <li onClick={setActive}>
                 <Link to="/vino" id="my-vino drunken">
@@ -74,10 +75,9 @@ const Navigation = () => {
           </li>
           <li onClick={setActive}>
             <Link to="/vino" id="all-vino">
+              <span className="icon icon-wine-bottle"></span>
               Alle Weine
             </Link>
-          </li>
-          <li>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
                 <Link to="/vino" id="all-vino red">
@@ -102,10 +102,14 @@ const Navigation = () => {
             </ul>
           </li>
           <li onClick={setActive}>
-            <Link to="/account">Mein Account</Link>
+            <Link to="/account">
+              <span className="icon icon-user"></span>Mein Account
+            </Link>
           </li>
           <li onClick={setActive}>
-            <Link to="/admin">Admin</Link>
+            <Link to="/admin">
+              <span className="icon icon-dev"></span>Admin
+            </Link>
           </li>
         </ul>
       </nav>
@@ -116,14 +120,16 @@ const Navigation = () => {
           onClick={() => toast.error("Sorry could not create vino :c")}
           className="button"
         >
+          <span className="icon icon-plus"></span>
           Wein erstellen
         </Button>
 
         <Button
           type="button"
           onClick={() => toast.error("Sorry could not log you out :c")}
-          className="button"
+          className="button transparent"
         >
+          <span className="icon icon-logout"></span>
           Logout
         </Button>
       </div>
