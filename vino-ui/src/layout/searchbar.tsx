@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { AutoComplete } from "primereact/autocomplete";
-import toast, { Toaster } from "react-hot-toast";
+import React, { useState } from 'react';
+import { AutoComplete } from 'primereact/autocomplete';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Searchbar = () => {
   const [notifications, setNotifications] = useState(0);
@@ -13,7 +13,7 @@ const Searchbar = () => {
           <button
             type="button"
             className="button search-button"
-            onClick={() => toast.error("Keine Weine gefunden")}
+            onClick={() => toast.error('Keine Weine gefunden')}
           >
             <img src="svg/magnifying-glass-solid.svg" />
           </button>
@@ -25,9 +25,7 @@ const Searchbar = () => {
         >
           <img src="svg/bell-solid.svg" />
           {notifications > 0 && (
-            <span className="bell-notifications">
-              {notifications < 10 ? notifications : "9+"}
-            </span>
+            <span className="bell-notifications">{notifications < 10 ? notifications : '9+'}</span>
           )}
         </button>
       </div>
