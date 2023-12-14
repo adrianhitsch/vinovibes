@@ -15,6 +15,8 @@
 	<description>The VinoVibes platform, developed by VinoVibes, is an online platform for wine lovers to explore, rate, and discuss wines. It offers an intuitive interface for sharing wine experiences and fosters a community of enthusiasts. Utilizing advanced technology, it aims to enhance the global wine community&apos;s engagement and knowledge sharing.</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.compiler.source>17</maven.compiler.source>
+		<maven.compiler.target>17</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
