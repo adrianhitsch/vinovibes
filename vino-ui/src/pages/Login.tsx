@@ -37,7 +37,7 @@ const Login = (): JSX.Element => {
     <div className="login">
       <img src="login-image.png" alt="login-image" className="login-image" />
       <div className="login-container">
-        <div className="logo">
+        <div className="logo ">
           <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
           <h1>VinoVibes</h1>
         </div>
@@ -50,14 +50,22 @@ const Login = (): JSX.Element => {
           <InputText type="password" name="password" id="password" placeholder="Passwort" />
         </div>
         <div className="group">
-          <Button label="Passwort vergessen?" className="button transparent text" />
+          <Button
+            label="Passwort vergessen?"
+            onClick={() => navigate('/forgot-password')}
+            className="button transparent text"
+          />
         </div>
         <div className="group">
-          <Button label="Login" onClick={login} className="button" />
+          <Button label="Anmelden" onClick={login} className="button" />
         </div>
         <div className="group">
           <p>Noch keinen Account?</p>
-          <Button label="Jetzt registrieren" onClick={login} className="button secondary" />
+          <Button
+            label="Jetzt registrieren"
+            onClick={() => navigate('/register')}
+            className="button secondary"
+          />
         </div>
       </div>
     </div>

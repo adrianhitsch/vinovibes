@@ -8,7 +8,11 @@ import Searchbar from './layout/searchbar';
 const Platform = () => {
   const location = useLocation();
 
-  if (location.pathname === '/login') {
+  if (
+    location.pathname === '/login' ||
+    location.pathname === '/register' ||
+    location.pathname === '/forgot-password'
+  ) {
     return <Router />;
   }
 

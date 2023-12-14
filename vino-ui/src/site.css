@@ -128,6 +128,7 @@ body {
 
 .button.secondary {
   background: #ffffff82;
+  color: #0f1924;
 }
 
 .button:hover {
@@ -140,10 +141,35 @@ body {
 
 .button.text {
   width: auto !important;
+  height: auto !important;
+  padding: unset;
+  margin-bottom: 15px;
 }
 
-.button.text span {
-  font-size: 12px;
+.group {
+  width: 400px;
+}
+
+.group .p-checkbox {
+  margin-bottom: 21px;
+}
+
+.group .p-checkbox-label {
+  width: calc(100% - 40px);
+  text-align: left;
+  font-size: 14px;
+  margin-left: 10px;
+  line-height: 24px;
+}
+
+.group .p-checkbox,
+.group .p-checkbox-label {
+  float: left;
+}
+
+.button.text span,
+.group p {
+  font-size: 15px;
   font-weight: 300;
 }
 
@@ -204,9 +230,17 @@ h2 {
 }
 
 .login .p-inputtext {
-  width: 400px;
+  width: 100%;
+  height: 65px;
   background-color: #ffffff60;
   margin-bottom: 26px;
+  border: unset;
+  font-size: 18px;
+  padding-left: 27px;
+}
+
+.login .p-checkbox-box {
+  background-color: #ffffff60;
   border: unset;
 }
 
@@ -226,6 +260,20 @@ h2 {
 
 .p-inputtext:focus {
   box-shadow: 0 0 0 0.2rem #3b4045;
+}
+
+.p-checkbox {
+  width: 30px;
+}
+
+.p-checkbox-box {
+  height: 30px;
+  width: 30px;
+  box-shadow: unset;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  box-shadow: 0 0 0 2px #ffffff82;
 }
 
 .logo-container {
@@ -304,7 +352,7 @@ nav ul li a.active {
   height: 100vh;
   backdrop-filter: blur(30px);
   --webkit-backdrop-filter: blur(30px);
-  background-color: #ffffff60;
+  background-color: #ffffff33;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -319,19 +367,27 @@ nav ul li a.active {
 
 .login .vino-logo {
   position: unset;
-  width: 60px;
+  width: 110px;
   height: auto;
+  opacity: 0.78;
+}
+
+.login .logo.margin {
+  margin-bottom: 26px;
 }
 
 .login-container > p {
-  width: 250px;
+  width: 450px;
+  font-size: 32px;
+  margin-bottom: 70px;
 }
 
 .login-container > p::after {
   content: '';
-  width: 200px;
+  width: 350px;
   height: 1px;
-  transform: translateX(25px);
+  transform: translateX(50px);
+  margin-top: 21px;
   background: #f0f0f0;
   display: block;
 }
@@ -341,5 +397,15 @@ nav ul li a.active {
 }
 
 .login .button {
-  width: 400px;
+  width: 100%;
+  height: 65px;
+}
+
+.button.register {
+  margin-top: 21px;
+}
+
+.p-checkbox .p-checkbox-box .p-checkbox-icon.p-icon {
+  width: 21px;
+  height: 21px;
 }
