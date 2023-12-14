@@ -1,57 +1,52 @@
-import { Toast } from "primereact/toast";
-import React, { useEffect } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Button } from "primereact/button";
-import { Link, useNavigate } from "react-router-dom";
+import { Toast } from 'primereact/toast';
+import React, { useEffect } from 'react';
+import toast, { Toaster } from 'react-hot-toast';
+import { Button } from 'primereact/button';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navigation = () => {
   const navigate = useNavigate();
 
   const setActive = (e: any) => {
-    const elements = document.querySelectorAll("a");
+    const elements = document.querySelectorAll('a');
     elements.forEach((el) => {
-      el.classList.remove("active");
+      el.classList.remove('active');
     });
 
-    if (e.target.classList.contains("vino.logo")) {
-      navigate("/");
+    if (e.target.classList.contains('vino.logo')) {
+      navigate('/');
       return;
     }
 
-    e.target.classList.add("active");
+    e.target.classList.add('active');
 
-    if (e.target.id.includes("my-vino")) {
-      const submenus = document.querySelector(".expandable.menu.my-vino");
-      submenus?.classList.add("expand");
+    if (e.target.id.includes('my-vino')) {
+      const submenus = document.querySelector('.expandable.menu.my-vino');
+      submenus?.classList.add('expand');
     } else {
-      const submenus = document.querySelector(".expandable.menu.my-vino");
-      submenus?.classList.remove("expand");
+      const submenus = document.querySelector('.expandable.menu.my-vino');
+      submenus?.classList.remove('expand');
     }
 
-    if (e.target.id.includes("all-vino")) {
-      const submenus = document.querySelector(".expandable.menu.all-vino");
-      submenus?.classList.add("expand");
+    if (e.target.id.includes('all-vino')) {
+      const submenus = document.querySelector('.expandable.menu.all-vino');
+      submenus?.classList.add('expand');
     } else {
-      const submenus = document.querySelector(".expandable.menu.all-vino");
-      submenus?.classList.remove("expand");
+      const submenus = document.querySelector('.expandable.menu.all-vino');
+      submenus?.classList.remove('expand');
     }
   };
 
   return (
     <div className="main-nav">
       <div className="logo-container">
-        <img
-          src="vinoVibes.png"
-          alt="VinoLogo"
-          className="vino-logo"
-          onClick={setActive}
-        />
+        <img src="vinoVibes.png" alt="VinoLogo" className="vino-logo" onClick={setActive} />
       </div>
       <nav>
         <ul>
           <li onClick={setActive}>
             <Link to="/">
-              {" "}
+              {' '}
               <span className="icon icon-dashboard"></span>Dashboard
             </Link>
           </li>
@@ -117,7 +112,7 @@ const Navigation = () => {
       <div className="footer">
         <Button
           type="button"
-          onClick={() => toast.error("Sorry could not create vino :c")}
+          onClick={() => toast.error('Sorry could not create vino :c')}
           className="button"
         >
           <span className="icon icon-plus"></span>
@@ -126,7 +121,7 @@ const Navigation = () => {
 
         <Button
           type="button"
-          onClick={() => toast.error("Sorry could not log you out :c")}
+          onClick={() => toast.error('Sorry could not log you out :c')}
           className="button transparent"
         >
           <span className="icon icon-logout"></span>

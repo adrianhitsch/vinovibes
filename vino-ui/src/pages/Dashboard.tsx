@@ -1,5 +1,5 @@
-import React from "react";
-import Searchbar from "../layout/searchbar";
+import React from 'react';
+import Searchbar from '../layout/searchbar';
 
 const Dashboard = () => {
   return (

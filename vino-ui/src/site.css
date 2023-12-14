@@ -1,4 +1,4 @@
-@import "assets/styles/font-faces.css";
+@import 'assets/styles/font-faces.css';
 
 * {
   font-family: Rubik, sans-serif;
@@ -117,8 +117,8 @@ body {
 }
 
 .button {
-  background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
-    0% no-repeat padding-box;
+  background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
+    padding-box;
   border: unset;
   outline: unset;
   box-shadow: unset;
