@@ -1,0 +1,34 @@
+name: Build on PR
+'on': pull_request
+jobs:
+  build:
+    if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      
+      # Frontend - Check formatting
+      - name: Check Frontend Code Formatting
+        run: |
+          cd vino-ui
+          npm ci
+          npm run format:check
+
+      # Frontend - Build
+      - name: Build Frontend
+        run: |
+          cd vino-ui
+          npm run build
+
+      # Backend - Check formatting
+      - name: Check Backend Code Formatting
+        run: |
+          cd vino-api
+          npm ci
+          npm run format:check
+
+      # Backend - Build
+      - name: Build Backend
+        run: |
+          cd vino-api
+          ./mvnw clean install
