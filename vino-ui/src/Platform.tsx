@@ -26,7 +26,7 @@ const Platform = () => {
           </div>
           <Searchbar />
         </div>
-      <Router />
+        <Router />
       </div>
     </div>
   );
