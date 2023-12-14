@@ -1,9 +1,17 @@
+// Platform.tsx
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
 import Searchbar from './layout/searchbar';
 
 const Platform = () => {
+  const location = useLocation();
+
+  if (location.pathname === '/login') {
+    return <Router />;
+  }
+
   return (
     <div className="platform">
       <Navigation />
@@ -16,10 +24,10 @@ const Platform = () => {
           </div>
           <Searchbar />
         </div>
-
-        <Router />
       </div>
+      <Router />
     </div>
   );
 };
+
 export default Platform;
