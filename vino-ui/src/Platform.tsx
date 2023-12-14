@@ -12,6 +12,8 @@ const Platform = () => {
     return <Router />;
   }
 
+  // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);
+
   return (
     <div className="platform">
       <Navigation />
@@ -24,8 +26,8 @@ const Platform = () => {
           </div>
           <Searchbar />
         </div>
-      </div>
       <Router />
+      </div>
     </div>
   );
 };
