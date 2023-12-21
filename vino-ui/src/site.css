@@ -3,11 +3,17 @@
 * {
   font-family: Rubik, sans-serif;
   font-size: 18px;
+  --surface-color: #0f1924;
+  --surface-secondary-color: #ffffff19;
+  --button-gradient: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
+    padding-box;
+  --white: #f0f0f0;
+  --red: #f50000;
 }
 
 body {
-  background: #0f1924;
-  color: #f0f0f0;
+  background: var(--surface-color);
+  color: var(--white);
 }
 
 .vino-logo {
@@ -82,7 +88,7 @@ body {
 }
 
 .content-card {
-  background: #ffffff19;
+  background: var(--surface-secondary-color);
   margin-bottom: 24px;
   width: calc(100% - 24px);
   min-height: calc(100dvh - 190px);
@@ -116,13 +122,51 @@ body {
 }
 
 .button {
-  background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
-    padding-box;
+  background: var(--button-gradient);
   border: unset;
   outline: unset;
   box-shadow: unset;
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
+}
+
+.button.primary {
+  background: var(--button-gradient);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 12px 24px;
+  cursor: pointer;
+  min-width: 200px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button.secondary {
+  background: var(--white);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 12px 24px;
+  cursor: pointer;
+  min-width: 200px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button.close {
+  background: var(--red);
+  border-radius: 10px;
+  color: var(--white);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+  padding: 12px 24px;
+  cursor: pointer;
+  min-width: 73px;
+  transition: background-color 0.2s ease-in-out;
 }
 
 .button:hover {
@@ -145,7 +189,7 @@ body {
 .bell-button {
   height: 56px;
   width: 56px;
-  background-color: #ffffff19;
+  background-color: var(--surface-secondary-color);
   position: absolute;
   top: 35px;
   right: 24px;
@@ -157,7 +201,7 @@ body {
 }
 
 .bell-notifications {
-  background-color: red;
+  background-color: var(--red);
   height: 27px;
   width: 27px;
   border-radius: 50%;
@@ -165,7 +209,7 @@ body {
   position: absolute;
   top: -7px;
   left: 40px;
-  color: #f0f0f0;
+  color: var(--white);
   font-size: 18px;
   line-height: 26px;
 }
@@ -178,11 +222,11 @@ h2 {
 .p-inputtext {
   height: 56px;
   width: 100%;
-  background: #ffffff19;
+  background: var(--surface-secondary-color);
   color: #ffffff4d;
   overflow: unset;
   border: none;
-  color: #f0f0f0;
+  color: var(--white);
   box-shadow: 0 #3b4045;
   transition: box-shadow 0.3s ease-in-out;
   border-radius: 10px;
@@ -217,7 +261,7 @@ ul li a {
   width: 250px;
   height: 56px;
   border-radius: 5px;
-  background-color: #0f1924;
+  background-color: var(--surface-color);
   transition: background-color 0.2s;
 }
 
@@ -243,7 +287,7 @@ ul li ul.all-vino.expand {
 
 nav ul li a {
   text-decoration: none;
-  color: #f0f0f0;
+  color: var(--white);
   font-size: 18px;
   height: 56px;
   display: block;
@@ -254,4 +298,14 @@ nav ul li a {
 nav ul li a.active {
   color: #fc9181;
   background: #ffffff19;
+}
+
+/* HeaderComponent */
+
+.content-header .button-container {
+  width: 220px;
+  height: 73px;
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
 }

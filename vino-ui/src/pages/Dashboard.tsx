@@ -2,14 +2,22 @@ import React, { useContext, useEffect } from 'react';
 import { HeaderContext } from '../layout/contentHeader';
 
 const Dashboard = () => {
-  const { setHeaderContent } = useContext(HeaderContext as any) as any;
+  const { setHeaderContent } = useContext(HeaderContext);
+
   useEffect(() => {
     setHeaderContent({
       header: 'Dashboard',
       text: 'Hier findest du deine aktuellen Statistiken',
-      buttons: [],
+      buttons: [
+        { text: 'Wine', icon: 'wine-glass', type: 'primary', onClick: () => console.log('test1') },
+        { text: 'test2', type: 'close', onClick: () => handleClick() },
+      ],
     });
   }, []);
+
+  const handleClick = () => {
+    console.log('test');
+  };
 
   return (
     <>
