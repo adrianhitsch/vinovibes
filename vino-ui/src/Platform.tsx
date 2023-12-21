@@ -1,25 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Router from './Router';
 import Navigation from './layout/navigation';
-import Searchbar from './layout/searchbar';
+import ContentHeader, { HeaderContentType, HeaderContext } from './layout/contentHeader';
 
 const Platform = () => {
+  const [headerContent, setHeaderContent] = useState<HeaderContentType>({
+    header: '',
+    text: '',
+    buttons: [],
+  });
+
   return (
-    <div className="platform">
-      <Navigation />
-
-      <div className="content">
-        <div className="content-header">
-          <div>
-            <h1>Mein Dashboard</h1>
-            <h2>Willkommen auf deinem persönlichen Dashboard</h2>
-          </div>
-          <Searchbar />
+    <HeaderContext.Provider value={{ ...headerContent, setHeaderContent }}>
+      <div className="platform">
+        <Navigation />
+        <div className="content">
+          <ContentHeader />
+          <Router />
         </div>
-
-        <Router />
       </div>
-    </div>
+    </HeaderContext.Provider>
   );
 };
 export default Platform;
