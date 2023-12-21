@@ -476,3 +476,13 @@ nav ul li a.active {
   width: 21px;
   height: 21px;
 }
+
+/* HeaderComponent */
+
+.content-header .button-container {
+  width: 220px;
+  height: 73px;
+  display: flex;
+  gap: 20px;
+  margin-left: 20px;
+}
