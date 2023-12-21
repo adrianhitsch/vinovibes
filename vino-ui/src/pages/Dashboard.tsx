@@ -1,7 +1,16 @@
-import React from 'react';
-import Searchbar from '../layout/searchbar';
+import React, { useContext, useEffect } from 'react';
+import { HeaderContext } from '../layout/contentHeader';
 
 const Dashboard = () => {
+  const { setHeaderContent } = useContext(HeaderContext as any) as any;
+  useEffect(() => {
+    setHeaderContent({
+      header: 'Dashboard',
+      text: 'Hier findest du deine aktuellen Statistiken',
+      buttons: [],
+    });
+  }, []);
+
   return (
     <>
       <div className="content-container">
