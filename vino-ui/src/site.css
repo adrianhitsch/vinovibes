@@ -51,7 +51,8 @@ body {
   justify-content: center;
 }
 
-.main-nav .footer .button .icon {
+.main-nav .footer .button .icon,
+.button-container .button .icon {
   float: left;
 }
 
@@ -145,6 +146,7 @@ body {
 
 .button.secondary {
   background: var(--white);
+  color: var(--surface-color) !important;
   border-radius: 10px;
   color: var(--white);
   font-size: 18px;
@@ -165,12 +167,23 @@ body {
   line-height: 24px;
   padding: 12px 24px;
   cursor: pointer;
-  min-width: 73px;
+  min-width: 60px;
   transition: background-color 0.2s ease-in-out;
 }
 
-.button:hover {
+.button.close .icon {
+  height: 30px;
+  width: 30px;
+  transform: translateX(-8px);
+}
+
+.button:hover:not([disabled]) {
   opacity: 0.8;
+}
+
+button[disabled] {
+  opacity: 0.5;
+  pointer-events: none;
 }
 
 .button.transparent {
