@@ -29,7 +29,14 @@ const Searchbar = () => {
           )}
         </button>
       </div>
-      <Toaster />
+      <Toaster
+        toastOptions={{
+          style: {
+            background: '#273039',
+            color: '#f0f0f0',
+          },
+        }}
+      />
     </>
   );
 };

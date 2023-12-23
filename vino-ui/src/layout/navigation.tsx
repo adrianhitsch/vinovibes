@@ -1,6 +1,5 @@
-import { Toast } from 'primereact/toast';
-import React, { useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
+import toast from 'react-hot-toast';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
 
