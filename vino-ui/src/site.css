@@ -167,7 +167,7 @@ body {
   line-height: 24px;
   padding: 12px 24px;
   cursor: pointer;
-  min-width: 60px;
+  width: 60px;
   transition: background-color 0.2s ease-in-out;
 }
 
