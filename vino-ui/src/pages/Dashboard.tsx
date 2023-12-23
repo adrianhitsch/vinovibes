@@ -9,8 +9,13 @@ const Dashboard = () => {
       header: 'Dashboard',
       text: 'Hier findest du deine aktuellen Statistiken',
       buttons: [
-        { text: 'Wine', icon: 'wine-glass', type: 'primary', onClick: () => console.log('test1') },
-        { text: 'test2', type: 'close', onClick: () => handleClick() },
+        {
+          text: 'Fertig',
+          icon: 'tik-mark-gradient',
+          type: 'secondary',
+          onClick: () => console.log('test1'),
+        },
+        { type: 'close', onClick: () => handleClick() },
       ],
     });
   }, []);

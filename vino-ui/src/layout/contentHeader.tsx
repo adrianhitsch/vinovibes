@@ -4,13 +4,13 @@ import Searchbar from './searchbar';
 type HeaderContentType = {
   header: string;
   text: string;
-  buttons: ButtonType[];
+  buttons: Array<ButtonType>;
   headerContent?: any;
   setHeaderContent?: any;
 };
 
 type ButtonType = {
-  text: string;
+  text?: string;
   type?: 'primary' | 'secondary' | 'close';
   icon?: string;
   disabled?: boolean;
@@ -29,16 +29,30 @@ const ContentHeader = () => {
         <h2>{headerContent.text}</h2>
       </div>
       <div className="button-container">
-        {headerContent.buttons.map((button) => (
-          <button
-            className={`button ${button.type}`}
-            disabled={button.disabled || false}
-            onClick={button.onClick}
-          >
-            <span className={`icon icon-${button.icon}`}></span>
-            {button.text}
-          </button>
-        ))}
+        {headerContent.buttons.map((button) => {
+          if (button.type === 'close') {
+            return (
+              <button
+                className={`button ${button.type}`}
+                disabled={button.disabled || false}
+                onClick={button.onClick}
+              >
+                {''}
+                <span className={`icon icon-close`}></span>
+              </button>
+            );
+          }
+          return (
+            <button
+              className={`button ${button.type}`}
+              disabled={button.disabled || undefined}
+              onClick={button.onClick}
+            >
+              <span className={`icon icon-${button.icon}`}></span>
+              {button.text}
+            </button>
+          );
+        })}
       </div>
       <Searchbar />
     </div>
