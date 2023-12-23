@@ -59,6 +59,7 @@ const Navigation = () => {
             <Link to="/vino" id="my-vino">
               <span className="icon icon-wine-glass"></span>
               Meine Weine
+              <div className="line"></div>
             </Link>
             <ul className="expandable menu my-vino">
               <li onClick={setActive}>
@@ -77,6 +78,7 @@ const Navigation = () => {
             <Link to="/vino" id="all-vino">
               <span className="icon icon-wine-bottle"></span>
               Alle Weine
+              <div className="line"></div>
             </Link>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
