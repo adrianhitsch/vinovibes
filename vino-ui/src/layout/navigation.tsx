@@ -40,6 +40,14 @@ const Navigation = () => {
       const submenus = document.querySelector('.expandable.menu.all-vino');
       submenus?.classList.remove('expand');
     }
+
+    if (e.target.id.includes("account")) {
+      const submenus = document.querySelector(".expandable.menu.account");
+      submenus?.classList.add("expand");
+    } else {
+      const submenus = document.querySelector(".expandable.menu.account");
+      submenus?.classList.remove("expand");
+    }
   };
 
   const handleLogout = async () => {
@@ -70,6 +78,7 @@ const Navigation = () => {
             <Link to="/vino" id="my-vino">
               <span className="icon icon-wine-glass"></span>
               Meine Weine
+              <div className="line"></div>
             </Link>
             <ul className="expandable menu my-vino">
               <li onClick={setActive}>
@@ -88,6 +97,7 @@ const Navigation = () => {
             <Link to="/vino" id="all-vino">
               <span className="icon icon-wine-bottle"></span>
               Alle Weine
+              <div className="line"></div>
             </Link>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
@@ -113,9 +123,23 @@ const Navigation = () => {
             </ul>
           </li>
           <li onClick={setActive}>
-            <Link to="/account">
+            <Link to="/account" id="account">
               <span className="icon icon-user"></span>Mein Account
+              <div className="line"></div>
             </Link>
+
+            <ul className="expandable menu account">
+              <li onClick={setActive}>
+                <Link to="/account" id="account">
+                  Mein Profil
+                </Link>
+              </li>
+              <li onClick={setActive}>
+                <Link to="/account" id="account">
+                  Einstellungne
+                </Link>
+              </li>
+            </ul>
           </li>
           <li onClick={setActive}>
             <Link to="/admin">
