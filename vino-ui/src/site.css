@@ -167,7 +167,7 @@ body {
   line-height: 24px;
   padding: 12px 24px;
   cursor: pointer;
-  min-width: 60px;
+  width: 60px;
   transition: background-color 0.2s ease-in-out;
 }
 
@@ -316,9 +316,9 @@ nav ul li a.active {
 /* HeaderComponent */
 
 .content-header .button-container {
+  width: fit-content;
   margin-top: 8px;
   margin-left: 20px;
-  width: 220px;
   height: 60px;
   display: flex;
   gap: 20px;
