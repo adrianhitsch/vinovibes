@@ -91,7 +91,7 @@ nav .icon {
 .line::before,
 .line::after {
   pointer-events: none;
-  content: "";
+  content: '';
   position: relative;
   top: 26px;
   height: 3px;

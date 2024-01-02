@@ -41,12 +41,12 @@ const Navigation = () => {
       submenus?.classList.remove('expand');
     }
 
-    if (e.target.id.includes("account")) {
-      const submenus = document.querySelector(".expandable.menu.account");
-      submenus?.classList.add("expand");
+    if (e.target.id.includes('account')) {
+      const submenus = document.querySelector('.expandable.menu.account');
+      submenus?.classList.add('expand');
     } else {
-      const submenus = document.querySelector(".expandable.menu.account");
-      submenus?.classList.remove("expand");
+      const submenus = document.querySelector('.expandable.menu.account');
+      submenus?.classList.remove('expand');
     }
   };
 
@@ -60,6 +60,11 @@ const Navigation = () => {
     const test = await apiFetch('/hello', { method: 'GET' }).then((data) => data.text());
     console.log(test);
   };
+
+  // mobile navigation
+  if (window.innerWidth <= 575) {
+    return null;
+  }
 
   return (
     <div className="main-nav">
