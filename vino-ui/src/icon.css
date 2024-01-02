@@ -82,6 +82,7 @@ nav .icon {
 }
 
 .line {
+  pointer-events: none;
   float: right;
   height: 100%;
   width: 35px;
@@ -89,6 +90,7 @@ nav .icon {
 
 .line::before,
 .line::after {
+  pointer-events: none;
   content: "";
   position: relative;
   top: 26px;
@@ -111,13 +113,15 @@ nav .icon {
   width: 10px;
 }
 
-li:hover .line::before {
+li:hover .line::before,
+li:has(.expand) .line::before {
   width: 15px;
   transform: rotate(45deg) translateX(5px);
   background: #f0f0f0;
 }
 
-li:hover .line::after {
+li:hover .line::after,
+li:has(.expand) .line::after {
   width: 15px;
   transform: rotate(-45deg) translateX(-6px);
   background: #f0f0f0;
