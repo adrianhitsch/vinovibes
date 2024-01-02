@@ -35,6 +35,14 @@ const Navigation = () => {
       const submenus = document.querySelector(".expandable.menu.all-vino");
       submenus?.classList.remove("expand");
     }
+
+    if (e.target.id.includes("account")) {
+      const submenus = document.querySelector(".expandable.menu.account");
+      submenus?.classList.add("expand");
+    } else {
+      const submenus = document.querySelector(".expandable.menu.account");
+      submenus?.classList.remove("expand");
+    }
   };
 
   return (
@@ -104,9 +112,23 @@ const Navigation = () => {
             </ul>
           </li>
           <li onClick={setActive}>
-            <Link to="/account">
+            <Link to="/account" id="account">
               <span className="icon icon-user"></span>Mein Account
+              <div className="line"></div>
             </Link>
+
+            <ul className="expandable menu account">
+              <li onClick={setActive}>
+                <Link to="/account" id="account">
+                  Mein Profil
+                </Link>
+              </li>
+              <li onClick={setActive}>
+                <Link to="/account" id="account">
+                  Einstellungne
+                </Link>
+              </li>
+            </ul>
           </li>
           <li onClick={setActive}>
             <Link to="/admin">
