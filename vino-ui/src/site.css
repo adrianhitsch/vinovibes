@@ -197,7 +197,7 @@ h2 {
 }
 
 .p-inputtext:focus {
-  box-shadow: 0 0 0 0.2rem #3b4045;
+  box-shadow: 0 0 0 1px#fb98829c;
 }
 
 .logo-container {
@@ -258,4 +258,141 @@ nav ul li a {
 nav ul li a.active {
   color: #fc9181;
   background: #ffffff19;
+}
+
+@media only screen and (max-width: 1200px) {
+  .p-inputtext {
+    width: 0px;
+    padding: 0;
+  }
+
+  .search-button {
+    width: 56px;
+    height: 56px;
+    top: 0;
+    right: 92px;
+  }
+
+  body:has(.backdrop) {
+    overflow: hidden;
+  }
+
+  .backdrop {
+    position: absolute;
+    width: 100vh;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background: #ffffff19;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  .search-input.mobile {
+    position: absolute;
+    top: 140px;
+    left: 50%;
+    transform: translate(-50%, 0%);
+  }
+
+  .search-input.mobile .p-inputtext {
+    width: 400px;
+    padding: 13px;
+    background: #273039;
+  }
+
+  .search-input.mobile .search-button {
+    border-radius: 0 10px 10px 0;
+    right: 102px;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .main-nav {
+    display: none;
+  }
+  .content {
+    width: 100%;
+  }
+  .content-header {
+    padding-left: 24px;
+  }
+  .searchbar {
+    top: 35px;
+    right: 24px;
+  }
+  .search-button {
+    right: 24px;
+  }
+  .bell-button {
+    right: 24px;
+  }
+  .bell-notifications {
+    left: 40px;
+  }
+  .p-inputtext {
+    margin-right: 24px;
+  }
+  .p-autocomplete {
+    width: 100%;
+    max-width: 100%;
+  }
+  .logo-container {
+    height: 180px;
+    width: 100%;
+  }
+  .logo-container img {
+    width: 100%;
+    height: 100%;
+  }
+  .content-card {
+    width: 100%;
+    min-height: calc(100dvh - 190px);
+  }
+  .content-header {
+    padding-left: 24px;
+  }
+  .content-header h1 {
+    font-size: 24px;
+  }
+  .content-header h2 {
+    font-size: 16px;
+  }
+  .content-header > div:first-child {
+    flex-shrink: 0;
+  }
+  .searchbar {
+    width: 100%;
+    float: right;
+    top: 35px;
+    right: 24px;
+    border: unset;
+    outline: unset;
+    flex-shrink: 0 1;
+  }
+  .search-button,
+  .bell-button {
+    height: 39px;
+    width: 39px;
+    border-radius: 10px;
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: none;
+    overflow: unset;
+    cursor: pointer;
+  }
+  .search-button {
+    right: 24px;
+  }
+  .button {
+    background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0%
+      0% no-repeat padding-box;
+    border: unset;
+    outline: unset;
+    box-shadow: unset;
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
 }
