@@ -119,11 +119,8 @@ const Navigation = () => {
           Wein erstellen
         </Button>
 
-        <Button
-          type="button"
-          onClick={() => toast.error('Sorry could not log you out :c')}
-          className="button transparent"
-        >
+        {/* ! TODO - add logout functionality  */}
+        <Button type="button" onClick={() => navigate('/login')} className="button transparent">
           <span className="icon icon-logout"></span>
           Logout
         </Button>
