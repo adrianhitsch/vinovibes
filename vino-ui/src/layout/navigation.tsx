@@ -4,7 +4,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { Button } from "primereact/button";
 import { Link, useNavigate } from "react-router-dom";
 
-const Navigation = () => {
+const Navigation = (): JSX.Element | null => {
   const navigate = useNavigate();
 
   const setActive = (e: any) => {
@@ -44,6 +44,11 @@ const Navigation = () => {
       submenus?.classList.remove("expand");
     }
   };
+
+  // mobile navigation
+  if (window.innerWidth <= 575) {
+    return null;
+  }
 
   return (
     <div className="main-nav">

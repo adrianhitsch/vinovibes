@@ -5,9 +5,14 @@
   font-size: 18px;
 }
 
+#root {
+  height: 100dvh;
+}
+
 body {
   background: #0f1924;
   color: #f0f0f0;
+  overflow: hidden;
 }
 
 .vino-logo {
@@ -49,7 +54,67 @@ body {
   float: left;
 }
 
+.main-nav-mobile {
+  width: 100dvw;
+  height: 60px;
+  background: #0f1924;
+  position: absolute;
+  bottom: 0;
+  border-top: 1px solid #ffffff19;
+  box-shadow: 0px -4px 4px #00000040;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.main-nav-mobile button {
+  height: 46px;
+  width: 46px;
+  background: unset;
+}
+
+.main-nav-mobile button:not(.round)::after {
+  position: absolute;
+  opacity: 0;
+  bottom: -46px;
+  transform: translateX(-23px);
+  content: "";
+  height: 46px;
+  width: 46px;
+  background: #ffffff19;
+  border-radius: 10px;
+  transition:
+    bottom 0.2s ease-in-out,
+    opacity 0.2s ease-in-out;
+}
+
+.main-nav-mobile button.active:not(.round)::after {
+  position: absolute;
+  opacity: 1;
+  bottom: 5px;
+  transform: translateX(-23px);
+  content: "";
+  height: 46px;
+  width: 46px;
+  background: #ffffff19;
+  border-radius: 10px;
+}
+
+.main-nav-mobile button.round {
+  height: 46px;
+  width: 46px;
+  background: linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
+    padding-box;
+  border-radius: 50%;
+}
+
+.main-nav-mobile button span {
+  transform: translateX(8px);
+  pointer-events: none;
+}
+
 .platform {
+  overflow: scroll;
   display: flex;
   height: 100%;
 }
@@ -309,11 +374,16 @@ nav ul li a.active {
 }
 
 @media only screen and (max-width: 575px) {
+  #root {
+    height: calc(100dvh + 60px + 20px);
+  }
+
   .main-nav {
     display: none;
   }
   .content {
-    width: 100%;
+    height: fit-content;
+    margin-bottom: 130px;
   }
   .content-header {
     padding-left: 24px;
