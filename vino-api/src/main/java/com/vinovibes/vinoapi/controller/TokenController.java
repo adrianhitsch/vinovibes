@@ -9,7 +9,10 @@ import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.vinovibes.vinoapi.dtos.LoginDTO;
 
 @RestController
 public class TokenController {
@@ -18,7 +21,8 @@ public class TokenController {
     JwtEncoder encoder;
 
     @PostMapping("/login")
-    public String token(Authentication authentication) {
+    public String token(Authentication authentication, @RequestBody LoginDTO loginDTO) {
+        System.out.println("body: " + loginDTO);
         Instant now = Instant.now();
         long expiry = 36000L;
         // @formatter:off

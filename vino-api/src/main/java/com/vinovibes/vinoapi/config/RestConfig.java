@@ -40,9 +40,11 @@ public class RestConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("login").permitAll()
                         .anyRequest().authenticated()
                 )
-                .csrf(AbstractHttpConfigurer::disable)
+                .csrf((csrf) -> csrf.ignoringRequestMatchers("/login"))
+                .cors(cors -> cors.disable())
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())))
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

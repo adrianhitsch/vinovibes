@@ -17,7 +17,7 @@ const Login = (): JSX.Element => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: email || '',
+        username: email || '',
         password: password || '',
       }),
     })
