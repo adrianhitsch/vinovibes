@@ -11,6 +11,10 @@ const MobileNavigation = () => {
     e.target.classList.add("active");
   };
 
+  if (window.innerWidth > 575) {
+    return null;
+  }
+
   return (
     <div className="main-nav-mobile">
       <button type="button" className="button nav-button" onClick={setActive}>
