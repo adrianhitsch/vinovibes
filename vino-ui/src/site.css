@@ -117,7 +117,7 @@ body {
 }
 
 .button {
-  background: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
+  background: transparent linear-gradient(90deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
     padding-box;
   border: unset;
   outline: unset;
@@ -126,12 +126,51 @@ body {
   transition: opacity 0.2s ease-in-out;
 }
 
+.button.secondary {
+  background: #ffffff82;
+  color: #0f1924;
+}
+
 .button:hover {
   opacity: 0.8;
 }
 
 .button.transparent {
   background: transparent;
+}
+
+.button.text {
+  width: auto !important;
+  height: auto !important;
+  padding: unset;
+  margin-bottom: 15px;
+}
+
+.group {
+  width: 400px;
+}
+
+.group .p-checkbox {
+  margin-bottom: 21px;
+}
+
+.group .p-checkbox-label {
+  width: calc(100% - 40px);
+  text-align: left;
+  font-size: 14px;
+  margin-left: 10px;
+  line-height: 24px;
+}
+
+.group .p-checkbox,
+.group .p-checkbox-label {
+  float: left;
+}
+
+.button.text span,
+.group p {
+  font-size: 15px;
+  font-weight: 300;
 }
 
 .search-button img {
@@ -176,7 +215,7 @@ h2 {
   margin: unset;
 }
 
-.p-inputtext {
+.searchbar .p-inputtext {
   height: 56px;
   width: 100%;
   background: #ffffff19;
@@ -190,6 +229,29 @@ h2 {
   margin-right: 103px;
 }
 
+.login .p-inputtext {
+  width: 100%;
+  height: 65px;
+  background-color: #ffffff60;
+  margin-bottom: 26px;
+  border: unset;
+  font-size: 18px;
+  padding-left: 27px;
+}
+
+.login .p-checkbox-box {
+  background-color: #ffffff60;
+  border: unset;
+}
+
+.login .p-inputtext:focus {
+  box-shadow: 0 0 0 2px #ffffff82;
+}
+
+.login .p-inputtext::placeholder {
+  color: #f0f0f0;
+}
+
 .p-autocomplete {
   width: 90%;
   max-width: 420px;
@@ -198,6 +260,20 @@ h2 {
 
 .p-inputtext:focus {
   box-shadow: 0 0 0 0.2rem #3b4045;
+}
+
+.p-checkbox {
+  width: 30px;
+}
+
+.p-checkbox-box {
+  height: 30px;
+  width: 30px;
+  box-shadow: unset;
+}
+
+.p-checkbox:not(.p-checkbox-disabled) .p-checkbox-box:hover {
+  box-shadow: 0 0 0 2px #ffffff82;
 }
 
 .logo-container {
@@ -255,4 +331,81 @@ nav ul li a {
 nav ul li a.active {
   color: #fc9181;
   background: #ffffff19;
+}
+
+/* login */
+
+.login-image {
+  position: fixed;
+  min-width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.login-container {
+  text-align: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  float: right;
+  width: 770px;
+  height: 100vh;
+  backdrop-filter: blur(30px);
+  --webkit-backdrop-filter: blur(30px);
+  background-color: #ffffff33;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 0 60px 0;
+}
+
+.login-container h1 {
+  font-size: 80px;
+  color: #ffffff80;
+}
+
+.login .vino-logo {
+  position: unset;
+  width: 110px;
+  height: auto;
+  opacity: 0.78;
+}
+
+.login .logo.margin {
+  margin-bottom: 26px;
+}
+
+.login-container > p {
+  width: 450px;
+  font-size: 32px;
+  margin-bottom: 70px;
+}
+
+.login-container > p::after {
+  content: '';
+  width: 350px;
+  height: 1px;
+  transform: translateX(50px);
+  margin-top: 21px;
+  background: #f0f0f0;
+  display: block;
+}
+
+.login-container .group:last-child {
+  margin-top: auto;
+}
+
+.login .button {
+  width: 100%;
+  height: 65px;
+}
+
+.button.register {
+  margin-top: 21px;
+}
+
+.p-checkbox .p-checkbox-box .p-checkbox-icon.p-icon {
+  width: 21px;
+  height: 21px;
 }

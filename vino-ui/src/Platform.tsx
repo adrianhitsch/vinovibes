@@ -1,9 +1,23 @@
+// Platform.tsx
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
 import Searchbar from './layout/searchbar';
 
 const Platform = () => {
+  const location = useLocation();
+
+  if (
+    location.pathname === '/login' ||
+    location.pathname === '/register' ||
+    location.pathname === '/forgot-password'
+  ) {
+    return <Router />;
+  }
+
+  // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);
+
   return (
     <div className="platform">
       <Navigation />
@@ -16,10 +30,10 @@ const Platform = () => {
           </div>
           <Searchbar />
         </div>
-
         <Router />
       </div>
     </div>
   );
 };
+
 export default Platform;
