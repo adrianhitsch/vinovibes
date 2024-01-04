@@ -3,7 +3,7 @@ const config = {
 };
 
 const devConfig = {
-  API_URL: 'http://vinovibes.local.backend:8080',
+  API_URL: 'http://backend.vinovibes.local',
 };
 
 export default process.env.NODE_ENV === 'production' ? config : devConfig;

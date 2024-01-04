@@ -20,6 +20,7 @@ const Login = (): JSX.Element => {
         'Content-Type': 'application/json',
       },
       credentials: 'include',
+
       body: JSON.stringify({
         username: email || '',
         password: password || '',

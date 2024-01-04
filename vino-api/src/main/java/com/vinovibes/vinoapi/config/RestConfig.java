@@ -50,7 +50,7 @@ public class RestConfig {
                     CorsConfiguration config = new CorsConfiguration();
                     config.addAllowedOrigin("http://vinovibes.local:3000");
                     config.addAllowedMethod("*"); // Allow all HTTP methods
-                    config.addAllowedHeader("*"); 
+                    config.addAllowedHeader("*");
                     config.setAllowCredentials(true);   
                     return config;
                 }))

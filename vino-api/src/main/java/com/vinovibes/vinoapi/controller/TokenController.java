@@ -12,11 +12,9 @@ import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
-import org.springframework.session.web.http.DefaultCookieSerializer;
-import org.springframework.session.web.http.CookieSerializer.CookieValue;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestBody;
+
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.Cookie;
@@ -47,13 +45,12 @@ public class TokenController {
         Jwt jwt = encoder.encode(parameters);
 
         // Create a cookie
-        Cookie jwtCookie = new Cookie("jwt", jwt.getTokenValue());
+        Cookie jwtCookie = new Cookie("vino-auth", jwt.getTokenValue());
         jwtCookie.setHttpOnly(true);
         jwtCookie.setSecure(false); // Set this to true if you're using HTTPS
         jwtCookie.setPath("/");
-
-        String cookieValue = String.format("jwt=%s; HttpOnly;  Path=/; SameSite=Lax", jwt.getTokenValue());
-        response.setHeader("Set-Cookie", cookieValue);
+        jwtCookie.setDomain("vinovibes.local");
+        jwtCookie.setAttribute("SameSite", "Lax");
 
         // Add the cookie to the response
         response.addCookie(jwtCookie);
