@@ -1,14 +1,14 @@
 spring:
-  jpa:
-    hibernate:
-      ddl-auto: update
-    open-in-view: true
-  datasource:
-    driver-class-name: oracle.jdbc.OracleDriver
-    username: vinovibes
-    password: Vino42_3
-    url: jdbc:oracle:thin:@h2922093.stratoserver.net:1521/orcl.stratoserver.net
+    jpa:
+        hibernate:
+            ddl-auto: update
+        open-in-view: true
+    datasource:
+        driver-class-name: oracle.jdbc.OracleDriver
+        username: ${DATABASE_USERNAME}
+        password: ${DATABASE_PASSWORD}
+        url: ${DATABASE_URL}
 
 jwt:
-  private.key: classpath:private_key.pem
-  public.key: classpath:public_key.pem
+    private.key: classpath:private_key.pem
+    public.key: classpath:public_key.pem

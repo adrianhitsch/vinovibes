@@ -21,7 +21,7 @@ const Login = (): JSX.Element => {
       },
       credentials: 'include',
       body: JSON.stringify({
-        name: email || '',
+        username: email || '',
         password: password || '',
       }),
     })
