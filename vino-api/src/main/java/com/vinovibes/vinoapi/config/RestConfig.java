@@ -25,6 +25,7 @@ import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthen
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.web.cors.CorsConfiguration;
 
 @Configuration
 public class RestConfig {
@@ -40,9 +41,19 @@ public class RestConfig {
         // @formatter:off
         http
                 .authorizeHttpRequests((authorize) -> authorize
+                        .requestMatchers("/login").permitAll() // Allow access to /login without authentication
                         .anyRequest().authenticated()
                 )
                 .csrf(AbstractHttpConfigurer::disable)
+                // allow any cors origins
+                .cors((cors) -> cors.configurationSource((request) -> {
+                    CorsConfiguration config = new CorsConfiguration();
+                    config.addAllowedOrigin("http://vinovibes.local:3000");
+                    config.addAllowedMethod("*"); // Allow all HTTP methods
+                    config.addAllowedHeader("*"); 
+                    config.setAllowCredentials(true);   
+                    return config;
+                }))
                 .httpBasic(Customizer.withDefaults())
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> jwt.decoder(jwtDecoder())))
                 .sessionManagement((session) -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

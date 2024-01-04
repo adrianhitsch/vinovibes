@@ -46,6 +46,10 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.session</groupId>
+			<artifactId>spring-session-core</artifactId>
+		</dependency>
 
 		<!--#######################################-->
 		<!--########## SPRING SECURITY ############-->
