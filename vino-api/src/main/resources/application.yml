@@ -9,8 +9,6 @@ spring:
         password: ${DATABASE_PASSWORD}
         url: ${DATABASE_URL}
 
-server:
-    port: 80
 
 jwt:
     private.key: classpath:private_key.pem
