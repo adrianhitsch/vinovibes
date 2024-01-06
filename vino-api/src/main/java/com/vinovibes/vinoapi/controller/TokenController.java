@@ -51,6 +51,7 @@ public class TokenController {
         jwtCookie.setPath("/");
         jwtCookie.setDomain("vinovibes.local");
         jwtCookie.setAttribute("SameSite", "Lax");
+        jwtCookie.setMaxAge(60 * 60); // 1 hour
 
         // Add the cookie to the response
         response.addCookie(jwtCookie);
