@@ -6,15 +6,22 @@ import { BrowserRouter } from 'react-router-dom';
 import Platform from './Platform';
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
 import 'primereact/resources/themes/lara-light-cyan/theme.css';
+import { Provider } from 'react-redux';
+import { store, persistor } from '../src/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <PrimeReactProvider>
-      <BrowserRouter>
-        <Platform />
-      </BrowserRouter>
-    </PrimeReactProvider>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <PrimeReactProvider>
+          <BrowserRouter>
+            <Platform />
+          </BrowserRouter>
+        </PrimeReactProvider>
+      </PersistGate>
+    </Provider>
   </React.StrictMode>,
 );
 

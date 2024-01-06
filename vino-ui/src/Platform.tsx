@@ -1,12 +1,24 @@
 // Platform.tsx
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
 import Searchbar from './layout/searchbar';
+import { useSelector } from 'react-redux';
+import { storeType } from './redux/storeType';
 
 const Platform = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const user = useSelector((state: storeType) => state.user);
+
+  // navigate to login if not authenticated
+  useEffect(() => {
+    if (!user.authenticated || user.sessionEnd < new Date().getTime()) {
+      navigate('/login');
+    }
+  }, [user]);
 
   if (
     location.pathname === '/login' ||
@@ -14,6 +26,11 @@ const Platform = () => {
     location.pathname === '/forgot-password'
   ) {
     return <Router />;
+  }
+
+  if (!user.authenticated) {
+    // dont render anything if not authenticated
+    return <div></div>;
   }
 
   // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);

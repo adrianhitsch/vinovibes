@@ -1,20 +1,21 @@
-import React, { BaseSyntheticEvent } from 'react';
+import React, { BaseSyntheticEvent, useEffect } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
 import { useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
+import { useDispatch } from 'react-redux';
+import { login } from '../redux/userSlice';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleLogin = async () => {
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
 
-    console.log(email, password);
-
-    const body = await fetch(`${config.API_URL}/login`, {
+    await fetch(`${config.API_URL}/login`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -31,6 +32,8 @@ const Login = (): JSX.Element => {
         if (data.status === 200) {
           console.log(data);
 
+          dispatch(login());
+
           navigate('/');
         } else {
           toast.error('E-Mail oder Passwort ist falsch. Bitte versuche es erneut.');
@@ -43,7 +46,6 @@ const Login = (): JSX.Element => {
   };
 
   const handleInput = (e: any) => {
-    console.log(e);
     if (e.code === 'Enter') {
       handleLogin();
     }

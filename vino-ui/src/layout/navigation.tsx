@@ -3,8 +3,11 @@ import React, { useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const setActive = (e: any) => {
@@ -35,6 +38,12 @@ const Navigation = () => {
       const submenus = document.querySelector('.expandable.menu.all-vino');
       submenus?.classList.remove('expand');
     }
+  };
+
+  const handleLogout = async () => {
+    dispatch(logout());
+
+    // TODO - logout from backend
   };
 
   return (
@@ -120,7 +129,7 @@ const Navigation = () => {
         </Button>
 
         {/* ! TODO - add logout functionality  */}
-        <Button type="button" onClick={() => navigate('/login')} className="button transparent">
+        <Button type="button" onClick={handleLogout} className="button transparent">
           <span className="icon icon-logout"></span>
           Logout
         </Button>
