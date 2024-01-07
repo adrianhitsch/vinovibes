@@ -28,13 +28,11 @@ const Login = (): JSX.Element => {
         password: password || '',
       }),
     })
-      .then((res) => res.json())
-      .then((data) => {
+      .then(async (data) => {
         if (data.status === 200) {
-          console.log(data);
+          const response = await data.json();
 
-          const token = 'token';
-          dispatch(login(token));
+          dispatch(login(response.token));
 
           navigate('/');
         } else {

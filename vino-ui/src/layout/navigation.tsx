@@ -1,14 +1,16 @@
-import { Toast } from 'primereact/toast';
-import React, { useEffect } from 'react';
-import toast, { Toaster } from 'react-hot-toast';
+import React from 'react';
 import { Button } from 'primereact/button';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/userSlice';
+import { storeType } from '../redux/storeType';
+import apiFetch from '../wrapper/apiFetch';
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const token = useSelector((state: storeType) => state.user.token) || '';
 
   const setActive = (e: any) => {
     const elements = document.querySelectorAll('a');
@@ -44,6 +46,11 @@ const Navigation = () => {
     dispatch(logout());
 
     // TODO - logout from backend
+  };
+
+  const handleHello = async () => {
+    const test = await apiFetch(token, '/hello', { method: 'GET' }).then((data) => data.text());
+    console.log(test);
   };
 
   return (
@@ -119,11 +126,7 @@ const Navigation = () => {
       </nav>
 
       <div className="footer">
-        <Button
-          type="button"
-          onClick={() => toast.error('Sorry could not create vino :c')}
-          className="button"
-        >
+        <Button type="button" onClick={handleHello} className="button">
           <span className="icon icon-plus"></span>
           Wein erstellen
         </Button>

@@ -1,18 +1,18 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+import config from '../config';
 
-const ApiFetch = (async (url: string, options: RequestInit = {}) => {
-  const token = useSelector((state: any) => state.user.token);
- 
-    if (!token) {
+const apiFetch = (async (token: string, url: string, options: RequestInit = {}) => {
+  const apiUrl = config.API_URL;
+  
+    if (token) {
       options.headers = {
         ...options.headers,
         Authorization: `Bearer ${token}`,
       };
     }
-    const response = await fetch(url, options);
 
-  return response;
+  return fetch(apiUrl + url, options);
 });
 
-export default ApiFetch;
+export default apiFetch;
