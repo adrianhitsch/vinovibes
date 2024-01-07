@@ -24,11 +24,11 @@ const Login = (): JSX.Element => {
       credentials: 'include',
 
       body: JSON.stringify({
-        username: email || '',
+        email: email || '',
         password: password || '',
       }),
     })
-      // .then((res) => res.json())
+      .then((res) => res.json())
       .then((data) => {
         if (data.status === 200) {
           console.log(data);
