@@ -15,7 +15,7 @@ const Platform = () => {
 
   // navigate to login if not authenticated
   useEffect(() => {
-    if (!user.authenticated || user.sessionEnd < new Date().getTime()) {
+    if (!user.token || user.sessionEnd < new Date().getTime()) {
       navigate('/login');
     }
   }, [user]);
@@ -28,7 +28,7 @@ const Platform = () => {
     return <Router />;
   }
 
-  if (!user.authenticated) {
+  if (!user.token) {
     // dont render anything if not authenticated
     return <div></div>;
   }

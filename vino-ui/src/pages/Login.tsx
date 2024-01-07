@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/userSlice';
+import ApiFetch from '../wrapper/apiFetch';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
@@ -32,7 +33,8 @@ const Login = (): JSX.Element => {
         if (data.status === 200) {
           console.log(data);
 
-          dispatch(login());
+          const token = 'token';
+          dispatch(login(token));
 
           navigate('/');
         } else {

@@ -4,18 +4,19 @@ export const userSlice = createSlice({
     name: 'user',
     initialState: {
         user: null,
-        authenticated: false,
         sessionEnd: 0,
+        token: null,
     },
     reducers: {
-        login: (state) => {
-            state.authenticated = true;
+        login: (state, action) => {
             // now + 1 Hour
+            console.log(action);
             state.sessionEnd = new Date().getTime() + 3600000;
+            state.token = action.payload;
         },
         logout: (state) => {
-            state.authenticated = false;
             state.sessionEnd = 0;
+            state.token = null;
         },
     },
 });
