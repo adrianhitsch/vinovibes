@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit';
 export const userSlice = createSlice({
     name: 'user',
     initialState: {
-        user: null,
+        email: null,
         sessionEnd: 0,
         token: null,
     },
@@ -12,11 +12,13 @@ export const userSlice = createSlice({
             // now + 1 Hour
             console.log(action);
             state.sessionEnd = new Date().getTime() + 3600000;
-            state.token = action.payload;
+            state.token = action.payload.token;
+            state.email = action.payload.email;
         },
         logout: (state) => {
             state.sessionEnd = 0;
             state.token = null;
+            state.email = null;
         },
     },
 });

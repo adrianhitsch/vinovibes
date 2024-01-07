@@ -1,6 +1,6 @@
 export interface storeType {
     user: {
-        user: null | string,
+        email: null | string,
         sessionEnd: number,
         token: null | string,
     },

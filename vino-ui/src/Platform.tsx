@@ -4,18 +4,21 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
 import Searchbar from './layout/searchbar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { storeType } from './redux/storeType';
+import { logout } from './redux/userSlice';
 
 const Platform = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const user = useSelector((state: storeType) => state.user);
 
   // navigate to login if not authenticated
   useEffect(() => {
     if (!user.token || user.sessionEnd < new Date().getTime()) {
+      dispatch(logout());
       navigate('/login');
     }
   }, [user]);
