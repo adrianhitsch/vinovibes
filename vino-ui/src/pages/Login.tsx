@@ -32,7 +32,14 @@ const Login = (): JSX.Element => {
         if (data.status === 200) {
           const response = await data.json();
 
-          dispatch(login({ token: response.token, email: response.email }));
+          dispatch(
+            login({
+              token: response.token,
+              email: response.email,
+              firstName: response.firstName,
+              lastName: response.lastName,
+            }),
+          );
 
           navigate('/');
         } else {

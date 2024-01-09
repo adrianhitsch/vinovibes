@@ -6,7 +6,8 @@ import Navigation from './layout/navigation';
 import Searchbar from './layout/searchbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeType } from './redux/storeType';
-import { logout } from './redux/userSlice';
+import { logout, resetNewUser } from './redux/userSlice';
+import toast, { Toaster } from 'react-hot-toast';
 
 const Platform = () => {
   const location = useLocation();
@@ -21,14 +22,24 @@ const Platform = () => {
       dispatch(logout());
       navigate('/login');
     }
-  }, [user]);
+    if (user.newUser) {
+      toast.success(`Herzlich willkommen ${user.firstName}!`);
+      dispatch(resetNewUser());
+      navigate('/profile');
+    }
+  }, [user.token, user.sessionEnd, user.newUser, user.firstName]);
 
   if (
     location.pathname === '/login' ||
     location.pathname === '/register' ||
     location.pathname === '/forgot-password'
   ) {
-    return <Router />;
+    return (
+      <>
+        <Router />
+        <Toaster />
+      </>
+    );
   }
 
   if (!user.token) {
@@ -39,20 +50,22 @@ const Platform = () => {
   // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);
 
   return (
-    <div className="platform">
-      <Navigation />
-
-      <div className="content">
-        <div className="content-header">
-          <div>
-            <h1>Mein Dashboard</h1>
-            <h2>Willkommen auf deinem persönlichen Dashboard</h2>
+    <>
+      <div className="platform">
+        <Navigation />
+        <div className="content">
+          <div className="content-header">
+            <div>
+              <h1>Mein Dashboard</h1>
+              <h2>Willkommen auf deinem persönlichen Dashboard</h2>
+            </div>
+            <Searchbar />
           </div>
-          <Searchbar />
+          <Router />
         </div>
-        <Router />
       </div>
-    </div>
+      <Toaster />
+    </>
   );
 };
 

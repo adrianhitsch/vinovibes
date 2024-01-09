@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/userSlice';
+import { registerUser } from '../redux/userSlice';
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate();
@@ -71,10 +71,20 @@ const Register = (): JSX.Element => {
       }),
     })
       .then(async (resp) => {
-        if (resp.status === 200) {
+        if (resp.status === 201) {
           const data = await resp.json();
-          dispatch(login({ token: data.token, email: userData.email }));
+          dispatch(
+            registerUser({
+              token: data.token,
+              email: userData.email,
+              firstName: userData.firstName,
+              lastName: userData.lastName,
+            }),
+          );
           navigate('/');
+        } else {
+          const data = await resp.json();
+          toast.error(data.message);
         }
       })
 
