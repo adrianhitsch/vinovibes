@@ -276,6 +276,10 @@ h2 {
   box-shadow: 0 0 0 2px #ffffff82;
 }
 
+.p-disabled {
+  opacity: 0.5;
+}
+
 .logo-container {
   height: 180px;
   width: 100%;

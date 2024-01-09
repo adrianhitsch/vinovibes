@@ -41,6 +41,19 @@ public class UserService {
             throw new AppException("Email already exists", HttpStatus.BAD_REQUEST);
         }
 
+        if (!signUpDto.password().equals(signUpDto.passwordRepeat())) {
+            throw new AppException("Passwords do not match", HttpStatus.BAD_REQUEST);
+        }
+
+        if (!signUpDto.eighteen() || !signUpDto.privacy()) {
+            throw new AppException("You must be 18 and agree to our privacy policy", HttpStatus.BAD_REQUEST);
+        }
+
+        if (signUpDto.firstName().isEmpty() || signUpDto.lastName().isEmpty() || signUpDto.email().isEmpty()
+                || signUpDto.password().isEmpty() || signUpDto.passwordRepeat().isEmpty()) {
+            throw new AppException("Please fill in all fields", HttpStatus.BAD_REQUEST);
+        }
+
         User user = userMapper.signUpToUser(signUpDto);
 
         user.setPassword(passwordEncoder.encode(signUpDto.password()));
