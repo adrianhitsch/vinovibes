@@ -5,6 +5,7 @@ target/
 !**/src/test/**/target/
 .env
 node_modules/
+*.pem
 
 ### STS ###
 .apt_generated
