@@ -7,7 +7,11 @@ import { useDispatch } from 'react-redux';
 import { registerUser } from '../redux/userSlice';
 import toast, { Toaster } from 'react-hot-toast';
 
-const Otp = (): JSX.Element => {
+export type OtpProps = {
+  email: string;
+};
+
+const Otp = ({ email }: OtpProps): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [otp, setOtp] = useState<Array<string>>(Array(6).fill(''));
@@ -27,7 +31,8 @@ const Otp = (): JSX.Element => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: '',
+        email: email,
+        otp: otp.join(''),
       }),
     })
       .then(async (resp) => {
@@ -165,7 +170,7 @@ const Otp = (): JSX.Element => {
             <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
           </div>
           <h1>Verifiziere deine E-Mail</h1>
-          <p>Bitte gebe hier dein Code ein, welchen wir dir per E-Mail versendet haben</p>
+          <p>Bitte füge hier den Code ein, welchen wir per E-Mail an dich versendet haben</p>
           <div className="group center otp">
             <InputText
               type="text"

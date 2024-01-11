@@ -95,7 +95,7 @@ const Register = (): JSX.Element => {
   };
 
   if (validateEmail) {
-    return <Otp />;
+    return <Otp email={userData.email || ''} />;
   }
 
   return (
