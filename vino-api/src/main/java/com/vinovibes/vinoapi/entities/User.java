@@ -1,5 +1,6 @@
 package com.vinovibes.vinoapi.entities;
 
+import com.vinovibes.vinoapi.enums.UserStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -29,4 +30,10 @@ public class User {
 
     @Column(nullable = false)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private UserStatus status;
+
+    private String otp;
 }
