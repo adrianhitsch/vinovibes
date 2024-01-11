@@ -35,9 +35,9 @@ public class UserService {
     }
 
     public UserDto register(SignUpDto signUpDto) {
-        Optional<User> exisitingUser = userRepository.findByEmail(signUpDto.email());
+        Optional<User> existingUser = userRepository.findByEmail(signUpDto.email());
 
-        if (exisitingUser.isPresent()) {
+        if (existingUser.isPresent()) {
             throw new AppException("Email already exists", HttpStatus.BAD_REQUEST);
         }
 
@@ -46,12 +46,12 @@ public class UserService {
         }
 
         if (!signUpDto.eighteen() || !signUpDto.privacy()) {
-            throw new AppException("You must be 18 and agree to our privacy policy", HttpStatus.BAD_REQUEST);
+            throw new AppException("You must agree to all terms and conditions", HttpStatus.BAD_REQUEST);
         }
 
         if (signUpDto.firstName().isEmpty() || signUpDto.lastName().isEmpty() || signUpDto.email().isEmpty()
                 || signUpDto.password().isEmpty() || signUpDto.passwordRepeat().isEmpty()) {
-            throw new AppException("Please fill in all fields", HttpStatus.BAD_REQUEST);
+            throw new AppException("Please fill out all fields", HttpStatus.BAD_REQUEST);
         }
 
         User user = userMapper.signUpToUser(signUpDto);

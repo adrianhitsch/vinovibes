@@ -23,7 +23,9 @@ public class HomeController {
 
     @PostMapping("/generateUser")
     public ResponseEntity<String> generateUser() {
-        SignUpDto user = new SignUpDto("John", "Doe", "john", "doe");
+        boolean eighteen = true;
+        boolean privacy = true;
+        SignUpDto user = new SignUpDto("John", "Doe", "john", "doe", "doe", eighteen, privacy);
         userService.register(user);
         return ResponseEntity.ok("User Generated!");
     }
