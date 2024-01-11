@@ -346,7 +346,8 @@ nav ul li a.active {
   overflow: hidden;
 }
 
-.login-container {
+.login-container,
+.otp-container {
   text-align: center;
   position: absolute;
   top: 0;
@@ -398,6 +399,17 @@ nav ul li a.active {
 
 .login-container .group:last-child {
   margin-top: auto;
+}
+
+.group.center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+}
+
+.group.otp {
+  width: 460px;
 }
 
 .login .button {

@@ -13,6 +13,7 @@ const Register = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const [loginDisabled, setLoginDisabled] = useState<boolean>(true);
+  const [validateEmail, setValidateEmail] = useState<boolean>(true);
   const [userData, setUserData] = useState<{
     email: string;
     password: string;
@@ -72,16 +73,18 @@ const Register = (): JSX.Element => {
     })
       .then(async (resp) => {
         if (resp.status === 201) {
-          const data = await resp.json();
-          dispatch(
-            registerUser({
-              token: data.token,
-              email: userData.email,
-              firstName: userData.firstName,
-              lastName: userData.lastName,
-            }),
-          );
-          navigate('/');
+          //const data = await resp.json();
+          // dispatch(
+          //   registerUser({
+          //     token: data.token,
+          //     email: userData.email,
+          //     firstName: userData.firstName,
+          //     lastName: userData.lastName,
+          //   }),
+          // );
+
+          setValidateEmail(true);
+          // navigate('/');
         } else {
           const data = await resp.json();
           toast.error(data.message);
@@ -92,6 +95,94 @@ const Register = (): JSX.Element => {
         toast.error(err);
       });
   };
+
+  if (validateEmail) {
+    return (
+      <div className="login">
+        <img src="login-image.png" alt="login-image" className="login-image" />
+        <div className="otp-container">
+          <div className="logo margin">
+            <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
+          </div>
+          <div className="group center otp">
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <InputText
+              type="email"
+              name="email"
+              id="email"
+              onInput={(e: BaseSyntheticEvent) =>
+                setUserData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+          </div>
+          <div className="group">
+            <Button label="Email erneut senden" className="button transparent text" />
+          </div>
+          <div className="group">
+            <Button label="Registrieren" className="button register" />
+          </div>
+          <div className="group"></div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
