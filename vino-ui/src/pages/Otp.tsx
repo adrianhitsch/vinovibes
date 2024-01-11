@@ -38,14 +38,14 @@ const Otp = ({ email }: OtpProps): JSX.Element => {
       .then(async (resp) => {
         if (resp.status === 200) {
           const data = await resp.json();
-          // dispatch(
-          //   registerUser({
-          //     token: data.token,
-          //     email: userData.email,
-          //     firstName: userData.firstName,
-          //     lastName: userData.lastName,
-          //   }),
-          // );
+          dispatch(
+            registerUser({
+              token: data.token,
+              email: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+            }),
+          );
           navigate('/');
         } else {
           const data = await resp.json();
@@ -68,7 +68,7 @@ const Otp = ({ email }: OtpProps): JSX.Element => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        email: '',
+        email,
       }),
     })
       .then(async (resp) => {
