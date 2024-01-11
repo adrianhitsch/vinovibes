@@ -7,10 +7,16 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/userSlice';
 import ApiFetch from '../wrapper/apiFetch';
+import Otp from './Otp';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [showOtp, setShowOtp] = React.useState<{ show: boolean; email: string }>({
+    show: false,
+    email: '',
+  });
 
   const handleLogin = async () => {
     const email = (document.getElementById('email') as HTMLInputElement).value;
@@ -57,6 +63,10 @@ const Login = (): JSX.Element => {
       handleLogin();
     }
   };
+
+  if (showOtp.show) {
+    return <Otp email={showOtp.email} />;
+  }
 
   return (
     <>
