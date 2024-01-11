@@ -44,7 +44,7 @@ const ForgotPassword = (): JSX.Element => {
             </div>
             <p>VinoVibes ist keine Website. Es ist ein Lifestyle!</p>
             <div className="group">
-              <InputText type="email" name="email" id="email" placeholder="E-mail" />
+              <InputText type="email" name="email" id="email" placeholder="E-Mail" />
             </div>
             <div className="group">
               <Button

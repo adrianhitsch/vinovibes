@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
@@ -107,11 +107,11 @@ const Register = (): JSX.Element => {
               type="email"
               name="email"
               id="email"
-              placeholder="E-mail"
-              onInput={(e) =>
+              placeholder="E-Mail"
+              onInput={(e: BaseSyntheticEvent) =>
                 setUserData((prevState) => ({
                   ...prevState,
-                  email: e.currentTarget.value,
+                  email: e.target.value,
                 }))
               }
             />
@@ -122,10 +122,10 @@ const Register = (): JSX.Element => {
               name="firstname"
               id="firstname"
               placeholder="Vorname"
-              onInput={(e) =>
+              onInput={(e: BaseSyntheticEvent) =>
                 setUserData((prevState) => ({
                   ...prevState,
-                  firstName: e.currentTarget.value,
+                  firstName: e.target.value,
                 }))
               }
             />
@@ -136,10 +136,10 @@ const Register = (): JSX.Element => {
               name="lastname"
               id="lastname"
               placeholder="Nachname"
-              onInput={(e) =>
+              onInput={(e: BaseSyntheticEvent) =>
                 setUserData((prevState) => ({
                   ...prevState,
-                  lastName: e.currentTarget.value,
+                  lastName: e.target.value,
                 }))
               }
             />
@@ -150,10 +150,10 @@ const Register = (): JSX.Element => {
               name="password"
               id="password"
               placeholder="Passwort"
-              onInput={(e) =>
+              onInput={(e: BaseSyntheticEvent) =>
                 setUserData((prevState) => ({
                   ...prevState,
-                  password: e.currentTarget.value,
+                  password: e.target.value,
                 }))
               }
             />
@@ -164,10 +164,10 @@ const Register = (): JSX.Element => {
               name="password"
               id="password-repeat"
               placeholder="Passwort wiederholen"
-              onInput={(e) =>
+              onInput={(e: BaseSyntheticEvent) =>
                 setUserData((prevState) => ({
                   ...prevState,
-                  passwordRepeat: e.currentTarget.value,
+                  passwordRepeat: e.target.value,
                 }))
               }
             />
