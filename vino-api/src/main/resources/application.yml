@@ -7,7 +7,3 @@ spring:
         username: ${DATABASE_USERNAME}
         password: ${DATABASE_PASSWORD}
         url: ${DATABASE_URL}
-
-jwt:
-    private.key: classpath:private_key.pem
-    public.key: classpath:public_key.pem
