@@ -1,14 +1,12 @@
 package com.vinovibes.vinoapi.controller;
 
+import com.vinovibes.vinoapi.dtos.SignUpDto;
+import com.vinovibes.vinoapi.services.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.services.UserService;
-
-import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,5 +27,4 @@ public class HomeController {
         userService.register(user);
         return ResponseEntity.ok("User Generated!");
     }
-
 }
