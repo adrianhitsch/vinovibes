@@ -56,6 +56,7 @@ const Login = (): JSX.Element => {
             toast.error(errorMesasage.message);
             navigate('/otp');
           }
+          toast.error('Fehler beim Login');
         }
       })
       .catch((err) => {
@@ -70,7 +71,7 @@ const Login = (): JSX.Element => {
   };
 
   const handleForgotPassword = () => {
-    const email = document.getElementById('email') as HTMLInputElement;
+    const email = (document.getElementById('email') as HTMLInputElement).value;
     dispatch(setEmail(email));
     navigate('/forgot-password');
   };
