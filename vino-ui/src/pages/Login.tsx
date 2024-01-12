@@ -69,6 +69,12 @@ const Login = (): JSX.Element => {
     }
   };
 
+  const handleForgotPassword = () => {
+    const email = document.getElementById('email') as HTMLInputElement;
+    dispatch(setEmail(email));
+    navigate('/forgot-password');
+  };
+
   return (
     <>
       <div className="login">
@@ -95,7 +101,7 @@ const Login = (): JSX.Element => {
           <div className="group">
             <Button
               label="Passwort vergessen?"
-              onClick={() => navigate('/forgot-password')}
+              onClick={handleForgotPassword}
               className="button transparent text"
             />
           </div>
@@ -104,11 +110,7 @@ const Login = (): JSX.Element => {
           </div>
           <div className="group">
             <p>Noch keinen Account?</p>
-            <Button
-              label="Jetzt registrieren"
-              onClick={() => navigate('/register')}
-              className="button secondary"
-            />
+            <Button label="Jetzt registrieren" className="button secondary" />
           </div>
         </div>
       </div>

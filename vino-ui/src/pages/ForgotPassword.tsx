@@ -1,14 +1,25 @@
-import React, { useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
 import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
+import { useSelector } from 'react-redux';
+import { storeType } from '../redux/storeType';
 
 const ForgotPassword = (): JSX.Element => {
   const navigate = useNavigate();
 
+  const email = useSelector((state: storeType) => state.user.email);
+  const [inputEmail, setInputEmail] = useState<string>(email || '');
+
   const [emailSend, setEmailSend] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (email) {
+      setInputEmail(email);
+    }
+  }, [email]);
 
   return (
     <>
@@ -44,7 +55,14 @@ const ForgotPassword = (): JSX.Element => {
             </div>
             <p>VinoVibes ist keine Website. Es ist ein Lifestyle!</p>
             <div className="group">
-              <InputText type="email" name="email" id="email" placeholder="E-Mail" />
+              <InputText
+                type="email"
+                name="email"
+                id="email"
+                placeholder="E-Mail"
+                value={inputEmail}
+                onInput={(e: BaseSyntheticEvent) => setInputEmail(e.target.value)}
+              />
             </div>
             <div className="group">
               <Button
