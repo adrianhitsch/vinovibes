@@ -104,7 +104,7 @@ const Login = (): JSX.Element => {
           </div>
           <div className="group">
             <p>Noch keinen Account?</p>
-            <Button label="Jetzt registrieren" className="button secondary" />
+            <Button label="Jetzt registrieren" onClick={() => navigate("/register")} className="button secondary" />
           </div>
         </div>
       </div>

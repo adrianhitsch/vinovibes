@@ -1,5 +1,5 @@
 // Platform.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
