@@ -49,7 +49,14 @@ const Login = (): JSX.Element => {
 
           navigate('/');
         } else {
-          toast.error('E-Mail oder Passwort ist falsch. Bitte versuche es erneut.');
+          const errorMesasage = await data.json();
+
+          if (errorMesasage.status === 'PEMDING') {
+            dispatch(setEmail(email));
+            navigate('/otp');
+          }
+
+          // toast.error(errorMesasage.message);
         }
       })
       .catch((err) => {
@@ -62,11 +69,6 @@ const Login = (): JSX.Element => {
       handleLogin();
     }
   };
-
-  if (showOtp.show && showOtp.email) {
-    dispatch(setEmail(showOtp.email));
-    navigate('/otp');
-  }
 
   return (
     <>
