@@ -13,11 +13,6 @@ const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const [showOtp, setShowOtp] = React.useState<{ show: boolean; email: string }>({
-    show: false,
-    email: '',
-  });
-
   const handleLogin = async () => {
     const email = (document.getElementById('email') as HTMLInputElement).value;
     const password = (document.getElementById('password') as HTMLInputElement).value;
