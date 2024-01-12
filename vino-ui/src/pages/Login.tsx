@@ -56,7 +56,7 @@ const Login = (): JSX.Element => {
             toast.error(errorMesasage.message);
             navigate('/otp');
           }
-          toast.error('Fehler beim Login');
+          toast.error('Benutzername oder Passwort falsch!');
         }
       })
       .catch((err) => {
