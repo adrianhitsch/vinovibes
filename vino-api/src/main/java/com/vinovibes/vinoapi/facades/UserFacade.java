@@ -46,8 +46,8 @@ public class UserFacade {
 
     public UserDto verifyOTP(VerificationDto verificationDto) {
         User user = userService
-                .getUserByEmail(verificationDto.email())
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
+            .getUserByEmail(verificationDto.email())
+            .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
 
         if (user.getStatus() == UserStatus.ACTIVE) {
             throw new AppException("User already active", HttpStatus.BAD_REQUEST);
@@ -70,8 +70,8 @@ public class UserFacade {
 
     public void requesNewtOTP(RequestOtpDto requestOtpDto) {
         User user = userService
-                .getUserByEmail(requestOtpDto.email())
-                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
+            .getUserByEmail(requestOtpDto.email())
+            .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
 
         if (user.getStatus() == UserStatus.ACTIVE) {
             throw new AppException("User already active", HttpStatus.BAD_REQUEST);

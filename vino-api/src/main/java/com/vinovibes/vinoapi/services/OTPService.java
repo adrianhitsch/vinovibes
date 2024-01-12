@@ -1,13 +1,11 @@
 package com.vinovibes.vinoapi.services;
 
+import com.vinovibes.vinoapi.entities.Otp;
+import com.vinovibes.vinoapi.exceptions.AppException;
 import java.time.LocalDateTime;
-
 import org.springframework.cglib.core.Local;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import com.vinovibes.vinoapi.entities.Otp;
-import com.vinovibes.vinoapi.exceptions.AppException;
 
 @Service
 public class OTPService {
@@ -25,7 +23,6 @@ public class OTPService {
     }
 
     public boolean validateOTP(String inputOtp, Otp userOtp) {
-
         if (LocalDateTime.now().isAfter(userOtp.getExpiryTime())) {
             throw new AppException("OTP Expired", HttpStatus.BAD_REQUEST);
         }

@@ -38,5 +38,4 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "otp_id", referencedColumnName = "id")
     private Otp otp;
-
 }
