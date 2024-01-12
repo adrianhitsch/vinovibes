@@ -6,7 +6,7 @@
   --button-gradient: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
     padding-box;
   --white: #f0f0f0;
-  --red: #f50000;
+  --red: #eb0000;
 }
 
 * {
