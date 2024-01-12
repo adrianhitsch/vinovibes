@@ -28,6 +28,8 @@ public class EmailService {
 
             %s
 
+            Der Code ist eine Stunde gültig.
+
             Dein VinoVibes-Team :)
             """.formatted(user.getFirstName(), user.getOtp())
         );

@@ -4,6 +4,8 @@ import com.vinovibes.vinoapi.dtos.CredentialsDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.UserDto;
 import com.vinovibes.vinoapi.dtos.VerificationDto;
+import com.vinovibes.vinoapi.dtos.errors.ErrorDto;
+import com.vinovibes.vinoapi.dtos.errors.UserErrorDto;
 import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import com.vinovibes.vinoapi.exceptions.AppException;
@@ -33,10 +35,9 @@ public class UserService {
             throw new AppException("Unknown user", HttpStatus.UNAUTHORIZED);
         }
 
-        //        TODO: finish email verification (so that user can't log in until they verify their email)
-        //        if (user.get().getStatus() == UserStatus.PENDING) {
-        //            throw new AppException("Please verify your email", HttpStatus.);
-        //        }
+        if (isUserPending(user.get())) {
+            throwUserPendingException();
+        }
 
         if (passwordEncoder.matches(credentialsDto.password(), user.get().getPassword())) {
             return user.get();
@@ -85,5 +86,14 @@ public class UserService {
         if (!signUpDto.eighteen() || !signUpDto.privacy()) {
             throw new AppException("You must agree to all terms and conditions", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    private boolean isUserPending(User user) {
+        return user.getStatus() == UserStatus.PENDING;
+    }
+
+    private void throwUserPendingException() throws AppException {
+        UserErrorDto userErrorDto = new UserErrorDto(UserStatus.PENDING.name());
+        throw new AppException("Please verify your email", HttpStatus.BAD_REQUEST, userErrorDto);
     }
 }

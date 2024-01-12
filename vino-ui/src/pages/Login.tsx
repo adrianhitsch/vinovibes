@@ -53,10 +53,11 @@ const Login = (): JSX.Element => {
 
           if (errorMesasage.status === 'PENDING') {
             dispatch(setEmail(email));
+            toast.error(errorMesasage.message);
             navigate('/otp');
           }
 
-          // toast.error(errorMesasage.message);
+          
         }
       })
       .catch((err) => {
