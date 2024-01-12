@@ -1,4 +1,4 @@
-import React, { BaseSyntheticEvent, useEffect, useState } from 'react';
+import React, { BaseSyntheticEvent, useEffect, useState, useCallback } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../redux/userSlice';
+import { registerUser, setEmail } from '../redux/userSlice';
+import Otp from './Otp';
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [loginDisabled, setLoginDisabled] = useState<boolean>(true);
-  const [validateEmail, setValidateEmail] = useState<boolean>(true);
+  const [validateEmail, setValidateEmail] = useState<boolean>(false);
   const [userData, setUserData] = useState<{
     email: string;
     password: string;
@@ -34,6 +35,15 @@ const Register = (): JSX.Element => {
   });
 
   useEffect(() => {
+    if (validateEmail) {
+      const input = document.getElementById('otp-input-0');
+      if (input) {
+        input.focus();
+      }
+    }
+  }, [validateEmail]);
+
+  useEffect(() => {
     if (
       userData.email &&
       userData.password &&
@@ -50,13 +60,12 @@ const Register = (): JSX.Element => {
   }, [userData, checked]);
 
   const register = async (e: any) => {
-    console.log(userData);
     if (userData.password !== userData.passwordRepeat) {
       toast.error('Passwörter stimmen nicht überein');
       return;
     }
 
-    const body = await fetch(`${config.API_URL}/register`, {
+    await fetch(`${config.API_URL}/register`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,18 +82,8 @@ const Register = (): JSX.Element => {
     })
       .then(async (resp) => {
         if (resp.status === 201) {
-          //const data = await resp.json();
-          // dispatch(
-          //   registerUser({
-          //     token: data.token,
-          //     email: userData.email,
-          //     firstName: userData.firstName,
-          //     lastName: userData.lastName,
-          //   }),
-          // );
-
           setValidateEmail(true);
-          // navigate('/');
+          dispatch(setEmail(userData.email));
         } else {
           const data = await resp.json();
           toast.error(data.message);
@@ -92,96 +91,12 @@ const Register = (): JSX.Element => {
       })
 
       .catch((err) => {
-        toast.error(err);
+        toast.error(err.message);
       });
   };
 
   if (validateEmail) {
-    return (
-      <div className="login">
-        <img src="login-image.png" alt="login-image" className="login-image" />
-        <div className="otp-container">
-          <div className="logo margin">
-            <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
-          </div>
-          <div className="group center otp">
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-            <InputText
-              type="email"
-              name="email"
-              id="email"
-              onInput={(e: BaseSyntheticEvent) =>
-                setUserData((prevState) => ({
-                  ...prevState,
-                  email: e.target.value,
-                }))
-              }
-            />
-          </div>
-          <div className="group">
-            <Button label="Email erneut senden" className="button transparent text" />
-          </div>
-          <div className="group">
-            <Button label="Registrieren" className="button register" />
-          </div>
-          <div className="group"></div>
-        </div>
-      </div>
-    );
+    navigate('/otp');
   }
 
   return (

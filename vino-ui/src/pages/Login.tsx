@@ -5,12 +5,18 @@ import config from '../config';
 import { useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/userSlice';
+import { login, setEmail } from '../redux/userSlice';
 import ApiFetch from '../wrapper/apiFetch';
+import Otp from './Otp';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [showOtp, setShowOtp] = React.useState<{ show: boolean; email: string }>({
+    show: false,
+    email: '',
+  });
 
   const handleLogin = async () => {
     const email = (document.getElementById('email') as HTMLInputElement).value;
@@ -43,11 +49,16 @@ const Login = (): JSX.Element => {
 
           navigate('/');
         } else {
-          toast.error('E-Mail oder Passwort ist falsch. Bitte versuche es erneut.');
+          const errorMesasage = await data.json();
+
+          if (errorMesasage.status === 'PENDING') {
+            dispatch(setEmail(email));
+            toast.error(errorMesasage.message);
+            navigate('/otp');
+          }
         }
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.message);
       });
   };
@@ -56,6 +67,12 @@ const Login = (): JSX.Element => {
     if (e.code === 'Enter') {
       handleLogin();
     }
+  };
+
+  const handleForgotPassword = () => {
+    const email = document.getElementById('email') as HTMLInputElement;
+    dispatch(setEmail(email));
+    navigate('/forgot-password');
   };
 
   return (
@@ -84,7 +101,7 @@ const Login = (): JSX.Element => {
           <div className="group">
             <Button
               label="Passwort vergessen?"
-              onClick={() => navigate('/forgot-password')}
+              onClick={handleForgotPassword}
               className="button transparent text"
             />
           </div>
@@ -93,11 +110,7 @@ const Login = (): JSX.Element => {
           </div>
           <div className="group">
             <p>Noch keinen Account?</p>
-            <Button
-              label="Jetzt registrieren"
-              onClick={() => navigate('/register')}
-              className="button secondary"
-            />
+            <Button label="Jetzt registrieren" className="button secondary" />
           </div>
         </div>
       </div>
