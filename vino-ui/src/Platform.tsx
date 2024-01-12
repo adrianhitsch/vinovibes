@@ -15,11 +15,11 @@ const Platform = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-    const [headerContent, setHeaderContent] = useState<HeaderContentType>({
-        header: '',
-        text: '',
-        buttons: [],
-    });
+  const [headerContent, setHeaderContent] = useState<HeaderContentType>({
+    header: '',
+    text: '',
+    buttons: [],
+  });
 
   const user = useSelector((state: storeType) => state.user);
 

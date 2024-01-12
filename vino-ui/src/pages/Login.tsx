@@ -48,8 +48,9 @@ const Login = (): JSX.Element => {
             dispatch(setEmail(email));
             toast.error(errorMesasage.message);
             navigate('/otp');
+          } else {
+            toast.error('Benutzername oder Passwort falsch!');
           }
-          toast.error('Benutzername oder Passwort falsch!');
         }
       })
       .catch((err) => {
@@ -104,7 +105,11 @@ const Login = (): JSX.Element => {
           </div>
           <div className="group">
             <p>Noch keinen Account?</p>
-            <Button label="Jetzt registrieren" onClick={() => navigate("/register")} className="button secondary" />
+            <Button
+              label="Jetzt registrieren"
+              onClick={() => navigate('/register')}
+              className="button secondary"
+            />
           </div>
         </div>
       </div>
