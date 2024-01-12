@@ -31,7 +31,8 @@ public class UserService {
 
     public User login(CredentialsDto credentialsDto) {
         Optional<User> user = userRepository.findByEmail(credentialsDto.email());
-        if (user.isEmpty()) {
+
+        if (user.isEmpty() || !passwordEncoder.matches(credentialsDto.password(), user.get().getPassword())) {
             throw new AppException("Unknown user", HttpStatus.UNAUTHORIZED);
         }
 
@@ -39,10 +40,7 @@ public class UserService {
             throwUserPendingException();
         }
 
-        if (passwordEncoder.matches(credentialsDto.password(), user.get().getPassword())) {
-            return user.get();
-        }
-        throw new AppException("Unknown user", HttpStatus.UNAUTHORIZED);
+        return user.get();
     }
 
     public User register(SignUpDto signUpDto) {

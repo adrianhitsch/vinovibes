@@ -1,5 +1,5 @@
 // Platform.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Router from './Router';
 import Navigation from './layout/navigation';
@@ -8,11 +8,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { storeType } from './redux/storeType';
 import { logout, resetNewUser } from './redux/userSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import ContentHeader, { HeaderContentType, HeaderContext } from './layout/contentHeader';
 
 const Platform = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [headerContent, setHeaderContent] = useState<HeaderContentType>({
+    header: '',
+    text: '',
+    buttons: [],
+  });
 
   const user = useSelector((state: storeType) => state.user);
 
@@ -59,22 +66,15 @@ const Platform = () => {
   // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);
 
   return (
-    <>
+    <HeaderContext.Provider value={{ ...headerContent, setHeaderContent }}>
       <div className="platform">
         <Navigation />
         <div className="content">
-          <div className="content-header">
-            <div>
-              <h1>Mein Dashboard</h1>
-              <h2>Willkommen auf deinem persönlichen Dashboard</h2>
-            </div>
-            <Searchbar />
-          </div>
+          <ContentHeader />
           <Router />
         </div>
       </div>
-      <Toaster />
-    </>
+    </HeaderContext.Provider>
   );
 };
 
