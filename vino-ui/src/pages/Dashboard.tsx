@@ -1,7 +1,29 @@
-import React from 'react';
-import Searchbar from '../layout/searchbar';
+import React, { useContext, useEffect } from 'react';
+import { HeaderContext } from '../layout/contentHeader';
 
 const Dashboard = () => {
+  const { setHeaderContent } = useContext(HeaderContext);
+
+  useEffect(() => {
+    setHeaderContent({
+      header: 'Dashboard',
+      text: 'Hier findest du deine aktuellen Statistiken',
+      buttons: [
+        {
+          text: 'Fertig',
+          icon: 'tik-mark-gradient',
+          type: 'secondary',
+          onClick: () => console.log('test1'),
+        },
+        { type: 'close', onClick: () => handleClick() },
+      ],
+    });
+  }, []);
+
+  const handleClick = () => {
+    console.log('test');
+  };
+
   return (
     <>
       <div className="content-container">
