@@ -95,13 +95,13 @@ const Otp = ({ email }: OtpProps): JSX.Element => {
     }
 
     if (value.length === 6) {
-      setOtp(value);
+      setOtp(value.split(''));
       return;
     }
 
     if (value.length === 7 && otp[index] !== '') {
       value = value.slice(1);
-      setOtp(value);
+      setOtp(value.split(''));
       return;
     }
 
@@ -150,7 +150,7 @@ const Otp = ({ email }: OtpProps): JSX.Element => {
           newState[index] = '';
           return newState;
         });
-        focusPrevInput(index);
+        // focusPrevInput(index);
         return;
       }
       setOtp((prevState) => {

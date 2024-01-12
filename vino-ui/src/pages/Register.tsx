@@ -13,7 +13,7 @@ const Register = (): JSX.Element => {
   const navigate = useNavigate();
 
   const [loginDisabled, setLoginDisabled] = useState<boolean>(true);
-  const [validateEmail, setValidateEmail] = useState<boolean>(false);
+  const [validateEmail, setValidateEmail] = useState<boolean>(true);
   const [userData, setUserData] = useState<{
     email: string;
     password: string;
