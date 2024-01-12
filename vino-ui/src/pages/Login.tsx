@@ -51,7 +51,7 @@ const Login = (): JSX.Element => {
         } else {
           const errorMesasage = await data.json();
 
-          if (errorMesasage.status === 'PEMDING') {
+          if (errorMesasage.status === 'PENDING') {
             dispatch(setEmail(email));
             navigate('/otp');
           }
