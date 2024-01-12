@@ -1,14 +1,17 @@
 @import 'assets/styles/font-faces.css';
 
-* {
-  font-family: Rubik, sans-serif;
-  font-size: 18px;
+:root {
   --surface-color: #0f1924;
   --surface-secondary-color: #ffffff19;
   --button-gradient: transparent linear-gradient(270deg, #f9737a 0%, #fdb689 100%) 0% 0% no-repeat
     padding-box;
   --white: #f0f0f0;
   --red: #f50000;
+}
+
+* {
+  font-family: Rubik, sans-serif;
+  font-size: 18px;
 }
 
 body {
@@ -49,6 +52,19 @@ body {
 
   gap: 14px;
   justify-content: center;
+}
+
+.button-container {
+  display: flex;
+  height: 60px;
+  align-items: center;
+  gap: 14px;
+  margin-top: 8px;
+  margin-left: 14px;
+}
+
+.button-container button {
+  height: 100%;
 }
 
 .main-nav .footer .button .icon,
@@ -299,8 +315,12 @@ h2 {
   box-shadow: 0 0 0 2px #ffffff82;
 }
 
+.p-inputtext {
+  color: var(--white);
+}
+
 .login .p-inputtext::placeholder {
-  color: #f0f0f0;
+  color: #4b5563;
 }
 
 .p-autocomplete {
