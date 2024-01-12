@@ -6,8 +6,6 @@ import { useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { login, setEmail } from '../redux/userSlice';
-import ApiFetch from '../wrapper/apiFetch';
-import Otp from './Otp';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
