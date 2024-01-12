@@ -3,7 +3,7 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
 import { useNavigate } from 'react-router';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { login, setEmail } from '../redux/userSlice';
 
@@ -108,7 +108,6 @@ const Login = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <Toaster />
     </>
   );
 };

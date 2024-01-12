@@ -4,7 +4,7 @@ import { Button } from 'primereact/button';
 import config from '../config';
 import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { registerUser, setEmail } from '../redux/userSlice';
 import Otp from './Otp';
@@ -218,7 +218,6 @@ const Register = (): JSX.Element => {
           </div>
         </div>
       </div>
-      <Toaster />
     </>
   );
 };

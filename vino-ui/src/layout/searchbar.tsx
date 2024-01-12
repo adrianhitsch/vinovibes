@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { AutoComplete } from 'primereact/autocomplete';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Searchbar = () => {
   const [notifications, setNotifications] = useState(0);
@@ -29,7 +29,6 @@ const Searchbar = () => {
           )}
         </button>
       </div>
-      <Toaster />
     </>
   );
 };

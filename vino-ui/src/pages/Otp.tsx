@@ -5,7 +5,7 @@ import config from '../config';
 import { useNavigate } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/userSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { storeType } from '../redux/storeType';
 
 const Otp = (): JSX.Element => {
@@ -231,7 +231,6 @@ const Otp = (): JSX.Element => {
           <div className="group"></div>
         </div>
       </div>
-      <Toaster />
     </>
   );
 };

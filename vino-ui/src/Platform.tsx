@@ -7,7 +7,7 @@ import Searchbar from './layout/searchbar';
 import { useDispatch, useSelector } from 'react-redux';
 import { storeType } from './redux/storeType';
 import { logout, resetNewUser } from './redux/userSlice';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Platform = () => {
   const location = useLocation();
@@ -46,7 +46,6 @@ const Platform = () => {
     return (
       <>
         <Router />
-        <Toaster />
       </>
     );
   }
@@ -73,7 +72,6 @@ const Platform = () => {
           <Router />
         </div>
       </div>
-      <Toaster />
     </>
   );
 };
