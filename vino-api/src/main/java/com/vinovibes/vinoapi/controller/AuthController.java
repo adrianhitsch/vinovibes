@@ -2,6 +2,7 @@ package com.vinovibes.vinoapi.controller;
 
 import com.vinovibes.vinoapi.config.UserAuthProvider;
 import com.vinovibes.vinoapi.dtos.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.RequestOtpDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.UserDto;
 import com.vinovibes.vinoapi.dtos.VerificationDto;
@@ -39,5 +40,11 @@ public class AuthController {
         UserDto user = userFacade.verifyOTP(verificationDto);
         user.setToken(userAuthProvider.createToken(user)); // logs user in
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping("/register/new-otp")
+    public ResponseEntity<UserDto> requestNewOTP(@RequestBody RequestOtpDto requestOtpDto) {
+        userFacade.requesNewtOTP(requestOtpDto);
+        return ResponseEntity.ok(null);
     }
 }

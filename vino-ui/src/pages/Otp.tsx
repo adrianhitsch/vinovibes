@@ -59,10 +59,10 @@ const Otp = (): JSX.Element => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [otp]);
 
-  const sendEmailVerification = async () => {
+  const requestNewOtp = async () => {
     setOtp(Array(6).fill(''));
 
-    await fetch(`${config.API_URL}/register/send-email-verification`, {
+    await fetch(`${config.API_URL}/register/new-otp`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -73,7 +73,7 @@ const Otp = (): JSX.Element => {
     })
       .then(async (resp) => {
         if (resp.status === 200) {
-          toast.success('Email wurde versendet');
+          toast.success('Neu E-Mail wurde versendet');
         } else {
           const data = await resp.json();
           toast.error(data.message);
@@ -224,7 +224,7 @@ const Otp = (): JSX.Element => {
           <div className="group">
             <Button
               label="Code erneut senden"
-              onClick={sendEmailVerification}
+              onClick={requestNewOtp}
               className="button transparent text"
             />
           </div>

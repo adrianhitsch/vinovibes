@@ -56,8 +56,6 @@ const Login = (): JSX.Element => {
             toast.error(errorMesasage.message);
             navigate('/otp');
           }
-
-          
         }
       })
       .catch((err) => {

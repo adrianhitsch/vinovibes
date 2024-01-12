@@ -3,6 +3,9 @@ package com.vinovibes.vinoapi.services;
 import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import lombok.RequiredArgsConstructor;
+
+import java.time.format.DateTimeFormatter;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -20,19 +23,20 @@ public class EmailService {
         message.setTo(user.getEmail());
         message.setSubject("Verifiziere deinen VinoVibes Account");
         message.setText(
-            """
-            Hey %s!
+                """
+                        Hey %s!
 
-            Bitte verifiziere deinen Account.
-            Dein persönlicher Code:
+                        Bitte verifiziere deinen Account.
+                        Dein persönlicher Code:
 
-            %s
+                        %s
 
-            Der Code ist eine Stunde gültig.
+                        Der Code ist bis zum %s um %s Uhr gültig.
 
-            Dein VinoVibes-Team :)
-            """.formatted(user.getFirstName(), user.getOtp())
-        );
+                        Dein VinoVibes-Team :)
+                        """.formatted(user.getFirstName(), user.getOtp().getToken(),
+                        user.getOtp().getExpiryTime().format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
+                        user.getOtp().getExpiryTime().format(DateTimeFormatter.ofPattern("HH:mm"))));
         try {
             mailSender.send(message);
         } catch (Exception e) {

@@ -1,6 +1,7 @@
 package com.vinovibes.vinoapi.facades;
 
 import com.vinovibes.vinoapi.dtos.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.RequestOtpDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.UserDto;
 import com.vinovibes.vinoapi.dtos.VerificationDto;
@@ -31,17 +32,30 @@ public class UserFacade {
 
     public UserDto register(SignUpDto signUpDto) {
         User user = userService.register(signUpDto);
-        user.setOtp(otpService.generateOTP());
+        try {
+            user.setOtp(otpService.generateOTP());
+        } catch (AppException e) {
+            user.setOtp(null);
+        }
+
         user = userService.save(user);
-        //        TODO: make email sending async
+        // TODO: make email sending async
         emailService.sendVerificationEmail(user);
         return userMapper.toUserDto(user);
     }
 
     public UserDto verifyOTP(VerificationDto verificationDto) {
         User user = userService
-            .getUserByEmail(verificationDto.email())
-            .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
+                .getUserByEmail(verificationDto.email())
+                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
+
+        if (user.getStatus() == UserStatus.ACTIVE) {
+            throw new AppException("User already active", HttpStatus.BAD_REQUEST);
+        }
+
+        if (user.getOtp() == null) {
+            throw new AppException("OTP not found", HttpStatus.BAD_REQUEST);
+        }
 
         boolean isValidOTP = otpService.validateOTP(verificationDto.otp(), user.getOtp());
         if (!isValidOTP) {
@@ -52,5 +66,19 @@ public class UserFacade {
         user.setOtp(null);
         user = userService.save(user);
         return userMapper.toUserDto(user);
+    }
+
+    public void requesNewtOTP(RequestOtpDto requestOtpDto) {
+        User user = userService
+                .getUserByEmail(requestOtpDto.email())
+                .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
+
+        if (user.getStatus() == UserStatus.ACTIVE) {
+            throw new AppException("User already active", HttpStatus.BAD_REQUEST);
+        }
+
+        user.setOtp(otpService.generateOTP());
+        user = userService.save(user);
+        emailService.sendVerificationEmail(user);
     }
 }

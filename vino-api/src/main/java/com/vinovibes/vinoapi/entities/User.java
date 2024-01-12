@@ -35,5 +35,8 @@ public class User {
     @Enumerated(EnumType.STRING)
     private UserStatus status;
 
-    private String otp;
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "otp_id", referencedColumnName = "id")
+    private Otp otp;
+
 }

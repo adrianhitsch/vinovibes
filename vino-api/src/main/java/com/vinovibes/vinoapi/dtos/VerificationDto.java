@@ -1,3 +1,4 @@
 package com.vinovibes.vinoapi.dtos;
 
-public record VerificationDto(String email, String otp) {}
+public record VerificationDto(String email, String otp) {
+}
