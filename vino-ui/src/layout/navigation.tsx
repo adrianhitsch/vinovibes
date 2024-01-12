@@ -50,7 +50,6 @@ const Navigation = () => {
 
   const handleHello = async () => {
     const test = await apiFetch(token, '/hello', { method: 'GET' }).then((data) => data.text());
-    console.log(test);
   };
 
   return (

@@ -20,7 +20,15 @@ const Platform = () => {
   useEffect(() => {
     if (!user.token || user.sessionEnd < new Date().getTime()) {
       dispatch(logout());
-      navigate('/login');
+
+      if (
+        location.pathname !== '/login' &&
+        location.pathname !== '/register' &&
+        location.pathname !== '/forgot-password' &&
+        location.pathname !== '/otp'
+      ) {
+        navigate('/login');
+      }
     }
     if (user.newUser) {
       toast.success(`Herzlich willkommen ${user.firstName}!`);
@@ -32,6 +40,7 @@ const Platform = () => {
   if (
     location.pathname === '/login' ||
     location.pathname === '/register' ||
+    location.pathname === '/otp' ||
     location.pathname === '/forgot-password'
   ) {
     return (

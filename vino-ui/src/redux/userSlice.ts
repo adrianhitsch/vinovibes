@@ -33,11 +33,14 @@ export const userSlice = createSlice({
       state.lastName = action.payload.lastName;
       state.newUser = true;
     },
+    setEmail: (state, action) => {
+      state.email = action.payload;
+    },
     resetNewUser: (state) => {
       state.newUser = false;
     },
   },
 });
 
-export const { login, logout, registerUser, resetNewUser } = userSlice.actions;
+export const { login, logout, registerUser, resetNewUser, setEmail } = userSlice.actions;
 export default userSlice.reducer;

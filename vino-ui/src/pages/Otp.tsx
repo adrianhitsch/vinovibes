@@ -3,17 +3,17 @@ import { InputText } from 'primereact/inputtext';
 import React, { BaseSyntheticEvent, useCallback, useEffect, useState } from 'react';
 import config from '../config';
 import { useNavigate } from 'react-router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { registerUser } from '../redux/userSlice';
 import toast, { Toaster } from 'react-hot-toast';
+import { storeType } from '../redux/storeType';
 
-export type OtpProps = {
-  email: string;
-};
-
-const Otp = ({ email }: OtpProps): JSX.Element => {
+const Otp = (): JSX.Element => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const email = useSelector((state: storeType) => state.user.email);
+
   const [otp, setOtp] = useState<Array<string>>(Array(6).fill(''));
   useEffect(() => {
     (async () => {

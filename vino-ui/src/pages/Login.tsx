@@ -5,7 +5,7 @@ import config from '../config';
 import { useNavigate } from 'react-router';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/userSlice';
+import { login, setEmail } from '../redux/userSlice';
 import ApiFetch from '../wrapper/apiFetch';
 import Otp from './Otp';
 
@@ -53,7 +53,6 @@ const Login = (): JSX.Element => {
         }
       })
       .catch((err) => {
-        console.log(err);
         toast.error(err.message);
       });
   };
@@ -64,8 +63,9 @@ const Login = (): JSX.Element => {
     }
   };
 
-  if (showOtp.show) {
-    return <Otp email={showOtp.email} />;
+  if (showOtp.show && showOtp.email) {
+    dispatch(setEmail(showOtp.email));
+    navigate('/otp');
   }
 
   return (

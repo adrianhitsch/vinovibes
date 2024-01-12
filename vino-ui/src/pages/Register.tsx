@@ -6,14 +6,15 @@ import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
 import toast, { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { registerUser } from '../redux/userSlice';
+import { registerUser, setEmail } from '../redux/userSlice';
 import Otp from './Otp';
 
 const Register = (): JSX.Element => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [loginDisabled, setLoginDisabled] = useState<boolean>(true);
-  const [validateEmail, setValidateEmail] = useState<boolean>(true);
+  const [validateEmail, setValidateEmail] = useState<boolean>(false);
   const [userData, setUserData] = useState<{
     email: string;
     password: string;
@@ -59,7 +60,6 @@ const Register = (): JSX.Element => {
   }, [userData, checked]);
 
   const register = async (e: any) => {
-    console.log(userData);
     if (userData.password !== userData.passwordRepeat) {
       toast.error('Passwörter stimmen nicht überein');
       return;
@@ -83,6 +83,7 @@ const Register = (): JSX.Element => {
       .then(async (resp) => {
         if (resp.status === 201) {
           setValidateEmail(true);
+          dispatch(setEmail(userData.email));
         } else {
           const data = await resp.json();
           toast.error(data.message);
@@ -95,7 +96,7 @@ const Register = (): JSX.Element => {
   };
 
   if (validateEmail) {
-    return <Otp email={userData.email || ''} />;
+    navigate('/otp');
   }
 
   return (
