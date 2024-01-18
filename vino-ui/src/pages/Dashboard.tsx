@@ -8,21 +8,9 @@ const Dashboard = () => {
     setHeaderContent({
       header: 'Dashboard',
       text: 'Hier findest du deine aktuellen Statistiken',
-      buttons: [
-        {
-          text: 'Fertig',
-          icon: 'tik-mark-gradient',
-          type: 'secondary',
-          onClick: () => console.log('test1'),
-        },
-        { type: 'close', onClick: () => handleClick() },
-      ],
+      buttons: [],
     });
   }, []);
-
-  const handleClick = () => {
-    console.log('test');
-  };
 
   return (
     <>

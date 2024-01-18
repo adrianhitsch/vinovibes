@@ -15,11 +15,19 @@ const Account = () => {
         {
           text: 'Bearbeiten',
           onClick: () => handleProfileEdit(),
-          icon: 'tik-mark-gradient',
+          icon: 'edit-gradient',
           type: 'secondary',
         },
       ],
     });
+
+    return () => {
+      setHeaderContent({
+        header: '',
+        text: '',
+        buttons: [],
+      });
+    };
   }, [setHeaderContent]);
 
   const handleProfileEdit = () => {
@@ -52,7 +60,7 @@ const Account = () => {
         {
           text: 'Bearbeiten',
           onClick: () => handleProfileEdit(),
-          icon: 'tik-mark-gradient',
+          icon: 'edit-gradient',
           type: 'secondary',
         },
       ],
