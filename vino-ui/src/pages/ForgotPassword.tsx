@@ -3,14 +3,16 @@ import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import config from '../config';
 import { useNavigate } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { storeType } from '../redux/storeType';
 import { useLocation } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { login } from '../redux/userSlice';
 
 const ForgotPassword = (): JSX.Element => {
   const navigate = useNavigate();
   const location = useLocation();
+  const dispatch = useDispatch();
 
   const email = useSelector((state: storeType) => state.user.email);
   const [inputEmail, setInputEmail] = useState<string>(email || '');
@@ -56,6 +58,15 @@ const ForgotPassword = (): JSX.Element => {
       .then(async (resp) => {
         if (resp.status === 200) {
           toast.success('Passwort erfolgreich geändert');
+          const data = await resp.json();
+          dispatch(
+            login({
+              token: data.token,
+              email: data.email,
+              firstName: data.firstName,
+              lastName: data.lastName,
+            }),
+          );
           navigate('/login');
         } else {
           const data = await resp.json();
