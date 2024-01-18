@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
 import { login, setEmail } from '../redux/userSlice';
+import { error } from 'console';
 
 const Login = (): JSX.Element => {
   const navigate = useNavigate();
@@ -49,7 +50,7 @@ const Login = (): JSX.Element => {
             toast.error(errorMesasage.message);
             navigate('/otp');
           } else {
-            toast.error('Benutzername oder Passwort falsch!');
+            toast.error(errorMesasage.message);
           }
         }
       })

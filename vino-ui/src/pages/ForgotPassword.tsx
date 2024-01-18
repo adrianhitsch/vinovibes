@@ -28,6 +28,7 @@ const ForgotPassword = (): JSX.Element => {
     console.log(token.current);
 
     if (token.current) {
+      setInputEmail('');
       setEmailSend(true);
     }
   }, [location]);
