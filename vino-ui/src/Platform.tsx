@@ -31,7 +31,7 @@ const Platform = () => {
       if (
         location.pathname !== '/login' &&
         location.pathname !== '/register' &&
-        location.pathname !== '/forgot-password' &&
+        !location.pathname.includes('/forgot-password') &&
         location.pathname !== '/otp'
       ) {
         navigate('/login');
@@ -40,7 +40,7 @@ const Platform = () => {
     if (user.newUser) {
       toast.success(`Herzlich willkommen ${user.firstName}!`);
       dispatch(resetNewUser());
-      navigate('/profile');
+      navigate('/account');
     }
   }, [user.token, user.sessionEnd, user.newUser, user.firstName]);
 
@@ -48,7 +48,7 @@ const Platform = () => {
     location.pathname === '/login' ||
     location.pathname === '/register' ||
     location.pathname === '/otp' ||
-    location.pathname === '/forgot-password'
+    location.pathname.includes('/forgot-password')
   ) {
     return (
       <>

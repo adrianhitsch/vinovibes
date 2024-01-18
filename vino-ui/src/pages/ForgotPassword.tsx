@@ -6,11 +6,13 @@ import { useNavigate } from 'react-router';
 import { Checkbox } from 'primereact/checkbox';
 import { useSelector } from 'react-redux';
 import { storeType } from '../redux/storeType';
+import { useParams } from 'react-router-dom';
 
 const ForgotPassword = (): JSX.Element => {
   const navigate = useNavigate();
 
   const email = useSelector((state: storeType) => state.user.email);
+  console.log(email || '');
   const [inputEmail, setInputEmail] = useState<string>(email || '');
 
   const [emailSend, setEmailSend] = useState<boolean>(false);
@@ -45,72 +47,42 @@ const ForgotPassword = (): JSX.Element => {
   };
 
   return (
-    <>
-      {emailSend ? (
-        <div className="login">
-          <img src="login-image.png" alt="login-image" className="login-image" />
-          <div className="login-container">
-            <div className="logo ">
-              <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
-              <h1>VinoVibes</h1>
-            </div>
-            <p>VinoVibes ist keine Website. Es ist ein Lifestyle!</p>
-            <div className="group">
-              <InputText type="email" name="email" id="email" placeholder="Neues Passwort" />
-            </div>
-            <div className="group">
-              <InputText type="email" name="email" id="email" placeholder="Passwort wiederholen" />
-            </div>
-
-            <div className="group">
-              <Button label="Neues Passwort anfordern" className="button" />
-            </div>
-            <div className="group"></div>
-          </div>
+    <div className="login">
+      <img src="login-image.png" alt="login-image" className="login-image" />
+      <div className="login-container">
+        <div className="logo ">
+          <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
+          <h1>VinoVibes</h1>
         </div>
-      ) : (
-        <div className="login">
-          <img src="login-image.png" alt="login-image" className="login-image" />
-          <div className="login-container">
-            <div className="logo ">
-              <img src="vinoVibes-light.png" alt="VinoLogo" className="vino-logo" />
-              <h1>VinoVibes</h1>
-            </div>
-            <p>VinoVibes ist keine Website. Es ist ein Lifestyle!</p>
-            <div className="group">
-              <InputText
-                type="email"
-                name="email"
-                id="email"
-                placeholder="E-Mail"
-                value={inputEmail}
-                onInput={(e: BaseSyntheticEvent) => setInputEmail(e.target.value)}
-                onKeyDown={(e: any) => {
-                  if (e.key === 'Enter') {
-                    reguestNewPassword();
-                  }
-                }}
-              />
-            </div>
-            <div className="group">
-              <Button
-                label="Neues Passwort anfordern"
-                onClick={() => reguestNewPassword()}
-                className="button"
-              />
-            </div>
-            <div className="group">
-              <p>Passwort wieder eingefallen?</p>
-              <Button
-                label="Login"
-                onClick={() => navigate('/login')}
-                className="button secondary"
-              />
-            </div>
-          </div>
+        <p>VinoVibes ist keine Website. Es ist ein Lifestyle!</p>
+        <div className="group">
+          <InputText
+            type="email"
+            name="email"
+            id="email"
+            placeholder="E-Mail"
+            value={inputEmail || ''}
+            onInput={(e: BaseSyntheticEvent) => setInputEmail(e.target.value)}
+            onKeyDown={(e: any) => {
+              if (e.key === 'Enter') {
+                reguestNewPassword();
+              }
+            }}
+          />
         </div>
-      )}
-    </>
+        <div className="group">
+          <Button
+            label="Neues Passwort anfordern"
+            onClick={() => reguestNewPassword()}
+            className="button"
+          />
+        </div>
+        <div className="group">
+          <p>Passwort wieder eingefallen?</p>
+          <Button label="Login" onClick={() => navigate('/login')} className="button secondary" />
+        </div>
+      </div>
+    </div>
   );
 };
 
