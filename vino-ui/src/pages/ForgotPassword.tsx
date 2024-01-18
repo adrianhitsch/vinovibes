@@ -78,7 +78,7 @@ const ForgotPassword = (): JSX.Element => {
     })
       .then(async (resp) => {
         if (resp.status === 200) {
-          setEmailSend(true);
+          toast.success('E-Mail erfolgreich versendet');
         } else {
           const data = await resp.json();
           console.log(data);
