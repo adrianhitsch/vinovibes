@@ -36,11 +36,15 @@ export const userSlice = createSlice({
     setEmail: (state, action) => {
       state.email = action.payload;
     },
+    setToken: (state, action) => {
+      state.token = action.payload;
+      state.sessionEnd = new Date().getTime() + 3600000;
+    },
     resetNewUser: (state) => {
       state.newUser = false;
     },
   },
 });
 
-export const { login, logout, registerUser, resetNewUser, setEmail } = userSlice.actions;
+export const { login, logout, registerUser, resetNewUser, setEmail, setToken } = userSlice.actions;
 export default userSlice.reducer;

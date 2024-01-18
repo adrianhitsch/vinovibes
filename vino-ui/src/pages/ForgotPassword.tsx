@@ -21,6 +21,29 @@ const ForgotPassword = (): JSX.Element => {
     }
   }, [email]);
 
+  const reguestNewPassword = async () => {
+    await fetch(`${config.API_URL}/forgot-password`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: inputEmail,
+      }),
+    })
+      .then(async (resp) => {
+        if (resp.status === 200) {
+          setEmailSend(true);
+        } else {
+          const data = await resp.json();
+          console.log(data);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <>
       {emailSend ? (
@@ -62,12 +85,17 @@ const ForgotPassword = (): JSX.Element => {
                 placeholder="E-Mail"
                 value={inputEmail}
                 onInput={(e: BaseSyntheticEvent) => setInputEmail(e.target.value)}
+                onKeyDown={(e: any) => {
+                  if (e.key === 'Enter') {
+                    reguestNewPassword();
+                  }
+                }}
               />
             </div>
             <div className="group">
               <Button
                 label="Neues Passwort anfordern"
-                onClick={() => setEmailSend((prevState) => !prevState)}
+                onClick={() => reguestNewPassword()}
                 className="button"
               />
             </div>

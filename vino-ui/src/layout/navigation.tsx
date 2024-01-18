@@ -5,13 +5,12 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../redux/userSlice';
 import { storeType } from '../redux/storeType';
-import apiFetch from '../wrapper/apiFetch';
+import useApiFetch from '../wrapper/apiFetch';
 
 const Navigation = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const token = useSelector((state: storeType) => state.user.token) || '';
+  const apiFetch = useApiFetch();
 
   const setActive = (e: any) => {
     const elements = document.querySelectorAll('a');
@@ -50,7 +49,8 @@ const Navigation = () => {
   };
 
   const handleHello = async () => {
-    const test = await apiFetch(token, '/hello', { method: 'GET' }).then((data) => data.text());
+    const test = await apiFetch('/hello', { method: 'GET' }).then((data) => data.text());
+    console.log(test);
   };
 
   return (
