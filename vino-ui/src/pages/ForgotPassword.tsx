@@ -59,11 +59,11 @@ const ForgotPassword = (): JSX.Element => {
           navigate('/login');
         } else {
           const data = await resp.json();
-          console.log(data);
+          toast.error(data.message);
         }
       })
       .catch((err) => {
-        console.log(err);
+        toast.error('Passwort konnte nicht geändert werden');
       });
   };
 
@@ -82,11 +82,11 @@ const ForgotPassword = (): JSX.Element => {
           toast.success('E-Mail erfolgreich versendet');
         } else {
           const data = await resp.json();
-          console.log(data);
+          toast.error(data.message);
         }
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
+        toast.error('E-Mail konnte nicht versendet werden');
       });
   };
 
