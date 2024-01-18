@@ -1,3 +1,5 @@
 package com.vinovibes.vinoapi.dtos;
 
-public record VerificationDto(String email, String otp) {}
+import jakarta.validation.constraints.NotBlank;
+
+public record VerificationDto(@NotBlank String email, @NotBlank String otp) {}
