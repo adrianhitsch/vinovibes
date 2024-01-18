@@ -25,8 +25,6 @@ const ForgotPassword = (): JSX.Element => {
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
     token.current = searchParams.get('token') || '';
-    console.log(token.current);
-
     if (token.current) {
       setInputEmail('');
       setEmailSend(true);
