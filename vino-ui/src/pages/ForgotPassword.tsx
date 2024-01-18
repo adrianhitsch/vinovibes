@@ -7,6 +7,7 @@ import { Checkbox } from 'primereact/checkbox';
 import { useSelector } from 'react-redux';
 import { storeType } from '../redux/storeType';
 import { useParams } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const ForgotPassword = (): JSX.Element => {
   const navigate = useNavigate();
@@ -35,10 +36,11 @@ const ForgotPassword = (): JSX.Element => {
     })
       .then(async (resp) => {
         if (resp.status === 200) {
-          setEmailSend(true);
+          toast.success('E-Mail wurde versendet');
         } else {
           const data = await resp.json();
           console.log(data);
+          toast.error(data.message);
         }
       })
       .catch((err) => {
