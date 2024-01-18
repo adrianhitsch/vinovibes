@@ -1,18 +1,15 @@
 package com.vinovibes.vinoapi.services;
 
 import com.vinovibes.vinoapi.dtos.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.PasswordResetDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.dtos.VerificationDto;
-import com.vinovibes.vinoapi.dtos.errors.ErrorDto;
 import com.vinovibes.vinoapi.dtos.errors.UserErrorDto;
+import com.vinovibes.vinoapi.entities.Token;
 import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.mappers.UserMapper;
 import com.vinovibes.vinoapi.repositories.UserRepository;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -28,8 +25,6 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
     private final UserMapper userMapper;
 
-    private final Map<String, String> email_token = new HashMap<>(); // this is for email verification
-
     public User login(CredentialsDto credentialsDto) {
         Optional<User> user = userRepository.findByEmail(credentialsDto.email());
 
@@ -37,8 +32,10 @@ public class UserService {
             throw new AppException("Unknown user", HttpStatus.UNAUTHORIZED);
         }
 
-        if (isUserPending(user.get())) {
-            throwUserPendingException();
+        if (matchUserStatus(user.get(), UserStatus.PENDING)) {
+            throwUserStatusException(UserStatus.PENDING, "Please verify your email");
+        } else if (matchUserStatus(user.get(), UserStatus.FORGOT_PASSWORD)) {
+            throwUserStatusException(UserStatus.FORGOT_PASSWORD, "Please reset your password");
         }
 
         return user.get();
@@ -63,6 +60,10 @@ public class UserService {
         return userRepository.findByEmail(email);
     }
 
+    public Optional<User> getUserByToken(Token token) {
+        return userRepository.findByToken(token);
+    }
+
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -71,17 +72,11 @@ public class UserService {
         return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
-    private void checkSignUpDto(SignUpDto signUpDto) {
-        if (
-            signUpDto.firstName().isEmpty() ||
-            signUpDto.lastName().isEmpty() ||
-            signUpDto.email().isEmpty() ||
-            signUpDto.password().isEmpty() ||
-            signUpDto.passwordRepeat().isEmpty()
-        ) {
-            throw new AppException("Please fill out all fields", HttpStatus.BAD_REQUEST);
-        }
+    public boolean checkPasswordResetDto(PasswordResetDto passwordResetDto) {
+        return passwordResetDto.password().equals(passwordResetDto.passwordRepeat());
+    }
 
+    private void checkSignUpDto(SignUpDto signUpDto) {
         if (!signUpDto.password().equals(signUpDto.passwordRepeat())) {
             throw new AppException("Passwords do not match", HttpStatus.BAD_REQUEST);
         }
@@ -91,12 +86,12 @@ public class UserService {
         }
     }
 
-    private boolean isUserPending(User user) {
-        return user.getStatus() == UserStatus.PENDING;
+    private boolean matchUserStatus(User user, UserStatus status) {
+        return user.getStatus() == status;
     }
 
-    private void throwUserPendingException() throws AppException {
-        UserErrorDto userErrorDto = new UserErrorDto(UserStatus.PENDING.name());
-        throw new AppException("Please verify your email", HttpStatus.BAD_REQUEST, userErrorDto);
+    private void throwUserStatusException(UserStatus status, String message) throws AppException {
+        UserErrorDto userErrorDto = new UserErrorDto(status.name());
+        throw new AppException(message, HttpStatus.BAD_REQUEST, userErrorDto);
     }
 }

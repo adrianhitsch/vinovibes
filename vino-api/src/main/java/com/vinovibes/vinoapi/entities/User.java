@@ -38,4 +38,8 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "otp_id", referencedColumnName = "id")
     private Otp otp;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JoinColumn(name = "token_id", referencedColumnName = "id")
+    private Token token;
 }

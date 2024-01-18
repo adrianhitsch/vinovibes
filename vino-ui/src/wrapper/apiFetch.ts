@@ -18,7 +18,7 @@ function useApiFetch() {
       return;
     }
     // 5 minutes before session end, refresh token
-    if(sessionEnd < new Date().getTime() + 300000) {
+    if (sessionEnd < new Date().getTime() + 300000) {
       const response = await fetch(config.API_URL + '/refresh-token', {
         method: 'GET',
       });
@@ -30,8 +30,6 @@ function useApiFetch() {
         navigate('/login');
       }
     }
-    
-
   };
 
   const apiFetch = async (url: string, options: RequestInit = {}) => {
