@@ -6,13 +6,18 @@ import com.vinovibes.vinoapi.dtos.RequestOtpDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.UserDto;
 import com.vinovibes.vinoapi.dtos.VerificationDto;
+import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.facades.UserFacade;
 import com.vinovibes.vinoapi.services.UserService;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -44,7 +49,13 @@ public class AuthController {
 
     @PostMapping("/register/new-otp")
     public ResponseEntity<UserDto> requestNewOTP(@RequestBody RequestOtpDto requestOtpDto) {
-        userFacade.requesNewtOTP(requestOtpDto);
+        userFacade.requestNewOTP(requestOtpDto);
         return ResponseEntity.ok(null);
+    }
+
+    @GetMapping("/refresh-token")
+    public ResponseEntity<String> refreshToken() {
+        UserDto user = userFacade.getCurrentUser();
+        return ResponseEntity.ok(userAuthProvider.createToken(user));
     }
 }

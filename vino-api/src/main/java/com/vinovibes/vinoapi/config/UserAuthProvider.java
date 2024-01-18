@@ -29,12 +29,12 @@ public class UserAuthProvider {
 
     public String createToken(UserDto userDto) {
         Date now = new Date();
-        Date expriesAt = new Date(now.getTime() + 3_600_000); // One hour
+        Date expiresAt = new Date(now.getTime() + 3_600_000); // One hour
         return JWT
             .create()
             .withIssuer(userDto.getEmail())
             .withIssuedAt(now)
-            .withExpiresAt(expriesAt)
+            .withExpiresAt(expiresAt)
             .withClaim("firstName", userDto.getFirstName())
             .withClaim("lastName", userDto.getLastName())
             .sign(Algorithm.HMAC256(secretKey));

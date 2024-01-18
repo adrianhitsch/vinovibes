@@ -68,7 +68,7 @@ public class UserFacade {
         return userMapper.toUserDto(user);
     }
 
-    public void requesNewtOTP(RequestOtpDto requestOtpDto) {
+    public void requestNewOTP(RequestOtpDto requestOtpDto) {
         User user = userService
             .getUserByEmail(requestOtpDto.email())
             .orElseThrow(() -> new AppException("Unknown user", HttpStatus.BAD_REQUEST));
@@ -80,5 +80,10 @@ public class UserFacade {
         user.setOtp(otpService.generateOTP());
         user = userService.save(user);
         emailService.sendVerificationEmail(user);
+    }
+
+    public UserDto getCurrentUser() {
+        User user = userService.getCurrentUser();
+        return userMapper.toUserDto(user);
     }
 }
