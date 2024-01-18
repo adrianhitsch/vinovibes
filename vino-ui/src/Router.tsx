@@ -7,6 +7,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Otp from './pages/Otp';
+import Account from './pages/Account';
 
 function Router() {
   return (
@@ -15,6 +16,7 @@ function Router() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/account" element={<Account />} />
       <Route path="/" element={<Dashboard />} />
     </Routes>
   );

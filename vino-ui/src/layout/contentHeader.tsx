@@ -9,7 +9,7 @@ type HeaderContentType = {
   setHeaderContent?: any;
 };
 
-type ButtonType = {
+export type ButtonType = {
   text?: string;
   type?: 'primary' | 'secondary' | 'close';
   icon?: string;
