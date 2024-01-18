@@ -67,7 +67,7 @@ const ForgotPassword = (): JSX.Element => {
               lastName: data.lastName,
             }),
           );
-          navigate('/login');
+          navigate('/');
         } else {
           const data = await resp.json();
           toast.error(data.message);
