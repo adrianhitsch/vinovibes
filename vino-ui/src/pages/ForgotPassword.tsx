@@ -34,7 +34,7 @@ const ForgotPassword = (): JSX.Element => {
   }, [location]);
 
   useEffect(() => {
-    if (email) {
+    if (email && !token.current) {
       setInputEmail(email);
     }
   }, [email]);
@@ -117,6 +117,7 @@ const ForgotPassword = (): JSX.Element => {
               <InputText
                 type="password"
                 placeholder="Neues Passwort"
+                value={password}
                 onInput={(e: BaseSyntheticEvent) => setPassword(e.target.value)}
               />
             </div>
@@ -124,6 +125,7 @@ const ForgotPassword = (): JSX.Element => {
               <InputText
                 type="password"
                 placeholder="Passwort wiederholen"
+                value={passwordRepeat}
                 onInput={(e: BaseSyntheticEvent) => setPasswordRepeat(e.target.value)}
                 onKeyDown={(e: any) => {
                   if (e.key === 'Enter') {
