@@ -1,8 +1,8 @@
 package com.vinovibes.vinoapi.exceptions;
 
-public class WineExceptions extends RuntimeException {
+public class WineNotFoundException extends RuntimeException {
 
-    public WineNotFoundExceptions(String message) {
+    public WineNotFoundException(String message) {
         super(message);
     }
 }

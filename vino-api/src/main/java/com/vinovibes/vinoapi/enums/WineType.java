@@ -1,4 +1,4 @@
-package com.vinovibes.vinoapi.entities;
+package com.vinovibes.vinoapi.enums;
 
 public enum WineType {
     RED,
