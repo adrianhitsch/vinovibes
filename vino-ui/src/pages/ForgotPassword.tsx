@@ -50,6 +50,7 @@ const ForgotPassword = (): JSX.Element => {
       body: JSON.stringify({
         token: token.current,
         password,
+        passwordRepeat,
       }),
     })
       .then(async (resp) => {
