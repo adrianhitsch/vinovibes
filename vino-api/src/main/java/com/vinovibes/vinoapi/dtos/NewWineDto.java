@@ -13,6 +13,10 @@ public class NewWineDto {
 
         private String name;
         private double rating;
+        private String country;
+        private String region;
+        private double restaurantPrice;
+        private double storePrice;
         private String description;
         private String producer;
         private int vintage;

@@ -22,13 +22,20 @@ public class Wine {
     @Column(nullable = false)
     private String name;
 
+    @Column(nullable = false)
+    private String country;
+
+    private String region;
+
     private double rating;
 
     private String description;
 
     private String producer;
 
-    private int vintage;
+    private double restaurantPrice;
+
+    private double storePrice;
 
     @Column(nullable = false)
     private boolean disabled;
@@ -49,11 +56,9 @@ public class Wine {
     public void onUpdate() {
         lastUpdateDate = new Date();
     }
-    //    @Column(nullable = false)
-//    private String country;
-//
-//    private String region;
-//
+
+
+
 
     //
 //    private String grape;

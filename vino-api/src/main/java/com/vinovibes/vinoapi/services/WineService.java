@@ -67,6 +67,12 @@ public class WineService {
         if (wineDto.getName() != null) {
             existingWine.setName(wineDto.getName());
         }
+        if (wineDto.getCountry() != null) {
+            existingWine.setCountry(wineDto.getCountry());
+        }
+        if (wineDto.getRegion() != null) {
+            existingWine.setRegion(wineDto.getRegion());
+        }
         if (wineDto.getRating() != 0) {
             existingWine.setRating(wineDto.getRating());
         }
@@ -76,9 +82,13 @@ public class WineService {
         if (wineDto.getProducer() != null) {
             existingWine.setProducer(wineDto.getProducer());
         }
-        if (wineDto.getVintage() != 0) {
-            existingWine.setVintage(wineDto.getVintage());
+        if (wineDto.getRestaurantPrice() != 0) {
+            existingWine.setRestaurantPrice(wineDto.getRestaurantPrice());
+        }
+        if (wineDto.getStorePrice() != 0) {
+            existingWine.setStorePrice(wineDto.getStorePrice());
         }
         return existingWine;
     }
+
 }
