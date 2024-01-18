@@ -7,7 +7,6 @@ import com.vinovibes.vinoapi.enums.UserStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.springframework.stereotype.Service;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -15,6 +14,10 @@ public interface UserMapper {
     @Mapping(target = "status", source = "status", qualifiedByName = "statusToString")
     UserDto toUserDto(User user);
 
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "status", ignore = true)
+    @Mapping(target = "token", ignore = true)
+    @Mapping(target = "otp", ignore = true)
     User signUpToUser(SignUpDto signUpDto);
 
     @Named("statusToString")

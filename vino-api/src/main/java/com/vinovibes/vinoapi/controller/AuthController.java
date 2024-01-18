@@ -2,22 +2,19 @@ package com.vinovibes.vinoapi.controller;
 
 import com.vinovibes.vinoapi.config.UserAuthProvider;
 import com.vinovibes.vinoapi.dtos.CredentialsDto;
-import com.vinovibes.vinoapi.dtos.RequestOtpDto;
+import com.vinovibes.vinoapi.dtos.EmailDto;
+import com.vinovibes.vinoapi.dtos.PasswordResetDto;
 import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.UserDto;
 import com.vinovibes.vinoapi.dtos.VerificationDto;
-import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.facades.UserFacade;
-import com.vinovibes.vinoapi.services.UserService;
+import jakarta.validation.Valid;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -28,34 +25,48 @@ public class AuthController {
     private final UserAuthProvider userAuthProvider;
 
     @PostMapping("/login")
-    public ResponseEntity<UserDto> login(@RequestBody CredentialsDto credentialsDto) {
+    public ResponseEntity<UserDto> login(@Valid @RequestBody CredentialsDto credentialsDto) {
         UserDto user = userFacade.login(credentialsDto);
         user.setToken(userAuthProvider.createToken(user));
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/register")
-    public ResponseEntity<UserDto> register(@RequestBody SignUpDto signUpDto) {
+    public ResponseEntity<UserDto> register(@Valid @RequestBody SignUpDto signUpDto) {
         UserDto user = userFacade.register(signUpDto);
         return ResponseEntity.created(URI.create("/users/" + user.getId())).body(null);
     }
 
     @PostMapping("/register/otp")
-    public ResponseEntity<UserDto> verifyOTP(@RequestBody VerificationDto verificationDto) {
+    public ResponseEntity<UserDto> verifyOTP(@Valid @RequestBody VerificationDto verificationDto) {
         UserDto user = userFacade.verifyOTP(verificationDto);
         user.setToken(userAuthProvider.createToken(user)); // logs user in
         return ResponseEntity.ok(user);
     }
 
     @PostMapping("/register/new-otp")
-    public ResponseEntity<UserDto> requestNewOTP(@RequestBody RequestOtpDto requestOtpDto) {
-        userFacade.requestNewOTP(requestOtpDto);
+    public ResponseEntity<Void> requestNewOTP(@Valid @RequestBody EmailDto emailDto) {
+        userFacade.requestNewOTP(emailDto);
         return ResponseEntity.ok(null);
     }
 
     @GetMapping("/refresh-token")
     public ResponseEntity<String> refreshToken() {
         UserDto user = userFacade.getCurrentUser();
-        return ResponseEntity.ok(userAuthProvider.createToken(user));
+        String token = userAuthProvider.createToken(user);
+        return ResponseEntity.ok(token);
+    }
+
+    @PostMapping("/forgot-password")
+    public ResponseEntity<Void> forgotPassword(@Valid @RequestBody EmailDto emailDto) {
+        userFacade.forgotPassword(emailDto);
+        return ResponseEntity.ok(null);
+    }
+
+    @PostMapping("/reset-password")
+    public ResponseEntity<UserDto> resetPassword(@Valid @RequestBody PasswordResetDto passwordResetDto) {
+        UserDto user = userFacade.resetPassword(passwordResetDto);
+        user.setToken(userAuthProvider.createToken(user)); // logs user in
+        return ResponseEntity.ok(user);
     }
 }

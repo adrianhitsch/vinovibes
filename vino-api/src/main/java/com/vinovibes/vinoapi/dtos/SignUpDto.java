@@ -1,11 +1,14 @@
 package com.vinovibes.vinoapi.dtos;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+
 public record SignUpDto(
-    String email,
-    String firstName,
-    String lastName,
-    String password,
-    String passwordRepeat,
-    Boolean eighteen,
-    Boolean privacy
+    @NotBlank String email,
+    @NotBlank String firstName,
+    @NotBlank String lastName,
+    @NotBlank String password,
+    @NotBlank String passwordRepeat,
+    @NotNull Boolean eighteen,
+    @NotNull Boolean privacy
 ) {}
