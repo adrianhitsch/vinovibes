@@ -13,7 +13,7 @@ const Navigation = () => {
   const apiFetch = useApiFetch();
 
   const setActive = (e: any) => {
-    const elements = document.querySelectorAll('a');
+    const elements = document.querySelectorAll('li');
     elements.forEach((el) => {
       el.classList.remove('active');
     });
@@ -23,7 +23,7 @@ const Navigation = () => {
       return;
     }
 
-    e.target.classList.add('active');
+    e.target.parentNode.classList.add('active');
 
     if (e.target.id.includes('my-vino')) {
       const submenus = document.querySelector('.expandable.menu.my-vino');
@@ -83,15 +83,16 @@ const Navigation = () => {
             <Link to="/vino" id="my-vino">
               <span className="icon icon-wine-glass"></span>
               Meine Weine
-              <div className="line"></div>
             </Link>
             <ul className="expandable menu my-vino">
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="my-vino drunken">
                   Getrunkene Weine
                 </Link>
               </li>
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="my-vino wishlist">
                   Meine Wunschliste
                 </Link>
@@ -102,25 +103,28 @@ const Navigation = () => {
             <Link to="/vino" id="all-vino">
               <span className="icon icon-wine-bottle"></span>
               Alle Weine
-              <div className="line"></div>
             </Link>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="all-vino red">
                   Rotweine
                 </Link>
               </li>
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="all-vino white">
                   Weißweine
                 </Link>
               </li>
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="all-vino rose">
                   Roséweine
                 </Link>
               </li>
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/vino" id="all-vino champaign">
                   Schaumweine
                 </Link>
@@ -130,18 +134,19 @@ const Navigation = () => {
           <li onClick={setActive}>
             <Link to="/account" id="account">
               <span className="icon icon-user"></span>Mein Account
-              <div className="line"></div>
             </Link>
 
             <ul className="expandable menu account">
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/account" id="account">
                   Mein Profil
                 </Link>
               </li>
               <li onClick={setActive}>
+                <span className="icon icon-circle"></span>
                 <Link to="/account" id="account">
-                  Einstellungne
+                  Einstellungen
                 </Link>
               </li>
             </ul>
