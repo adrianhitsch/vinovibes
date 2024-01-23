@@ -1,8 +1,8 @@
 package com.vinovibes.vinoapi.mappers;
 
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.UserDto;
+import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

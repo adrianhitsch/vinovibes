@@ -1,12 +1,12 @@
 package com.vinovibes.vinoapi.controller;
 
 import com.vinovibes.vinoapi.config.UserAuthProvider;
-import com.vinovibes.vinoapi.dtos.CredentialsDto;
-import com.vinovibes.vinoapi.dtos.EmailDto;
-import com.vinovibes.vinoapi.dtos.PasswordResetDto;
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.dtos.VerificationDto;
+import com.vinovibes.vinoapi.dtos.user.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.user.EmailDto;
+import com.vinovibes.vinoapi.dtos.user.PasswordResetDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.UserDto;
+import com.vinovibes.vinoapi.dtos.user.VerificationDto;
 import com.vinovibes.vinoapi.facades.UserFacade;
 import jakarta.validation.Valid;
 import java.net.URI;

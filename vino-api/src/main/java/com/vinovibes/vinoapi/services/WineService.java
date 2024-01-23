@@ -1,22 +1,21 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.dtos.NewWineDto;
-import com.vinovibes.vinoapi.dtos.WineDto;
-import com.vinovibes.vinoapi.entities.Wine;
+import com.vinovibes.vinoapi.dtos.wine.CreateWineDto;
+import com.vinovibes.vinoapi.dtos.wine.WineDto;
+import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.exceptions.WineNotFoundException;
 import com.vinovibes.vinoapi.mappers.WineMapper;
 import com.vinovibes.vinoapi.repositories.WineRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -26,14 +25,14 @@ public class WineService {
     private final WineMapper wineMapper;
 
     public WineDto getWineById(Long id) {
-        Wine wine = wineRepository.findById(id).orElseThrow(() -> new AppException("Unknown wine", HttpStatus.NOT_FOUND));
+        Wine wine = wineRepository
+            .findById(id)
+            .orElseThrow(() -> new AppException("Unknown wine", HttpStatus.NOT_FOUND));
         return wineMapper.toWineDto(wine);
     }
 
-    public void createWine(NewWineDto newWineDto) {
-        Wine wine = wineMapper.toWineFromNewWineDto(newWineDto);
-        wine = wineRepository.save(wine);
-        System.out.println("Created: " + wine);
+    public void createWine(Wine wine) {
+        wineRepository.save(wine);
     }
 
     public List<WineDto> getWines(int skip, int take, String sortBy, String sortDirection) {
@@ -82,13 +81,6 @@ public class WineService {
         if (wineDto.getProducer() != null) {
             existingWine.setProducer(wineDto.getProducer());
         }
-        if (wineDto.getRestaurantPrice() != 0) {
-            existingWine.setRestaurantPrice(wineDto.getRestaurantPrice());
-        }
-        if (wineDto.getStorePrice() != 0) {
-            existingWine.setStorePrice(wineDto.getStorePrice());
-        }
         return existingWine;
     }
-
 }

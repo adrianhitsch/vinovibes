@@ -1,5 +1,6 @@
-package com.vinovibes.vinoapi.dtos;
+package com.vinovibes.vinoapi.dtos.wine;
 
+import com.vinovibes.vinoapi.enums.WineType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -16,9 +17,6 @@ public class WineDto {
     private double rating;
     private String country;
     private String region;
-    private double restaurantPrice;
-    private double storePrice;
     private String description;
     private String producer;
-
 }

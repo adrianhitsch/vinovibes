@@ -1,6 +1,6 @@
 package com.vinovibes.vinoapi.controller;
 
-import com.vinovibes.vinoapi.dtos.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
 import com.vinovibes.vinoapi.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +16,7 @@ public class HomeController {
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {
+        System.out.println(userService.getCurrentUser());
         return ResponseEntity.ok("Hello World!");
     }
 

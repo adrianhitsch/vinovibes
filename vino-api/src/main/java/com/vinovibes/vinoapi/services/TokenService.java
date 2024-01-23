@@ -1,6 +1,6 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.entities.Token;
+import com.vinovibes.vinoapi.entities.user.Token;
 import com.vinovibes.vinoapi.repositories.TokenRepository;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;

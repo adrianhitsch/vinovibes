@@ -1,11 +1,11 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.dtos.CredentialsDto;
-import com.vinovibes.vinoapi.dtos.PasswordResetDto;
-import com.vinovibes.vinoapi.dtos.SignUpDto;
 import com.vinovibes.vinoapi.dtos.errors.UserErrorDto;
-import com.vinovibes.vinoapi.entities.Token;
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.dtos.user.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.user.PasswordResetDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.entities.user.Token;
+import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.mappers.UserMapper;
