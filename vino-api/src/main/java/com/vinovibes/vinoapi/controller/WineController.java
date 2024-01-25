@@ -24,13 +24,14 @@ public class WineController {
     }
 
     @GetMapping("/wines")
-    public ResponseEntity<List<WineDto>> getWines(
+    public ResponseEntity<List<WineDto>> getWinesByType(
         @RequestParam(defaultValue = "0") int skip,
         @RequestParam(defaultValue = "10") int take,
         @RequestParam(defaultValue = "id") String sortBy,
-        @RequestParam(defaultValue = "asc") String sortDirection
+        @RequestParam(defaultValue = "asc") String sortDirection,
+        @RequestParam(defaultValue = "") String type
     ) {
-        List<WineDto> wines = wineService.getWines(skip, take, sortBy, sortDirection);
+        List<WineDto> wines = wineService.getWines(skip, take, sortBy, sortDirection, type);
         return ResponseEntity.ok(wines);
     }
 

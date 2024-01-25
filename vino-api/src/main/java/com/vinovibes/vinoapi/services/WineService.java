@@ -2,6 +2,7 @@ package com.vinovibes.vinoapi.services;
 
 import com.vinovibes.vinoapi.dtos.wine.WineDto;
 import com.vinovibes.vinoapi.entities.wine.Wine;
+import com.vinovibes.vinoapi.enums.WineType;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.exceptions.WineNotFoundException;
 import com.vinovibes.vinoapi.mappers.WineMapper;
@@ -34,10 +35,19 @@ public class WineService {
         return wineRepository.save(wine);
     }
 
-    public List<WineDto> getWines(int skip, int take, String sortBy, String sortDirection) {
+    public List<WineDto> getWines(int skip, int take, String sortBy, String sortDirection, String type) {
         Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
         Pageable pageable = PageRequest.of(skip, take, Sort.by(direction, sortBy));
-        List<Wine> wines = wineRepository.findAll(pageable).getContent();
+        List<Wine> wines;
+        System.out.println("type: " + type);
+
+        if (type != null && !type.isEmpty()) {
+            WineType wineType = WineType.valueOf(type);
+            wines = wineRepository.findByType(wineType, pageable).getContent();
+        } else {
+            wines = wineRepository.findAll(pageable).getContent();
+        }
+
         List<WineDto> wineDtos = new ArrayList<>();
 
         for (Wine wine : wines) {
