@@ -100,20 +100,20 @@ const Navigation = () => {
             </ul>
           </li>
           <li onClick={setActive}>
-            <Link to="/vino" id="all-vino">
+            <Link to="/all-vines" id="all-vino">
               <span className="icon icon-wine-bottle"></span>
               Alle Weine
             </Link>
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/vino" id="all-vino red">
+                <Link to="/all-vines" id="all-vino red">
                   Rotweine
                 </Link>
               </li>
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/vino" id="all-vino white">
+                <Link to="/all-vines" id="all-vino white">
                   Weißweine
                 </Link>
               </li>

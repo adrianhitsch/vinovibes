@@ -7,6 +7,8 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import Otp from './pages/Otp';
+import TableView from './pages/TableView';
+import DetailPage from './pages/DetailPage';
 
 function Router() {
   return (
@@ -16,6 +18,8 @@ function Router() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Dashboard />} />
+      <Route path="/all-vines" element={<TableView />} />
+      <Route path="/vine-detail" element={<DetailPage />} />
     </Routes>
   );
 }
