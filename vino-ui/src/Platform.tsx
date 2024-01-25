@@ -9,6 +9,7 @@ import { storeType } from './redux/storeType';
 import { logout, resetNewUser } from './redux/userSlice';
 import toast, { Toaster } from 'react-hot-toast';
 import ContentHeader, { HeaderContentType, HeaderContext } from './layout/contentHeader';
+import MobileNavigation from './layout/mobileNavigation';
 
 const Platform = () => {
   const location = useLocation();
@@ -65,15 +66,19 @@ const Platform = () => {
   // background: linear-gradient(180deg, #0f1924 50%, #8bb7ff21);
 
   return (
-    <HeaderContext.Provider value={{ ...headerContent, setHeaderContent }}>
-      <div className="platform">
-        <Navigation />
-        <div className="content">
-          <ContentHeader />
-          <Router />
+    <>
+      <HeaderContext.Provider value={{ ...headerContent, setHeaderContent }}>
+        <div className="platform">
+          <Navigation />
+
+          <div className="content">
+            <ContentHeader />
+            <Router />
+          </div>
         </div>
-      </div>
-    </HeaderContext.Provider>
+      </HeaderContext.Provider>
+      <MobileNavigation />
+    </>
   );
 };
 
