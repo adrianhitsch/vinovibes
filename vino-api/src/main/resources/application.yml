@@ -4,14 +4,7 @@ spring:
       ddl-auto: update
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
-    url: ${DATABASE_URL}
   mail:
-    host: ${MAIL_HOST}
-    port: ${MAIL_PORT}
-    username: ${MAIL_USERNAME}
-    password: ${MAIL_PASSWORD}
     properties:
       mail:
         smtp:
