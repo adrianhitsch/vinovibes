@@ -21,13 +21,4 @@ public class HomeController {
         System.out.println(userService.getCurrentUser());
         return ResponseEntity.ok("Hello World!");
     }
-
-    @PostMapping("/generateUser")
-    public ResponseEntity<String> generateUser() {
-        boolean eighteen = true;
-        boolean privacy = true;
-        SignUpDto user = new SignUpDto("John", "Doe", "john", "doe", "doe", eighteen, privacy);
-        userService.register(user);
-        return ResponseEntity.ok("User Generated!");
-    }
 }
