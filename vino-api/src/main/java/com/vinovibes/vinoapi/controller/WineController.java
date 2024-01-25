@@ -2,6 +2,7 @@ package com.vinovibes.vinoapi.controller;
 
 import com.vinovibes.vinoapi.dtos.wine.CreateWineDto;
 import com.vinovibes.vinoapi.dtos.wine.WineDto;
+import com.vinovibes.vinoapi.dtos.wine.WineFilterDto;
 import com.vinovibes.vinoapi.facades.WineFacade;
 import com.vinovibes.vinoapi.services.WineService;
 import java.util.List;
@@ -24,14 +25,8 @@ public class WineController {
     }
 
     @GetMapping("/wines")
-    public ResponseEntity<List<WineDto>> getWinesByType(
-        @RequestParam(defaultValue = "0") int skip,
-        @RequestParam(defaultValue = "10") int take,
-        @RequestParam(defaultValue = "id") String sortBy,
-        @RequestParam(defaultValue = "asc") String sortDirection,
-        @RequestParam(defaultValue = "") String type
-    ) {
-        List<WineDto> wines = wineService.getWines(skip, take, sortBy, sortDirection, type);
+    public ResponseEntity<List<WineDto>> getWinesByType(@RequestBody WineFilterDto wineFilterDto) {
+        List<WineDto> wines = wineService.getWines(wineFilterDto);
         return ResponseEntity.ok(wines);
     }
 

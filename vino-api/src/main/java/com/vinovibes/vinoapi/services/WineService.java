@@ -1,6 +1,7 @@
 package com.vinovibes.vinoapi.services;
 
 import com.vinovibes.vinoapi.dtos.wine.WineDto;
+import com.vinovibes.vinoapi.dtos.wine.WineFilterDto;
 import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.enums.WineType;
 import com.vinovibes.vinoapi.exceptions.AppException;
@@ -35,14 +36,19 @@ public class WineService {
         return wineRepository.save(wine);
     }
 
-    public List<WineDto> getWines(int skip, int take, String sortBy, String sortDirection, String type) {
-        Sort.Direction direction = "asc".equalsIgnoreCase(sortDirection) ? Sort.Direction.ASC : Sort.Direction.DESC;
-        Pageable pageable = PageRequest.of(skip, take, Sort.by(direction, sortBy));
+    public List<WineDto> getWines(WineFilterDto wineFilterDto) {
+        Sort.Direction direction = "asc".equalsIgnoreCase(wineFilterDto.sortDirection())
+            ? Sort.Direction.ASC
+            : Sort.Direction.DESC;
+        Pageable pageable = PageRequest.of(
+            wineFilterDto.skip(),
+            wineFilterDto.take(),
+            Sort.by(direction, wineFilterDto.sortBy())
+        );
         List<Wine> wines;
-        System.out.println("type: " + type);
 
-        if (type != null && !type.isEmpty()) {
-            WineType wineType = WineType.valueOf(type);
+        if (wineFilterDto.type() != null && !wineFilterDto.type().isEmpty()) {
+            WineType wineType = WineType.valueOf(wineFilterDto.type());
             wines = wineRepository.findByType(wineType, pageable).getContent();
         } else {
             wines = wineRepository.findAll(pageable).getContent();
