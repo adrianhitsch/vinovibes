@@ -113,6 +113,9 @@ public class UserFacade {
         Token token = tokenService
             .getTokenByValue(passwordResetDto.token())
             .orElseThrow(() -> new AppException("Unknown token", HttpStatus.BAD_REQUEST));
+        if (tokenService.isTokenExpired(token)) {
+            throw new AppException("Token expired", HttpStatus.BAD_REQUEST);
+        }
 
         User user = token.getUser();
         if (user.getStatus() != UserStatus.FORGOT_PASSWORD) {
