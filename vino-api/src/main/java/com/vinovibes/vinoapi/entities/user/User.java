@@ -45,7 +45,7 @@ public class User {
     @JoinColumn(name = "token_id", referencedColumnName = "id")
     private Token token;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Wine> wine;
     //    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     //    @JoinColumn(name = "user_id", referencedColumnName = "id")

@@ -1,6 +1,5 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.dtos.wine.CreateWineDto;
 import com.vinovibes.vinoapi.dtos.wine.WineDto;
 import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.exceptions.AppException;
@@ -31,8 +30,8 @@ public class WineService {
         return wineMapper.toWineDto(wine);
     }
 
-    public void createWine(Wine wine) {
-        wineRepository.save(wine);
+    public Wine createWine(Wine wine) {
+        return wineRepository.save(wine);
     }
 
     public List<WineDto> getWines(int skip, int take, String sortBy, String sortDirection) {
@@ -61,26 +60,29 @@ public class WineService {
     }
 
     private static Wine getExistingWine(WineDto wineDto, Optional<Wine> existingWineOptional) {
-        Wine existingWine = existingWineOptional.get();
-
-        if (wineDto.getName() != null) {
-            existingWine.setName(wineDto.getName());
+        if (existingWineOptional.isPresent()) {
+            Wine existingWine = existingWineOptional.get();
+            if (wineDto.getName() != null) {
+                existingWine.setName(wineDto.getName());
+            }
+            if (wineDto.getCountry() != null) {
+                existingWine.setCountry(wineDto.getCountry());
+            }
+            if (wineDto.getRegion() != null) {
+                existingWine.setRegion(wineDto.getRegion());
+            }
+            if (wineDto.getRating() != 0) {
+                existingWine.setRating(wineDto.getRating());
+            }
+            if (wineDto.getDescription() != null) {
+                existingWine.setDescription(wineDto.getDescription());
+            }
+            if (wineDto.getProducer() != null) {
+                existingWine.setProducer(wineDto.getProducer());
+            }
+            return existingWine;
+        } else {
+            throw new WineNotFoundException("Wine with ID " + wineDto.getId() + " not found");
         }
-        if (wineDto.getCountry() != null) {
-            existingWine.setCountry(wineDto.getCountry());
-        }
-        if (wineDto.getRegion() != null) {
-            existingWine.setRegion(wineDto.getRegion());
-        }
-        if (wineDto.getRating() != 0) {
-            existingWine.setRating(wineDto.getRating());
-        }
-        if (wineDto.getDescription() != null) {
-            existingWine.setDescription(wineDto.getDescription());
-        }
-        if (wineDto.getProducer() != null) {
-            existingWine.setProducer(wineDto.getProducer());
-        }
-        return existingWine;
     }
 }

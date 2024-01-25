@@ -1,6 +1,7 @@
 package com.vinovibes.vinoapi.facades;
 
 import com.vinovibes.vinoapi.dtos.wine.CreateWineDto;
+import com.vinovibes.vinoapi.dtos.wine.WineDto;
 import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.mappers.WineMapper;
 import com.vinovibes.vinoapi.services.UserService;
@@ -16,9 +17,10 @@ public class WineFacade {
     private final WineMapper wineMapper;
     private final UserService userService;
 
-    public void createWine(CreateWineDto wineDto) {
+    public WineDto createWine(CreateWineDto wineDto) {
         Wine wine = wineMapper.toWineFromCreateWineDto(wineDto);
-        wine.setUser(userService.getCurrentUser());
-        wineService.createWine(wine);
+        wine.setCreatorId(userService.getCurrentUser().getId());
+        wine = wineService.createWine(wine);
+        return wineMapper.toWineDto(wine);
     }
 }

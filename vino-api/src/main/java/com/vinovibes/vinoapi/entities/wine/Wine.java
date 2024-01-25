@@ -1,6 +1,5 @@
 package com.vinovibes.vinoapi.entities.wine;
 
-import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.WineType;
 import jakarta.persistence.*;
 import java.util.Date;
@@ -51,9 +50,8 @@ public class Wine {
     @Column(name = "last_update_date", nullable = false)
     private Date lastUpdateDate;
 
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_USER_WINE"))
-    @ManyToOne
-    private User user;
+    @Column(name = "creator_id", nullable = false)
+    private Long creatorId;
 
     @PrePersist
     protected void onCreate() {
@@ -65,20 +63,4 @@ public class Wine {
     public void onUpdate() {
         lastUpdateDate = new Date();
     }
-    //
-    //    private String grape;
-    //
-    //    @ElementCollection
-    //    @CollectionTable(name = "wine_characteristics", joinColumns = @JoinColumn(name = "wine_id"))
-    //    @Column(name = "characteristic", nullable = false)
-    //    private List<String> characteristics;
-    //
-
-    //    @Lob
-    //    @Column(name = "image", columnDefinition = "BLOB")
-    //    private byte[] image;
-    //
-
-    //
-
 }

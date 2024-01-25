@@ -13,7 +13,6 @@ public interface WineMapper {
     WineDto toWineDto(Wine wine);
 
     @Mapping(target = "type", source = "type", qualifiedByName = "stringToWineType")
-    @Mapping(target = "user", ignore = true)
     Wine toWineFromCreateWineDto(CreateWineDto createWineDto);
 
     @Named("stringToWineType")
