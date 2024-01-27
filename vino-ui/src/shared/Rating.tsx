@@ -1,48 +1,45 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
+import StarRating from './StarRating';
+import '../styles/rating.css';
+import profileImg from '../assets/pictures/profile.png';
 
-export interface RatingProps {
-  stars: number;
-  size?: 'small' | 'default';
-}
-
-const Rating = ({ stars, size }: RatingProps) => {
-  size = size || 'default';
-  const [ratingArray, setRatingArray] = useState<number[]>([]);
-  const id = useRef(0);
-
-  useEffect(() => {
-    const ratingArray = [];
-    const fullStars = Math.floor(stars);
-    const halfStars = stars - fullStars >= 0.5 ? 1 : 0;
-    const emptyStars = 5 - fullStars - halfStars;
-
-    for (let i = 0; i < fullStars; i++) {
-      ratingArray.push(1);
-    }
-    if (halfStars === 1) {
-      ratingArray.push(0.5);
-    }
-    for (let i = 0; i < emptyStars; i++) {
-      ratingArray.push(0);
-    }
-
-    setRatingArray(ratingArray);
-  }, [stars]);
-
+const RatingItem = () => {
   return (
-    <div className="product-rating">
-      {ratingArray.map((rating) => (
-        <div className="product-rating-star" key={id.current++}>
-          <span
-            className={`icon ${size}  ${
-              rating === 1 ? 'icon-star-filled' : rating === 0.5 ? 'icon-star-half' : 'icon-star'
-            }`}
-          ></span>
+    <div className="rating-item">
+      <div className="user-icon">
+        <img src={profileImg} alt="" />
+        <span>username</span>
+      </div>
+      <div className="rating-container">
+        <div className="rating-info">
+          <StarRating stars={4} size="small" />
+          <div className="rating-location">
+            <span className="icon icon-location"></span>
+            <span>Location</span>
+          </div>
+          <div className="rating-price">
+            <span className="icon icon-restaurant"></span>
+            <span>⌀ 23,65 €</span>
+          </div>
         </div>
-      ))}
-      <span>{stars}</span>
+        <div className="rating-text">
+          Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay. Hat halt
+          geballert. Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay. Hat
+          halt geballert. Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay.
+          Hat halt geballert. Kann sein … Mehr anzeigen
+        </div>
+        <div className="rating-date">am 07.12.2023</div>
+      </div>
     </div>
   );
 };
 
+const Rating = () => {
+  return (
+    <div className="rating">
+      <RatingItem />
+      <RatingItem />
+    </div>
+  );
+};
 export default Rating;

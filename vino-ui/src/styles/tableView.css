@@ -46,7 +46,12 @@
   display: flex;
   line-height: 14px;
   gap: 3px;
+  align-items: center;
 }
+.product-rating.default > span {
+  line-height: 24px;
+}
+
 .product-rating > span {
   margin-left: 5px;
 }

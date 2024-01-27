@@ -1,8 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import Rating from '../shared/Rating';
+import StarRating from '../shared/StarRating';
 import '../styles/detailPage.css';
 import detailImage from '../assets/pictures/product.jpg';
 import { HeaderContext } from '../layout/contentHeader';
+import Map from '../shared/Map';
+import Rating from '../shared/Rating';
+import profileImg from '../assets/pictures/profile.png';
 
 const DetailPage = () => {
   const { setHeaderContent } = useContext(HeaderContext);
@@ -26,7 +29,7 @@ const DetailPage = () => {
           <img src={detailImage} alt="" />
         </div>
         <div className="detail-info">
-          <Rating stars={4} />
+          <StarRating stars={4} />
           <h1 className="detail-name">Name</h1>
           <div className="detail-country">Country</div>
           <div className="detail-year">Year</div>
@@ -61,13 +64,38 @@ const DetailPage = () => {
             </div>
           </div>
           <div className="button-container">
-            <button className="button secondary">Wein merken</button>
+            <button className="button secondary">
+              <span className="icon icon-heart"></span>
+              Wein merken
+            </button>
             <button className="button primary">
-              {/* <span className="icon icon-tik"></span> */}
+              <span className="icon icon-check"></span>
               Wein getrunken
             </button>
+            <p>Zuletzt von dir getrunken am: 23.11.2023</p>
           </div>
         </div>
+      </div>
+      <div className="content-card padding small">
+        <h2>Bewertung</h2>
+        <Rating />
+      </div>
+      <div className="content-card padding small">
+        <h2>Getrunken von</h2>
+        <div className="user-list">
+          <div className="user-icon">
+            <img src={profileImg} alt="" />
+            <span>username</span>
+          </div>
+          <div className="user-icon">
+            <img src={profileImg} alt="" />
+            <span>username</span>
+          </div>
+        </div>
+      </div>
+      <div className="content-card padding small">
+        <h2>Wo zu finden?</h2>
+        <Map />
       </div>
     </div>
   );

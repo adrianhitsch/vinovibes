@@ -4,7 +4,9 @@ import useApiFetch from '../wrapper/apiFetch';
 import productImage from '../assets/pictures/product.jpg';
 import { useNavigate } from 'react-router';
 import { HeaderContext } from '../layout/contentHeader';
-import Rating from '../shared/Rating';
+import StarRating from '../shared/StarRating';
+import { WineRequest } from '../types/wineRequest';
+import toast from 'react-hot-toast';
 
 type productType = {
   country: string;
@@ -34,7 +36,7 @@ const Product = ({ productInfo }: productProps) => {
         <img src={productImage} alt="" />
       </div>
       <div className="product-info">
-        <Rating stars={productInfo.rating} size="small" />
+        <StarRating stars={productInfo.rating} size="small" />
         <div className="product-name">{productInfo.name}</div>
         <div className="product-country">{productInfo.country}</div>
       </div>
@@ -66,9 +68,18 @@ const TableView = () => {
   }, []);
 
   const getProducts = async () => {
-    await apiFetch('/wine/wines', { method: 'GET' })
+    const requestBody: WineRequest = {
+      skip: 0,
+      take: 20,
+      sortBy: '',
+      sortDirection: '',
+      type: '',
+    };
+
+    await apiFetch('/wine/wines', { method: 'POST', body: JSON.stringify(requestBody) })
       .then((data) => data.json())
-      .then((data) => setProducts(data));
+      .then((data) => setProducts(data))
+      .catch(() => toast.error('Weine konnten nicht geladen werden'));
   };
 
   return (

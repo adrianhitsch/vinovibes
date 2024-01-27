@@ -65,7 +65,6 @@ body {
   align-items: center;
   gap: 14px;
   margin-top: 8px;
-  margin-left: 14px;
 }
 
 .button-container button {
@@ -175,6 +174,18 @@ body {
   min-height: calc(100dvh - 190px);
   border-radius: 25px;
   overflow: hidden;
+}
+
+.content-card h2 {
+  margin-bottom: 16px;
+}
+
+.content-card.padding {
+  padding: 24px;
+}
+
+.content-card.small {
+  min-height: 120px;
 }
 
 .searchbar {
