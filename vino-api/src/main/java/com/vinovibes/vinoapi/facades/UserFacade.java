@@ -45,7 +45,6 @@ public class UserFacade {
         }
 
         user = userService.save(user);
-        // TODO: make email sending async
         emailService.sendVerificationEmail(user);
         return userMapper.toUserDto(user);
     }
