@@ -67,7 +67,13 @@ const Map = () => {
       id="map"
       className="map"
       ref={mapRef}
-      style={{ height: '460px', width: '100%', borderRadius: '25px', overflow: 'hidden' }}
+      style={{
+        height: '460px',
+        width: '100%',
+        borderRadius: '25px',
+        overflow: 'hidden',
+        background: '#0f1924',
+      }}
     ></div>
   );
 };
