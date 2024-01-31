@@ -13,6 +13,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.thymeleaf.TemplateEngine;
 
 @Service
 @RequiredArgsConstructor
@@ -20,10 +21,18 @@ public class EmailService {
 
     private final JavaMailSender mailSender;
 
+    private final TemplateEngine templateEngine;
+
+    // public void sendVerificationEmail(User user) {
+    //     String template = EmailTemplates.OTP_EMAIL_TEMPLATE;
+    //     String name = user.getFirstName();
+    //     String otp = user.getOtp().getValue();
+    //     template = template.replace("{{NAME}}", name).replace("{{OTP}}", otp);
+    //     sendHtmlEmail(user, "Verifiziere deinen VinoVibes Account", template);
+    // }
+
     public void sendVerificationEmail(User user) {
-        String template = EmailTemplates.OTP_EMAIL_TEMPLATE;
-        template = template.replace("{{NAME}}", user.getFirstName()).replace("{{OTP}}", user.getOtp().getValue());
-        sendHtmlEmail(user, "Verifiziere deinen VinoVibes Account", template);
+        
     }
 
     public void sendForgotPasswordEmail(User user) {
