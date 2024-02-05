@@ -246,6 +246,12 @@ button span {
   transition: opacity 0.2s ease-in-out;
 }
 
+.platform button:has(span) {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
 .button.primary {
   background: var(--button-gradient);
   border-radius: 10px;
@@ -410,11 +416,13 @@ h2 {
   border: unset;
 }
 
-.login .p-inputtext:focus {
+.login .p-inputtext:focus,
+.p-component:focus:first-child {
   box-shadow: 0 0 0 2px #ffffff82;
 }
 
-.p-inputtext {
+.p-inputtext,
+.wrapper .p-component * {
   color: var(--white);
 }
 
@@ -455,7 +463,7 @@ h2 {
   width: 100%;
 }
 
-ul li {
+nav ul li {
   list-style-type: none;
   margin-bottom: 7px;
 }

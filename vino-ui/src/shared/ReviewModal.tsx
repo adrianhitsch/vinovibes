@@ -3,116 +3,18 @@ import { Chips } from 'primereact/chips';
 import { InputNumber } from 'primereact/inputnumber';
 import { Mention } from 'primereact/mention';
 import { Rating } from 'primereact/rating';
-import React, { BaseSyntheticEvent, useState, useEffect } from 'react';
+import React, {
+  BaseSyntheticEvent,
+  useState,
+  useEffect,
+  useReducer,
+  useRef,
+  LegacyRef,
+} from 'react';
 import LocationSwitch from './LocationSwitch';
-
-const style = `
-.backdrop {
-  opcaity: 0;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 100;
-}
-
-.backdrop.show{
-  opacity: 1;
-  transition: opacity 0.3s;F
-}
-
-.modal {
-  opcaity: 0;
-  border-radius: 25px;  
-  position: fixed;
-  max-width: 700px;
-  width: 80%;
-  height: 860px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, 100%);
-  background: #273039;
-  z-index: 101;
-  padding: 32px 40px;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transition: opacity 0.3s, transform 0.3s ease-out;
-}
-
-.modal.show {
-  opacity: 1;
-  transform: translate(-50%, -50%) ;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 32px;
-}
-
-.modal-header {
-  h1 {
-    font-size: 32px;
-    color: #fff;
-    margin: 0;
-  }
-  .icon {
-    height: 32px;
-    width: 32px;
-    color: #fff;
-  }
-}
-
-.modal-footer {
-  margin-top: auto;
-  height: 60px;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.modal-footer button.flex {
-  display: flex;
-  align-items: center;
-}
-
-.modal-body {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.wrapper {
-  width: 100%;
-  .p-component, .p-inputtext   {
-    width: 100%;
-  }
-
-  & > div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;  
-    height: 100%;
-    justify-content: flex-end;
-  }
-
-  .left {
-    float: left;
-    width: calc(50% - 36px);
-  }
-  .right {
-    float: right;
-    width: 50%;
-  }
-  .full {
-    width: 100%;
-  }
-}
-`;
+import '../styles/reviewModal.css';
+import LocationChip from './LocationChip';
+import CharacteristicsChip from './CharacteristicsChip';
 
 type ReviewModalProps = {
   closeModal?: () => void;
@@ -137,22 +39,27 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
     message: '',
   });
   const [showModal, setShowModal] = useState(false);
+  const characteristicsChip = useRef<Chips | null>(null);
 
   useEffect(() => {
     setShowModal(true);
   }, []);
 
   const _closeModal = () => {
-    if (closeModal) closeModal();
+    setShowModal(false);
+
+    setTimeout(() => {
+      if (closeModal) closeModal();
+    }, 400);
   };
 
   const handleSave = () => {
+    console.log(data);
     _closeModal();
   };
 
   return (
     <>
-      <style>{style}</style>
       <div className={`modal ${showModal ? 'show' : ''}`}>
         <div className="modal-header">
           <h1>Wein getrunken</h1>
@@ -170,14 +77,16 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, rating: e.value }))}
                 cancel={false}
                 onIcon={<span className="icon icon-star-filled" />}
-                offIcon={<span className="icon icon-star" />}
+                offIcon={<span className="icon icon-star-white" />}
               />
             </div>
           </div>
           <div className="wrapper">
             <div className="left">
               <label htmlFor="rating">Preis</label>
-              <LocationSwitch />
+              <div className="switch-container">
+                <LocationSwitch />
+              </div>
               <InputNumber
                 inputId="currency-germany"
                 value={data.price.value}
@@ -196,10 +105,11 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
               />
             </div>
             <div className="right">
-              <label htmlFor="rating">Bewertung</label>
+              <label htmlFor="rating">Jahrgang</label>
               <Calendar
-                dateFormat="yy"
                 view="year"
+                dateFormat="yy"
+                style={{ width: '100%' }}
                 value={data.date}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, date: e.value }))}
               />
@@ -211,6 +121,8 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
               <Chips
                 value={data.location}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, location: e.value }))}
+                itemTemplate={LocationChip}
+                allowDuplicate={false}
               />
             </div>
           </div>
@@ -218,8 +130,11 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
             <div className="full">
               <label htmlFor="rating">Eigenschaften</label>
               <Chips
+                ref={characteristicsChip}
                 value={data.tags}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, tags: e.value }))}
+                itemTemplate={(i) => CharacteristicsChip(i, data.tags)}
+                allowDuplicate={false}
               />
             </div>
           </div>
@@ -233,6 +148,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                 }
                 rows={5}
                 cols={40}
+                autoResize
               />
             </div>
           </div>
