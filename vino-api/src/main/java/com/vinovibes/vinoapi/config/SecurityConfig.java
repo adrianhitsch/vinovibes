@@ -28,11 +28,10 @@ public class SecurityConfig {
                 requests
                     .requestMatchers(
                         HttpMethod.POST,
-                        "/login",
-                        "/register/**",
-                        "/generateUser",
-                        "/forgot-password",
-                        "/reset-password"
+                        "/api/login",
+                        "/api/register/**",
+                        "/api/forgot-password",
+                        "/api/reset-password"
                     )
                     .permitAll()
                     .anyRequest()

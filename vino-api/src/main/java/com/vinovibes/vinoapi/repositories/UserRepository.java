@@ -1,7 +1,7 @@
 package com.vinovibes.vinoapi.repositories;
 
-import com.vinovibes.vinoapi.entities.Token;
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.entities.user.Token;
+import com.vinovibes.vinoapi.entities.user.User;
 import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 

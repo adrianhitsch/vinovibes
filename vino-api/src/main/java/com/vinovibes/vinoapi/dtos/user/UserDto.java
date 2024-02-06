@@ -1,4 +1,4 @@
-package com.vinovibes.vinoapi.dtos;
+package com.vinovibes.vinoapi.dtos.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

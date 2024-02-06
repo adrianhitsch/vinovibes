@@ -1,6 +1,11 @@
-package com.vinovibes.vinoapi.entities;
+package com.vinovibes.vinoapi.entities.user;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,8 +17,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @Data
 @Entity
-@Table(name = "token")
-public class Token {
+@Table(name = "otp")
+public class Otp {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +28,6 @@ public class Token {
 
     private LocalDateTime expiryTime;
 
-    @OneToOne(mappedBy = "token")
+    @OneToOne(mappedBy = "otp")
     private User user;
 }

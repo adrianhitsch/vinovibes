@@ -1,6 +1,6 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import java.time.format.DateTimeFormatter;
 import lombok.RequiredArgsConstructor;

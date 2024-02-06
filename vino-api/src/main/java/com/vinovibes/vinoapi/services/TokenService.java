@@ -1,6 +1,6 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.entities.Token;
+import com.vinovibes.vinoapi.entities.user.Token;
 import com.vinovibes.vinoapi.repositories.TokenRepository;
 import java.security.SecureRandom;
 import java.time.LocalDateTime;
@@ -15,8 +15,8 @@ public class TokenService {
 
     private final TokenRepository tokenRepository;
 
-    private static final SecureRandom secureRandom = new SecureRandom(); //threadsafe
-    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder(); //threadsafe
+    private static final SecureRandom secureRandom = new SecureRandom();
+    private static final Base64.Encoder base64Encoder = Base64.getUrlEncoder();
 
     public Token generateNewToken() {
         byte[] randomBytes = new byte[24];
@@ -31,5 +31,9 @@ public class TokenService {
 
     public Optional<Token> getTokenByValue(String tokenValue) {
         return tokenRepository.findByValue(tokenValue);
+    }
+
+    public boolean isTokenExpired(Token token) {
+        return LocalDateTime.now().isAfter(token.getExpiryTime());
     }
 }

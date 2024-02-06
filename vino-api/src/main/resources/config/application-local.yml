@@ -1,0 +1,10 @@
+spring:
+    datasource:
+        username: vinovibes
+        password: Vino42_3
+        url: jdbc:oracle:thin:@h2922093.stratoserver.net:1521/orcl.stratoserver.net
+    mail:
+        host: smtp.strato.de
+        port: 587
+        username: info@vino-vibes.com
+        password: UKav9fd>3Ce;7{[WZL=a

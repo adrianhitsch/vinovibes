@@ -1,0 +1,204 @@
+.backdrop {
+  opacity: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+}
+
+.backdrop.show {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.modal {
+  opacity: 0;
+  border-radius: 25px;
+  position: fixed;
+  max-width: 700px;
+  width: 80%;
+  height: 860px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  background: #273039;
+  z-index: 101;
+  padding: 32px 40px;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    transform 0.3s ease-out;
+}
+
+.modal.show {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32px;
+}
+.modal-header button span {
+  height: 32px;
+  width: 32px;
+}
+
+.modal-header h1 {
+  font-size: 32px;
+  color: #fff;
+  margin: 0;
+}
+
+.modal-header.icon {
+  height: 32px;
+  width: 32px;
+  color: #fff;
+}
+
+.modal-footer {
+  margin-top: auto;
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-footer button.flex {
+  display: flex;
+  align-items: center;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.wrapper {
+  width: 100%;
+}
+
+.wrapper.full {
+  width: 100%;
+}
+
+.wrapper > div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  justify-content: flex-end;
+}
+
+.wrapper > .left {
+  float: left;
+  width: calc(50% - 36px);
+}
+
+.wrapper > .right {
+  float: right;
+  width: 50%;
+}
+
+.wrapper .p-component,
+.wrapper .p-inputtext,
+.wrapper .p-chips-multiple-container:not(.p-disabled).p-focus {
+  width: 100%;
+  background-color: var(--surface-secondary-color);
+  outline: none;
+  border: none;
+  border-radius: 6px;
+}
+
+.wrapper .p-inputwrapper-focus,
+.wrapper .p-chips-multiple-container:not(.p-disabled).p-focus {
+  box-shadow: 0 0 0 2px #ffffff82;
+}
+
+.wrapper .switch-container {
+  height: 50px;
+  position: relative;
+  bottom: -17px;
+}
+
+.wrapper .switch-container ~ span .p-inputtext {
+  height: 58px;
+  padding-bottom: 4px;
+}
+
+.p-mention textarea {
+  min-height: 200px;
+  max-height: 200px;
+  overflow-y: auto !important;
+}
+
+.p-datepicker.p-component.p-ripple-disabled {
+  width: 310px !important;
+  background: var(--surface-color);
+}
+
+.p-datepicker .p-highlight {
+  background: var(--surface-secondary-color);
+  color: var(--white);
+}
+
+.p-datepicker .p-datepicker-header {
+  background: var(--surface-color);
+  border-color: #4b5563;
+}
+
+.p-datepicker .p-datepicker-header button:hover,
+.p-yearpicker-year:hover {
+  background: #27303973;
+}
+
+/* Chips */
+
+.p-chips-token {
+  background: var(--surface-color);
+}
+
+.p-chips-token .locationChip {
+  display: flex;
+}
+
+.p-chips-token .icon-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 20px;
+  height: 20px;
+}
+
+.p-chips-token .icon-container .icon {
+  width: 14px;
+  height: 14px;
+}
+
+.p-chips-token {
+  border-radius: 10px;
+}
+
+.p-chips,
+.p-mention {
+  overflow: hidden;
+}
+
+.p-chips ul {
+  max-height: 60px;
+  overflow: auto;
+}
+
+/* Rating */
+
+.p-rating-item:focus {
+  box-shadow: none;
+}
