@@ -1,6 +1,6 @@
 package com.vinovibes.vinoapi.services;
 
-import com.vinovibes.vinoapi.entities.Otp;
+import com.vinovibes.vinoapi.entities.user.Otp;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import java.time.LocalDateTime;
 import org.springframework.http.HttpStatus;

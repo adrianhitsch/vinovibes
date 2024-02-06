@@ -1,0 +1,87 @@
+.detail-image {
+  max-width: 30%;
+  overflow: hidden;
+  box-shadow: 3px 0px 6px #00000029;
+}
+
+.content-card.detail {
+  display: flex;
+  height: calc(100dvh - 190px);
+}
+
+.detail-info {
+  padding: 35px;
+  padding-bottom: 15px;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info > * {
+  margin-bottom: 12px;
+}
+
+.detail .button-container {
+  margin-top: auto;
+  position: relative;
+}
+.detail .button-container p {
+  position: absolute;
+  left: 218px;
+  top: 53px;
+  font-size: 12px;
+}
+
+.detail h1 {
+  font-size: 2rem;
+}
+
+.detail-tags {
+  display: flex;
+  gap: 14px;
+}
+
+.detail-tags .tag {
+  position: relative;
+  background: var(--surface-color);
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.tag .tag-count {
+  background: var(--button-gradient);
+  border-radius: 50%;
+  height: 19px;
+  width: 19px;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 19px;
+}
+
+.icon.big {
+  width: 32px;
+  height: 32px;
+}
+
+.detail .price {
+  display: flex;
+  margin-top: 30px;
+  gap: 18px;
+}
+
+.detail .price span:last-child {
+  font-size: 1.6rem;
+  line-height: 30px;
+}
+
+.detail-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}

@@ -1,24 +1,22 @@
 package com.vinovibes.vinoapi.controller;
 
 import com.vinovibes.vinoapi.config.UserAuthProvider;
-import com.vinovibes.vinoapi.dtos.CredentialsDto;
-import com.vinovibes.vinoapi.dtos.EmailDto;
-import com.vinovibes.vinoapi.dtos.PasswordResetDto;
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.dtos.VerificationDto;
+import com.vinovibes.vinoapi.dtos.user.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.user.EmailDto;
+import com.vinovibes.vinoapi.dtos.user.PasswordResetDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.UserDto;
+import com.vinovibes.vinoapi.dtos.user.VerificationDto;
 import com.vinovibes.vinoapi.facades.UserFacade;
 import jakarta.validation.Valid;
 import java.net.URI;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/api")
 public class AuthController {
 
     private final UserFacade userFacade;

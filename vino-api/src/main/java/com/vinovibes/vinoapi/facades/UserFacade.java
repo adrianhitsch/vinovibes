@@ -1,13 +1,13 @@
 package com.vinovibes.vinoapi.facades;
 
-import com.vinovibes.vinoapi.dtos.CredentialsDto;
-import com.vinovibes.vinoapi.dtos.EmailDto;
-import com.vinovibes.vinoapi.dtos.PasswordResetDto;
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.dtos.VerificationDto;
-import com.vinovibes.vinoapi.entities.Token;
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.dtos.user.CredentialsDto;
+import com.vinovibes.vinoapi.dtos.user.EmailDto;
+import com.vinovibes.vinoapi.dtos.user.PasswordResetDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.UserDto;
+import com.vinovibes.vinoapi.dtos.user.VerificationDto;
+import com.vinovibes.vinoapi.entities.user.Token;
+import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.mappers.UserMapper;
@@ -113,6 +113,9 @@ public class UserFacade {
         Token token = tokenService
             .getTokenByValue(passwordResetDto.token())
             .orElseThrow(() -> new AppException("Unknown token", HttpStatus.BAD_REQUEST));
+        if (tokenService.isTokenExpired(token)) {
+            throw new AppException("Token expired", HttpStatus.BAD_REQUEST);
+        }
 
         User user = token.getUser();
         if (user.getStatus() != UserStatus.FORGOT_PASSWORD) {

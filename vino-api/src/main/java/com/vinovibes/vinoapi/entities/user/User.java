@@ -1,7 +1,9 @@
-package com.vinovibes.vinoapi.entities;
+package com.vinovibes.vinoapi.entities.user;
 
+import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -42,4 +44,10 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JoinColumn(name = "token_id", referencedColumnName = "id")
     private Token token;
+
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Wine> wine;
+    //    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    //    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    //    private List<Rating> ratings;
 }

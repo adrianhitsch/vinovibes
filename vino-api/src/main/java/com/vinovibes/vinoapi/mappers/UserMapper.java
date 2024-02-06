@@ -1,8 +1,9 @@
 package com.vinovibes.vinoapi.mappers;
 
-import com.vinovibes.vinoapi.dtos.SignUpDto;
-import com.vinovibes.vinoapi.dtos.UserDto;
-import com.vinovibes.vinoapi.entities.User;
+import com.vinovibes.vinoapi.dtos.user.RatingUserDto;
+import com.vinovibes.vinoapi.dtos.user.SignUpDto;
+import com.vinovibes.vinoapi.dtos.user.UserDto;
+import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.UserStatus;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,8 +21,16 @@ public interface UserMapper {
     @Mapping(target = "otp", ignore = true)
     User signUpToUser(SignUpDto signUpDto);
 
+    @Mapping(target = "name", expression = "java(mapFirstAndLastNameToName(user))")
+    RatingUserDto toRatingUserDto(User user);
+
     @Named("statusToString")
     default String mapStatusToString(UserStatus status) {
         return status != null ? status.name() : null;
+    }
+
+    @Named("firstAndLastNameToName")
+    default String mapFirstAndLastNameToName(User user) {
+        return user.getFirstName() + " " + user.getLastName();
     }
 }

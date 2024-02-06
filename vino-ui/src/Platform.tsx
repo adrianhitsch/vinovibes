@@ -26,6 +26,11 @@ const Platform = () => {
 
   // navigate to login if not authenticated
   useEffect(() => {
+    if (localStorage.getItem('path') !== null) {
+      navigate(localStorage.getItem('path') as string);
+      localStorage.removeItem('path');
+    }
+
     if (!user.token || user.sessionEnd < new Date().getTime()) {
       dispatch(logout());
 
