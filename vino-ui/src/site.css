@@ -246,7 +246,7 @@ button span {
   transition: opacity 0.2s ease-in-out;
 }
 
-.platform button:has(span) {
+.platform button:has(span):not(.close) {
   display: flex;
   gap: 10px;
   align-items: center;
