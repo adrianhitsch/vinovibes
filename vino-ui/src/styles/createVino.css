@@ -1,0 +1,41 @@
+.create-vino {
+  display: flex;
+  height: 100%;
+  padding: 35px;
+  justify-content: space-around;
+}
+.create-vino > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30%;
+}
+
+.create-vino > div button {
+  margin-top: auto;
+}
+
+.create-vino .wrapper > div {
+  height: 49px;
+  flex-direction: unset;
+  gap: 0px;
+}
+
+.create-vino .wrapper .p-mention {
+  height: 150px;
+}
+
+.create-vino .wrapper > *:nth-child(2) {
+  margin-top: 8px;
+}
+
+.create-vino .wrapper.image {
+  height: 500px;
+  border: 3px dashed #707070;
+  border-radius: 16px;
+  padding: 12px;
+}
+
+.create-vino .wrapper.image button {
+  margin-top: auto;
+}

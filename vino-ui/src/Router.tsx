@@ -9,6 +9,7 @@ import ForgotPassword from './pages/ForgotPassword';
 import Otp from './pages/Otp';
 import TableView from './pages/TableView';
 import DetailPage from './pages/DetailPage';
+import CreateVino from './pages/createVino';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       <Route path="/" element={<Dashboard />} />
       <Route path="/all-vines" element={<TableView />} />
       <Route path="/vine-detail" element={<DetailPage />} />
+      <Route path="create-vino" element={<CreateVino />} />
     </Routes>
   );
 }

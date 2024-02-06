@@ -160,7 +160,7 @@ const Navigation = () => {
       </nav>
 
       <div className="footer">
-        <Button type="button" onClick={handleHello} className="button">
+        <Button type="button" onClick={() => navigate('/create-vino')} className="button">
           <span className="icon icon-plus"></span>
           Wein erstellen
         </Button>
