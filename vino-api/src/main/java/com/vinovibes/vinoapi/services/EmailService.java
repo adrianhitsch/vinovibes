@@ -4,11 +4,9 @@ import com.vinovibes.vinoapi.entities.User;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
@@ -49,7 +47,7 @@ public class EmailService {
 
             MimeMessage mimeMessage = mailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, "utf-8");
-            helper.setText(htmlContent, true); // Setze true, um anzuzeigen, dass es sich um HTML handelt
+            helper.setText(htmlContent, true);
             helper.setTo(to);
             helper.setSubject(subject);
             helper.setFrom("info@vino-vibes.com");
