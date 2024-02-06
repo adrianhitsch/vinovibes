@@ -20,12 +20,19 @@ public class WineController {
 
     @GetMapping("/{id}")
     public ResponseEntity<WineDto> getWineById(@PathVariable Long id) {
-        WineDto wine = wineService.getWineById(id);
+        WineDto wine = wineService.getWineDtoById(id);
         return ResponseEntity.ok(wine);
     }
 
     @GetMapping("/wines")
-    public ResponseEntity<List<WineDto>> getWinesByType(@RequestBody WineFilterDto wineFilterDto) {
+    public ResponseEntity<List<WineDto>> getWines(
+        @RequestParam int skip,
+        @RequestParam int take,
+        @RequestParam String sortBy,
+        @RequestParam String sortDirection,
+        @RequestParam String type
+    ) {
+        WineFilterDto wineFilterDto = new WineFilterDto(skip, take, sortBy, sortDirection, type);
         List<WineDto> wines = wineService.getWines(wineFilterDto);
         return ResponseEntity.ok(wines);
     }

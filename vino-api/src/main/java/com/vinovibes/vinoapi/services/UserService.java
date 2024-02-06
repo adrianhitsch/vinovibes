@@ -94,4 +94,8 @@ public class UserService {
         UserErrorDto userErrorDto = new UserErrorDto(status.name());
         throw new AppException(message, HttpStatus.BAD_REQUEST, userErrorDto);
     }
+
+    public Optional<User> getUserById(Long userId) {
+        return userRepository.findById(userId);
+    }
 }

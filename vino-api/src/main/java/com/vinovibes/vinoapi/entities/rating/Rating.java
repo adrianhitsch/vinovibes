@@ -1,4 +1,4 @@
-package com.vinovibes.vinoapi.entities.wine;
+package com.vinovibes.vinoapi.entities.rating;
 
 import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.PriceType;
@@ -23,7 +23,8 @@ public class Rating {
 
     private double value;
 
-    private String user_comment;
+    @Column(name = "user_comment")
+    private String userComment;
 
     private String vintage;
 
@@ -32,16 +33,25 @@ public class Rating {
     @Enumerated(EnumType.STRING)
     private PriceType priceType;
 
+    @Column(name = "creation_date")
     private Date creationDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "id", foreignKey = @ForeignKey(name = "FK_USER_RATING"))
-    private User user;
+    @Column(name = "last_update_date")
+    private Date lastUpdateDate;
 
+    @Column(name = "user_id")
+    private Long userId;
+
+    @Column(name = "wine_id")
     private Long wineId;
 
     @PrePersist
     protected void onCreate() {
         creationDate = new Date();
+    }
+
+    @PreUpdate
+    public void onUpdate() {
+        lastUpdateDate = new Date();
     }
 }

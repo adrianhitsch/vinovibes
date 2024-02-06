@@ -25,7 +25,7 @@ public class WineService {
     private final WineRepository wineRepository;
     private final WineMapper wineMapper;
 
-    public WineDto getWineById(Long id) {
+    public WineDto getWineDtoById(Long id) {
         Wine wine = wineRepository
             .findById(id)
             .orElseThrow(() -> new AppException("Unknown wine", HttpStatus.NOT_FOUND));
@@ -99,6 +99,21 @@ public class WineService {
             return existingWine;
         } else {
             throw new WineNotFoundException("Wine with ID " + wineDto.getId() + " not found");
+        }
+    }
+
+    public Optional<Wine> getWineById(Long wineId) {
+        return wineRepository.findById(wineId);
+    }
+
+    public void updateWineRating(Long wineId, double rating) {
+        Optional<Wine> existingWineOptional = wineRepository.findById(wineId);
+        if (existingWineOptional.isPresent()) {
+            Wine existingWine = existingWineOptional.get();
+            existingWine.setRating(rating);
+            wineRepository.save(existingWine);
+        } else {
+            throw new WineNotFoundException("Wine with ID " + wineId + " not found");
         }
     }
 }
