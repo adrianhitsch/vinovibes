@@ -3,9 +3,10 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
-.env
 node_modules/
 *.pem
+.env
+application-*.yml
 
 ### STS ###
 .apt_generated

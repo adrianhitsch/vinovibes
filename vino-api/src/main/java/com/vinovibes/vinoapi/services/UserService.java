@@ -10,6 +10,7 @@ import com.vinovibes.vinoapi.enums.UserStatus;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.mappers.UserMapper;
 import com.vinovibes.vinoapi.repositories.UserRepository;
+import java.util.Objects;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -65,6 +66,7 @@ public class UserService {
     }
 
     public User save(User user) {
+        Objects.requireNonNull(user, "User must not be null");
         return userRepository.save(user);
     }
 
