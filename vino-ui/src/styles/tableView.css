@@ -32,6 +32,7 @@
   height: 100%;
 }
 .product-info {
+  border-radius: 0 0 10px 10px;
   background: transparent;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);

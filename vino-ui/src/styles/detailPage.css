@@ -23,6 +23,20 @@
   margin-bottom: 12px;
 }
 
+.detail-country {
+  margin-bottom: 0px;
+}
+
+.detail-producer {
+  text-align: left;
+  font: normal normal 300 18px/25px Rubik;
+  letter-spacing: 0px;
+}
+
+.detail-description {
+  font: italic normal 300 18px/25px Rubik;
+}
+
 .detail .button-container {
   margin-top: auto;
   position: relative;

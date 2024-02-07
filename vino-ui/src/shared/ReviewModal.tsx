@@ -133,7 +133,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                 ref={characteristicsChip}
                 value={data.tags}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, tags: e.value }))}
-                itemTemplate={(i) => CharacteristicsChip(i, data.tags)}
+                // itemTemplate={(i) => CharacteristicsChip(i, data.tags)}
                 allowDuplicate={false}
               />
             </div>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import StarRating from './StarRating';
 import '../styles/rating.css';
 import profileImg from '../assets/pictures/profile.png';
@@ -19,7 +19,7 @@ const RatingItem = () => {
           </div>
           <div className="rating-price">
             <span className="icon icon-restaurant"></span>
-            <span>⌀ 23,65 €</span>
+            <span>23,65 €</span>
           </div>
         </div>
         <div className="rating-text">
@@ -34,7 +34,16 @@ const RatingItem = () => {
   );
 };
 
-const Rating = () => {
+interface RatingProps {
+  id: number;
+}
+
+const Rating = ({ id }: RatingProps) => {
+  const [ratings, setRating];
+  useEffect(() => {
+    console.log(id);
+  }, [id]);
+
   return (
     <div className="rating">
       <RatingItem />

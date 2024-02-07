@@ -107,25 +107,25 @@ const Navigation = () => {
             <ul className="expandable menu all-vino">
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/all-vines" id="all-vino red">
+                <Link to="/all-vines/red" id="all-vino red">
                   Rotweine
                 </Link>
               </li>
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/all-vines" id="all-vino white">
+                <Link to="/all-vines/white" id="all-vino white">
                   Weißweine
                 </Link>
               </li>
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/vino" id="all-vino rose">
+                <Link to="/all-vines/rose" id="all-vino rose">
                   Roséweine
                 </Link>
               </li>
               <li onClick={setActive}>
                 <span className="icon icon-circle"></span>
-                <Link to="/vino" id="all-vino champaign">
+                <Link to="/all-vines/sparkling" id="all-vino champaign">
                   Schaumweine
                 </Link>
               </li>
