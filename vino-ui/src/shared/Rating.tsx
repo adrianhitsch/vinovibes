@@ -11,7 +11,7 @@ interface RatingItemProps {
   vintage: string;
   price: number;
   priceType: string;
-  user: string;
+  user: { id: number; name: string };
   wineId: number;
 }
 const RatingItem = ({ rating }: any): JSX.Element => {
@@ -19,26 +19,21 @@ const RatingItem = ({ rating }: any): JSX.Element => {
     <div className="rating-item">
       <div className="user-icon">
         <img src={profileImg} alt="" />
-        <span>username</span>
+        <span>{rating.user.name}</span>
       </div>
       <div className="rating-container">
         <div className="rating-info">
-          <StarRating stars={4} size="small" />
+          <StarRating stars={rating.value} size="small" />
           <div className="rating-location">
             <span className="icon icon-location"></span>
             <span>Location</span>
           </div>
           <div className="rating-price">
-            <span className="icon icon-restaurant"></span>
-            <span>23,65 €</span>
+            <span className={`icon icon-${rating.priceType.toLowerCase()}`}></span>
+            <span>{rating.price.toFixed(2)} €</span>
           </div>
         </div>
-        <div className="rating-text">
-          Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay. Hat halt
-          geballert. Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay. Hat
-          halt geballert. Richtigen Schädel davon gehabt. Nie wieder! Wobei…eigentlich war er okay.
-          Hat halt geballert. Kann sein … Mehr anzeigen
-        </div>
+        <div className="rating-text">{rating.userComment}</div>
         <div className="rating-date">am 07.12.2023</div>
       </div>
     </div>
@@ -62,14 +57,14 @@ const Rating = ({ id }: RatingProps) => {
   }, [id]);
 
   const getRatings = async () => {
-    await api(`/ratings/${id}`, { method: 'GET' })
+    await api(`/rating/${id}`, { method: 'GET' })
       .then((data) => {
         if (data.status === 200) {
           return data.json();
         }
-        throw new Error('Ratings not found');
       })
       .then((data) => {
+        console.log(data);
         setRating(data);
       })
       .catch((e) => {

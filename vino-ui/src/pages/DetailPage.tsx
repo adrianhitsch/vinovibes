@@ -21,6 +21,8 @@ interface DetailDataProps {
   region: string;
   type: string;
   vintage: number;
+  restaurantPrice: number;
+  storePrice: number;
 }
 
 const DetailPage = () => {
@@ -30,8 +32,8 @@ const DetailPage = () => {
   const [detailData, setDetailData] = useState<DetailDataProps>();
   const [showModal, setShowModal] = useState(false);
   const tags = [
-    { name: 'testName', count: 2 },
-    { name: 'testName', count: 2 },
+    { name: 'kräftig', count: 4 },
+    { name: 'säurehaltig', count: 2 },
   ];
 
   useEffect(() => {
@@ -83,23 +85,27 @@ const DetailPage = () => {
             <div className="detail-producer">{detailData?.producer}</div>
             <div className="detail-year">{detailData?.vintage}</div>
             <div className="detail-tags">
-              {/* {tags.map((tag) => (
+              {tags.map((tag) => (
                 <div className="tag">
                   <div className="tag-name">{tag.name}</div>
                   <div className="tag-count">{tag.count}</div>
                 </div>
-              ))} */}
+              ))}
             </div>
             <div className="detail-description">{detailData?.description}</div>
             <div className="detail-price">
-              <div className="price">
-                <span className="icon icon-restaurant big"></span>
-                <span>⌀ 23,65 €</span>
-              </div>
-              <div className="price">
-                <span className="icon icon-shop big"></span>
-                <span>⌀ 12,42 €</span>
-              </div>
+              {detailData?.restaurantPrice && (
+                <div className="price">
+                  <span className="icon icon-restaurant big"></span>
+                  <span>⌀ {detailData?.restaurantPrice.toFixed(2)} €</span>
+                </div>
+              )}
+              {detailData?.storePrice && (
+                <div className="price">
+                  <span className="icon icon-store big"></span>
+                  <span>⌀ {detailData?.storePrice.toFixed(2)} €</span>
+                </div>
+              )}
             </div>
             <div className="button-container" onClick={handleSave}>
               <button className="button secondary">
