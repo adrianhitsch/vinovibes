@@ -3,6 +3,7 @@ package com.vinovibes.vinoapi.services;
 import com.vinovibes.vinoapi.dtos.wine.WineDto;
 import com.vinovibes.vinoapi.dtos.wine.WineFilterDto;
 import com.vinovibes.vinoapi.entities.wine.Wine;
+import com.vinovibes.vinoapi.enums.PriceType;
 import com.vinovibes.vinoapi.enums.WineType;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.exceptions.WineNotFoundException;
@@ -115,5 +116,21 @@ public class WineService {
         } else {
             throw new WineNotFoundException("Wine with ID " + wineId + " not found");
         }
+    }
+
+    public void updateWinePrice(Long wineId, double newPrice, PriceType priceType) {
+        Optional<Wine> existingWineOptional = wineRepository.findById(wineId);
+        if (existingWineOptional.isPresent()) {
+            Wine existingWine = existingWineOptional.get();
+            if (priceType == PriceType.RESTAURANT) {
+                existingWine.setRestaurantPrice(newPrice);
+            } else {
+                existingWine.setStorePrice(newPrice);
+            }
+            wineRepository.save(existingWine);
+        } else {
+            throw new WineNotFoundException("Wine with ID " + wineId + " not found");
+        }
+
     }
 }

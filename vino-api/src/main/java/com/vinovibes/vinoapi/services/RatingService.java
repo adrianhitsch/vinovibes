@@ -2,6 +2,7 @@ package com.vinovibes.vinoapi.services;
 
 import com.vinovibes.vinoapi.entities.rating.Rating;
 import com.vinovibes.vinoapi.entities.wine.Wine;
+import com.vinovibes.vinoapi.enums.PriceType;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.repositories.RatingRepository;
 import java.util.ArrayList;
@@ -46,5 +47,13 @@ public class RatingService {
 
     public int getRatingSum(Long wineId) {
         return ratingRepository.sumAllValueByWineId(wineId);
+    }
+
+    public int getPriceCount(Long wineId, PriceType priceType) {
+        return ratingRepository.countAllByWineIdAndPriceType(wineId, priceType);
+    }
+
+    public double getPriceSum(Long wineId, PriceType priceType) {
+        return ratingRepository.sumAllByWineIdAndPriceType(wineId, priceType);
     }
 }
