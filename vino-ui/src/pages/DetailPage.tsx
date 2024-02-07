@@ -116,7 +116,7 @@ const DetailPage = () => {
         </div>
         <div className="content-card padding small">
           <h2>Bewertung</h2>
-          <Rating />
+          <Rating id={detailData?.id} />
         </div>
         <div className="content-card padding small">
           <h2>Getrunken von</h2>

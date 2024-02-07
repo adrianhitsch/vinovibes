@@ -15,6 +15,8 @@ import LocationSwitch from './LocationSwitch';
 import '../styles/reviewModal.css';
 import LocationChip from './LocationChip';
 import CharacteristicsChip from './CharacteristicsChip';
+import useApiFetch from '../wrapper/apiFetch';
+import toast from 'react-hot-toast';
 
 type ReviewModalProps = {
   closeModal?: () => void;
@@ -29,7 +31,17 @@ interface ReviewModalState {
   message: string;
 }
 
+interface postBody {
+  wineId: number;
+  value: number;
+  userComment: string;
+  vintage: string;
+  price: number;
+  priceType: string;
+}
+
 const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
+  const api = useApiFetch();
   const [data, setData] = useState<ReviewModalState>({
     rating: 0,
     price: { value: 0, currency: 'EUR' },
@@ -53,8 +65,20 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
     }, 400);
   };
 
-  const handleSave = () => {
-    console.log(data);
+  const handleSave = async () => {
+    const postBody: postBody = {
+      wineId: 2,
+      value: data.rating,
+      userComment: data.message,
+      vintage: data.date.getFullYear().toString(),
+      price: data.price.value,
+      priceType: data.price.currency,
+    };
+
+    await api('/rating/create', { body: JSON.stringify(postBody), method: 'POST' }).catch((e) =>
+      toast.error(e.message),
+    );
+
     _closeModal();
   };
 

@@ -351,6 +351,8 @@ button[disabled] {
 
 .search-input {
   position: relative;
+  max-width: 300px;
+  width: 100%;
 }
 
 .bell-button {
