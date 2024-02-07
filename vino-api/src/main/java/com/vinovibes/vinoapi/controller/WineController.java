@@ -5,9 +5,7 @@ import com.vinovibes.vinoapi.dtos.wine.WineDto;
 import com.vinovibes.vinoapi.dtos.wine.WineFilterDto;
 import com.vinovibes.vinoapi.facades.WineFacade;
 import com.vinovibes.vinoapi.services.WineService;
-
 import jakarta.validation.Valid;
-
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -29,11 +27,12 @@ public class WineController {
 
     @GetMapping("/wines")
     public ResponseEntity<List<WineDto>> getWines(
-            @Valid @RequestParam int skip,
-            @Valid @RequestParam int take,
-            @Valid @RequestParam String sortBy,
-            @Valid @RequestParam String sortDirection,
-            @Valid @RequestParam String type) {
+        @Valid @RequestParam int skip,
+        @Valid @RequestParam int take,
+        @Valid @RequestParam String sortBy,
+        @Valid @RequestParam String sortDirection,
+        @Valid @RequestParam String type
+    ) {
         WineFilterDto wineFilterDto = new WineFilterDto(skip, take, sortBy, sortDirection, type);
         List<WineDto> wines = wineService.getWines(wineFilterDto);
         return ResponseEntity.ok(wines);

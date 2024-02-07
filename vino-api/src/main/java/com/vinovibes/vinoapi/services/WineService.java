@@ -131,6 +131,5 @@ public class WineService {
         } else {
             throw new WineNotFoundException("Wine with ID " + wineId + " not found");
         }
-
     }
 }

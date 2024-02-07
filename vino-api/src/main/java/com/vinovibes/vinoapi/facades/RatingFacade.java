@@ -55,8 +55,6 @@ public class RatingFacade {
         return ratingDto;
     }
 
-
-
     public ArrayList<RatingDto> getRatingsByWineId(Long id) {
         ArrayList<Rating> ratings = ratingService.getRatingsByWineId(id);
         ArrayList<RatingDto> ratingDtos = new ArrayList<>();
@@ -100,7 +98,6 @@ public class RatingFacade {
     private void updateWinePrice(RatingDto ratingDto) {
         double newPrice = calculateNewPrice(ratingDto);
         wineService.updateWinePrice(ratingDto.getWineId(), newPrice, ratingDto.getPriceType());
-
     }
 
     private double calculateNewPrice(RatingDto ratingDto) {
@@ -108,6 +105,4 @@ public class RatingFacade {
         double priceSum = ratingService.getPriceSum(ratingDto.getWineId(), ratingDto.getPriceType());
         return priceSum / priceCount;
     }
-
-
 }
