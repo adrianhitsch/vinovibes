@@ -1,5 +1,5 @@
 const config = {
-  API_URL: "https://api.vino-vibes.com",
+  API_URL: "https://api.vino-vibes.com/api",
 };
 
 const devConfig = {
