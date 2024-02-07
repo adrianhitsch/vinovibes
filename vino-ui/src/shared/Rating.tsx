@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import StarRating from './StarRating';
 import '../styles/rating.css';
 import profileImg from '../assets/pictures/profile.png';
@@ -39,7 +39,7 @@ interface RatingProps {
 }
 
 const Rating = ({ id }: RatingProps) => {
-  const [ratings, setRating];
+  const [ratings, setRating] = useState([]);
   useEffect(() => {
     console.log(id);
   }, [id]);
