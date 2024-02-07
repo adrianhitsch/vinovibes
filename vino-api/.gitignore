@@ -6,7 +6,7 @@ target/
 node_modules/
 *.pem
 .env
-application-*.yml
+application-local.yml
 
 ### STS ###
 .apt_generated
