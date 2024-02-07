@@ -8,3 +8,6 @@ spring:
     port:
     username:
     password:
+
+cors:
+    allowed-origin: http://localhost:3000
