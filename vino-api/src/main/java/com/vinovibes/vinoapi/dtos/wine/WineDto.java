@@ -17,7 +17,9 @@ public class WineDto {
     private String country;
     private String region;
     private Integer vintage;
-    private double rating;
+    private Double rating;
+    private Double restaurantPrice;
+    private Double storePrice;
     private String description;
     private String producer;
     private WineType type;

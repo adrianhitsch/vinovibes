@@ -6,6 +6,7 @@ import com.vinovibes.vinoapi.dtos.user.RatingUserDto;
 import com.vinovibes.vinoapi.entities.rating.Rating;
 import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.entities.wine.Wine;
+import com.vinovibes.vinoapi.enums.PriceType;
 import com.vinovibes.vinoapi.exceptions.AppException;
 import com.vinovibes.vinoapi.exceptions.WineNotFoundException;
 import com.vinovibes.vinoapi.mappers.RatingMapper;
@@ -49,6 +50,7 @@ public class RatingFacade {
         ratingDto.setUser(ratingUserDto);
 
         updateWineRating(ratingDto);
+        updateWinePrice(ratingDto);
 
         return ratingDto;
     }
@@ -91,5 +93,16 @@ public class RatingFacade {
         int ratingCount = ratingService.getRatingCount(ratingDto.getWineId());
         double ratingSum = ratingService.getRatingSum(ratingDto.getWineId());
         return ratingSum / ratingCount;
+    }
+
+    private void updateWinePrice(RatingDto ratingDto) {
+        double newPrice = calculateNewPrice(ratingDto);
+        wineService.updateWinePrice(ratingDto.getWineId(), newPrice, ratingDto.getPriceType());
+    }
+
+    private double calculateNewPrice(RatingDto ratingDto) {
+        int priceCount = ratingService.getPriceCount(ratingDto.getWineId(), ratingDto.getPriceType());
+        double priceSum = ratingService.getPriceSum(ratingDto.getWineId(), ratingDto.getPriceType());
+        return priceSum / priceCount;
     }
 }

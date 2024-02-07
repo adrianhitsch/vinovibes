@@ -7,13 +7,33 @@ import Map from '../shared/Map';
 import Rating from '../shared/Rating';
 import profileImg from '../assets/pictures/profile.png';
 import ReviewModal from '../shared/ReviewModal';
+import useApiFetch from '../wrapper/apiFetch';
+import toast from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
+
+interface DetailDataProps {
+  country: string;
+  description: string;
+  id: number;
+  name: string;
+  producer: string;
+  rating: number;
+  region: string;
+  type: string;
+  vintage: number;
+  restaurantPrice: number;
+  storePrice: number;
+}
 
 const DetailPage = () => {
+  const api = useApiFetch();
+  const location = useLocation();
   const { setHeaderContent } = useContext(HeaderContext);
+  const [detailData, setDetailData] = useState<DetailDataProps>();
   const [showModal, setShowModal] = useState(false);
   const tags = [
-    { name: 'testName', count: 2 },
-    { name: 'testName', count: 2 },
+    { name: 'kräftig', count: 4 },
+    { name: 'säurehaltig', count: 2 },
   ];
 
   useEffect(() => {
@@ -22,7 +42,24 @@ const DetailPage = () => {
       text: 'Hier kann dein Produkt stehen',
       buttons: [],
     });
+
+    // scroll to top of the page
+    document.getElementsByClassName('content')[0].scrollTop = 0;
+
+    getVinoDetail();
   }, [setHeaderContent]);
+
+  const getVinoDetail = async () => {
+    await api(`/wine/${location.state?.id}`, { method: 'GET' })
+      .then((data) => {
+        if (data.status === 200) {
+          return data.json();
+        }
+        throw new Error('Wine not found');
+      })
+      .then((data) => setDetailData(data))
+      .catch((e) => toast.error(e.message));
+  };
 
   const handleSave = (e: BaseSyntheticEvent) => {
     e.target.classList.add('animate');
@@ -42,10 +79,11 @@ const DetailPage = () => {
             <img src={detailImage} alt="" />
           </div>
           <div className="detail-info">
-            <StarRating stars={4} />
-            <h1 className="detail-name">Name</h1>
-            <div className="detail-country">Country</div>
-            <div className="detail-year">Year</div>
+            <StarRating stars={detailData?.rating || 0} />
+            <h1 className="detail-name">{detailData?.name}</h1>
+            <div className="detail-country">{detailData?.country}</div>
+            <div className="detail-producer">{detailData?.producer}</div>
+            <div className="detail-year">{detailData?.vintage}</div>
             <div className="detail-tags">
               {tags.map((tag) => (
                 <div className="tag">
@@ -54,27 +92,20 @@ const DetailPage = () => {
                 </div>
               ))}
             </div>
-            <div className="detail-description">
-              In einem idyllischen Weinberg, umgeben von sanften Hügeln und einer malerischen
-              Landschaft, gedeiht unser exquisiter Wein mit Hingabe und Sorgfalt. Die Trauben werden
-              von erfahrenen Winzern liebevoll ausgewählt und handverlesen, um eine einzigartige
-              Fusion von Aromen und Geschmacksnuancen zu schaffen. Dieser edle Tropfen verführt mit
-              einer betörenden Nase von frischen Früchten und einer harmonischen Balance von Säure
-              und Süße. Am Gaumen entfaltet er seine vollmundige Eleganz, begleitet von feinen
-              Tanninen und einem lang anhaltenden Abgang. Genießen Sie diesen Wein als Begleiter zu
-              besonderen Anlässen oder lassen Sie sich von seiner Raffinesse im Alltag verführen.
-              Ein wahrer Genuss für anspruchsvolle Gaumen, der die Kunst der Weinherstellung in
-              jeder Flasche widerspiegelt.
-            </div>
+            <div className="detail-description">{detailData?.description}</div>
             <div className="detail-price">
-              <div className="price">
-                <span className="icon icon-restaurant big"></span>
-                <span>⌀ 23,65 €</span>
-              </div>
-              <div className="price">
-                <span className="icon icon-shop big"></span>
-                <span>⌀ 23,65 €</span>
-              </div>
+              {detailData?.restaurantPrice && (
+                <div className="price">
+                  <span className="icon icon-restaurant big"></span>
+                  <span>⌀ {detailData?.restaurantPrice.toFixed(2)} €</span>
+                </div>
+              )}
+              {detailData?.storePrice && (
+                <div className="price">
+                  <span className="icon icon-store big"></span>
+                  <span>⌀ {detailData?.storePrice.toFixed(2)} €</span>
+                </div>
+              )}
             </div>
             <div className="button-container" onClick={handleSave}>
               <button className="button secondary">
@@ -91,7 +122,7 @@ const DetailPage = () => {
         </div>
         <div className="content-card padding small">
           <h2>Bewertung</h2>
-          <Rating />
+          <Rating id={detailData?.id} />
         </div>
         <div className="content-card padding small">
           <h2>Getrunken von</h2>

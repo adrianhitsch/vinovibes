@@ -15,6 +15,9 @@ import LocationSwitch from './LocationSwitch';
 import '../styles/reviewModal.css';
 import LocationChip from './LocationChip';
 import CharacteristicsChip from './CharacteristicsChip';
+import useApiFetch from '../wrapper/apiFetch';
+import toast from 'react-hot-toast';
+import { useLocation } from 'react-router-dom';
 
 type ReviewModalProps = {
   closeModal?: () => void;
@@ -27,9 +30,22 @@ interface ReviewModalState {
   location: string[];
   tags: string[];
   message: string;
+  priceType: 'RESTAURANT' | 'STORE';
+}
+
+interface postBody {
+  wineId: number;
+  value: number;
+  userComment: string;
+  vintage: string;
+  price: number;
+  priceType: 'RESTAURANT' | 'STORE';
 }
 
 const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
+  const api = useApiFetch();
+  const location = useLocation();
+
   const [data, setData] = useState<ReviewModalState>({
     rating: 0,
     price: { value: 0, currency: 'EUR' },
@@ -37,6 +53,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
     location: [],
     tags: [],
     message: '',
+    priceType: 'RESTAURANT',
   });
   const [showModal, setShowModal] = useState(false);
   const characteristicsChip = useRef<Chips | null>(null);
@@ -53,8 +70,26 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
     }, 400);
   };
 
-  const handleSave = () => {
-    console.log(data);
+  const handleSave = async () => {
+    const postBody: postBody = {
+      wineId: location.state.id,
+      value: data.rating,
+      userComment: data.message,
+      vintage: data.date.getFullYear().toString(),
+      price: data.price.value,
+      priceType: data.priceType,
+    };
+
+    if (location.state.id === undefined) return;
+
+    await api('/rating/create', {
+      body: JSON.stringify(postBody),
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }).catch((e) => toast.error(e.message));
+
     _closeModal();
   };
 
@@ -74,7 +109,9 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
               <label htmlFor="rating">Bewertung</label>
               <Rating
                 value={data.rating}
-                onChange={(e: any) => setData((prevState) => ({ ...prevState, rating: e.value }))}
+                onChange={(e: any) =>
+                  setData((prevState) => ({ ...prevState, rating: e.target.value }))
+                }
                 cancel={false}
                 onIcon={<span className="icon icon-star-filled" />}
                 offIcon={<span className="icon icon-star-white" />}
@@ -85,7 +122,14 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
             <div className="left">
               <label htmlFor="rating">Preis</label>
               <div className="switch-container">
-                <LocationSwitch />
+                <LocationSwitch
+                  onChange={(state: any) =>
+                    setData((prevState) => ({
+                      ...prevState,
+                      priceType: state,
+                    }))
+                  }
+                />
               </div>
               <InputNumber
                 inputId="currency-germany"
@@ -95,7 +139,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                     ...prevState,
                     price: {
                       ...prevState.price,
-                      value: e.value,
+                      value: e.target.value,
                     },
                   }))
                 }
@@ -112,6 +156,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                 style={{ width: '100%' }}
                 value={data.date}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, date: e.value }))}
+                maxDate={new Date()}
               />
             </div>
           </div>
@@ -133,14 +178,14 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
                 ref={characteristicsChip}
                 value={data.tags}
                 onChange={(e: any) => setData((prevState) => ({ ...prevState, tags: e.value }))}
-                itemTemplate={(i) => CharacteristicsChip(i, data.tags)}
+                // itemTemplate={(i) => CharacteristicsChip(i, data.tags)}
                 allowDuplicate={false}
               />
             </div>
           </div>
           <div className="wrapper">
             <div className="full">
-              <label htmlFor="rating">Eigenschaften</label>
+              <label htmlFor="rating">Kommentar</label>
               <Mention
                 value={data.message}
                 onChange={(e: BaseSyntheticEvent) =>

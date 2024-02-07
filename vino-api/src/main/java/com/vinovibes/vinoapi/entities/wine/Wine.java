@@ -30,12 +30,17 @@ public class Wine {
 
     private Integer vintage;
 
-    //TODO: add rating setter in service
-    private double rating;
+    private Double rating;
 
     private String description;
 
     private String producer;
+
+    @Column(name = "restaurant_price")
+    private Double restaurantPrice;
+
+    @Column(name = "store_price")
+    private Double storePrice;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)

@@ -19,7 +19,7 @@ function Router() {
       <Route path="/register" element={<Register />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/" element={<Dashboard />} />
-      <Route path="/all-vines" element={<TableView />} />
+      <Route path="/all-vines/:type?" element={<TableView />} />
       <Route path="/vine-detail" element={<DetailPage />} />
       <Route path="create-vino" element={<CreateVino />} />
     </Routes>

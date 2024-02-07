@@ -7,6 +7,9 @@ import { HeaderContext } from '../layout/contentHeader';
 import StarRating from '../shared/StarRating';
 import { WineRequest } from '../types/wineRequest';
 import toast from 'react-hot-toast';
+import { useSelector } from 'react-redux';
+import { storeType } from '../redux/storeType';
+import { useParams } from 'react-router-dom';
 
 type productType = {
   country: string;
@@ -26,8 +29,9 @@ type productProps = {
 
 const Product = ({ productInfo }: productProps) => {
   const navigate = useNavigate();
+
   const handleClick = () => {
-    navigate('/vine-detail');
+    navigate('/vine-detail', { state: { id: productInfo.id } });
   };
 
   return (
@@ -45,9 +49,14 @@ const Product = ({ productInfo }: productProps) => {
 };
 
 const TableView = () => {
+  const params = useParams();
   const [products, setProducts] = useState([]);
   const { setHeaderContent } = useContext(HeaderContext);
   const apiFetch = useApiFetch();
+
+  useEffect(() => {
+    getProducts(params.type?.toUpperCase());
+  }, [params]);
 
   useEffect(() => {
     setHeaderContent({
@@ -56,7 +65,7 @@ const TableView = () => {
       buttons: [],
     });
 
-    getProducts();
+    // getProducts();
 
     return () => {
       setHeaderContent({
@@ -67,19 +76,25 @@ const TableView = () => {
     };
   }, []);
 
-  const getProducts = async () => {
+  const getProducts = async (type: string = '') => {
     const requestBody: WineRequest = {
       skip: 0,
       take: 20,
-      sortBy: '',
+      sortBy: 'id',
       sortDirection: '',
-      type: '',
+      type: type,
     };
 
-    await apiFetch('/wine/wines', { method: 'POST', body: JSON.stringify(requestBody) })
+    await apiFetch(
+      `/wine/wines?skip=${requestBody.skip}&take=${requestBody.take}&sortBy=${requestBody.sortBy}` +
+        `&sortDirection=${requestBody.sortDirection}&type=${requestBody.type}`,
+      {
+        method: 'GET',
+      },
+    )
       .then((data) => data.json())
       .then((data) => setProducts(data))
-      .catch(() => toast.error('Weine konnten nicht geladen werden'));
+      .catch((e) => console.log(e));
   };
 
   return (

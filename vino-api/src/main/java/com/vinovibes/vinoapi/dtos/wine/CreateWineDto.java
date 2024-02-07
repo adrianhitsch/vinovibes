@@ -14,7 +14,6 @@ public class CreateWineDto {
 
     private Long wineId;
     private String name;
-    private double rating;
     private String country;
     private String region;
     private String description;
