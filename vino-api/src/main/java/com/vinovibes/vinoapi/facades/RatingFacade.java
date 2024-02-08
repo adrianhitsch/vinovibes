@@ -111,21 +111,9 @@ public class RatingFacade {
      * Method for updating a rating. Calculates the new rating and updates the wine rating.
      * @param ratingDto ratingDTO
      */
-    public void updateWineRating(RatingDto ratingDto) {
-        double newRating = calculateNewRating(ratingDto);
+    private void updateWineRating(RatingDto ratingDto) {
+        double newRating = ratingService.calculateNewRating(ratingDto);
         wineService.updateWineRating(ratingDto.getWineId(), newRating);
-    }
-
-    /**
-     * Method for calculating a new rating. Gets the rating count and the rating sum.
-     * Returns the new rating.
-     * @param ratingDto ratingDTO
-     * @return new rating
-     */
-    private double calculateNewRating(RatingDto ratingDto) {
-        int ratingCount = ratingService.getRatingCount(ratingDto.getWineId());
-        double ratingSum = ratingService.getRatingSum(ratingDto.getWineId());
-        return ratingSum / ratingCount;
     }
 
     /**
@@ -134,19 +122,7 @@ public class RatingFacade {
      * @param ratingDto ratingDTO
      */
     private void updateWinePrice(RatingDto ratingDto) {
-        double newPrice = calculateNewPrice(ratingDto);
+        double newPrice = ratingService.calculateNewPrice(ratingDto);
         wineService.updateWinePrice(ratingDto.getWineId(), newPrice, ratingDto.getPriceType());
-    }
-
-    /**
-     * Method for calculating a new price. Gets the price count and the price sum.
-     * Returns the new price.
-     * @param ratingDto ratingDTO
-     * @return new price
-     */
-    private double calculateNewPrice(RatingDto ratingDto) {
-        int priceCount = ratingService.getPriceCount(ratingDto.getWineId(), ratingDto.getPriceType());
-        double priceSum = ratingService.getPriceSum(ratingDto.getWineId(), ratingDto.getPriceType());
-        return priceSum / priceCount;
     }
 }

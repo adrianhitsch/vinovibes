@@ -14,7 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * Optional<Token> findByValue(String value) performs the query "SELECT * FROM token WHERE value = ?1"
  */
 public interface TokenRepository extends JpaRepository<Token, Long> {
-
     /**
      * Method for finding a token by value.
      * @param value value
