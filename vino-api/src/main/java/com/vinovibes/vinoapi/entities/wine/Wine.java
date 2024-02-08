@@ -46,6 +46,8 @@ public class Wine {
     @Enumerated(EnumType.STRING)
     private WineType type;
 
+    private String imageUrl;
+
     @Column(nullable = false)
     private boolean disabled;
 

@@ -23,4 +23,5 @@ public class WineDto {
     private String description;
     private String producer;
     private WineType type;
+    private String imageUrl;
 }
