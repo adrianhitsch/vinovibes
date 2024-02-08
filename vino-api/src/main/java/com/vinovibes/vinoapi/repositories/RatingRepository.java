@@ -16,7 +16,6 @@ import org.springframework.data.jpa.repository.Query;
  * boolean existsByUserIdAndWineId(Long userId, Long wineId) performs the query "SELECT COUNT(*) FROM rating WHERE user_id = ?1 AND wine_id = ?2"
  */
 public interface RatingRepository extends JpaRepository<Rating, Long> {
-
     /**
      * Method for checking if a rating exists by user id and wine id.
      * @param userId user id

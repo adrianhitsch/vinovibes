@@ -1,5 +1,6 @@
 package com.vinovibes.vinoapi.services;
 
+import com.vinovibes.vinoapi.dtos.rating.RatingDto;
 import com.vinovibes.vinoapi.entities.rating.Rating;
 import com.vinovibes.vinoapi.entities.wine.Wine;
 import com.vinovibes.vinoapi.enums.PriceType;
@@ -104,5 +105,29 @@ public class RatingService {
      */
     public double getPriceSum(Long wineId, PriceType priceType) {
         return ratingRepository.sumAllByWineIdAndPriceType(wineId, priceType);
+    }
+
+    /**
+     * Method for calculating a new rating. Gets the rating count and the rating sum.
+     * Returns the new rating.
+     * @param ratingDto ratingDTO
+     * @return new rating
+     */
+    public double calculateNewRating(RatingDto ratingDto) {
+        int ratingCount = getRatingCount(ratingDto.getWineId());
+        double ratingSum = getRatingSum(ratingDto.getWineId());
+        return ratingSum / ratingCount;
+    }
+
+    /**
+     * Method for calculating a new price. Gets the price count and the price sum.
+     * Returns the new price.
+     * @param ratingDto ratingDTO
+     * @return new price
+     */
+    public double calculateNewPrice(RatingDto ratingDto) {
+        int priceCount = getPriceCount(ratingDto.getWineId(), ratingDto.getPriceType());
+        double priceSum = getPriceSum(ratingDto.getWineId(), ratingDto.getPriceType());
+        return priceSum / priceCount;
     }
 }

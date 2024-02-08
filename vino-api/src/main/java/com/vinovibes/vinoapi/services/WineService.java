@@ -103,7 +103,7 @@ public class WineService {
     }
 
     /*
-        * Method for getting an existing wine. If the wineDTO has a value, the existing wine is updated.
+     * Method for getting an existing wine. If the wineDTO has a value, the existing wine is updated.
      */
     private static Wine getExistingWine(WineDto wineDto, Optional<Wine> existingWineOptional) {
         if (existingWineOptional.isPresent()) {

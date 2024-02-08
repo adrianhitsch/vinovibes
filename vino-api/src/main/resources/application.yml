@@ -13,3 +13,8 @@ spring:
           auth: true
           starttls:
             enable: true
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /index.html
