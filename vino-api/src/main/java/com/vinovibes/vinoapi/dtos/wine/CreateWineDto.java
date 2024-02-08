@@ -1,11 +1,13 @@
 package com.vinovibes.vinoapi.dtos.wine;
 
-import com.vinovibes.vinoapi.enums.WineType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * DTO for creating wine.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

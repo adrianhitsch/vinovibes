@@ -9,6 +9,9 @@ import com.vinovibes.vinoapi.services.WineService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+/**
+ * Facade for wine.
+ */
 @Service
 @RequiredArgsConstructor
 public class WineFacade {
@@ -17,6 +20,12 @@ public class WineFacade {
     private final WineMapper wineMapper;
     private final UserService userService;
 
+    /**
+     * Method for creating a wine. Sets the creator id to the current user id.
+     * Maps the createWineDTO to a wine entity.
+     * @param wineDto createWineDTO
+     * @return wineDTO
+     */
     public WineDto createWine(CreateWineDto wineDto) {
         Wine wine = wineMapper.toWineFromCreateWineDto(wineDto);
         wine.setCreatorId(userService.getCurrentUser().getId());

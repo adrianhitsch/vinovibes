@@ -9,6 +9,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller for ratings.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/rating")
@@ -16,6 +19,11 @@ public class RatingController {
 
     private final RatingFacade ratingFacade;
 
+    /**
+     * Method for creating a rating. If the createRatingDTO is valid, the rating is created.
+     * @param createRatingDto createRatingDTO
+     * @return ratingDTO in response entity
+     */
     @PostMapping("/create")
     public ResponseEntity<RatingDto> createRating(@Valid @RequestBody CreateRatingDto createRatingDto) {
         if (createRatingDto == null) {
@@ -24,6 +32,10 @@ public class RatingController {
         return ResponseEntity.ok(ratingFacade.createRating(createRatingDto));
     }
 
+    /**
+     * Method for getting all ratings by wine id.
+     * @return list of ratingDTOs in response entity
+     */
     @GetMapping("/{id}")
     public ResponseEntity<ArrayList<RatingDto>> getRatingsByWineId(@PathVariable Long id) {
         if (id == null) {
@@ -32,6 +44,11 @@ public class RatingController {
         return ResponseEntity.ok(ratingFacade.getRatingsByWineId(id));
     }
 
+    /**
+     * Method for deleting a rating by id.
+     * @param id id
+     * @return response entity with message
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<String> deleteRating(@PathVariable Long id) {
         if (id == null) {
