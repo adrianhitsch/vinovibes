@@ -39,8 +39,8 @@ const DetailPage = () => {
 
   useEffect(() => {
     setHeaderContent({
-      header: 'DetailView',
-      text: 'Hier kann dein Produkt stehen',
+      header: 'Details',
+      text: 'Hier findest du mehr Informationen zum Wein',
       buttons: [],
     });
 

@@ -82,8 +82,6 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
 
     if (data?.rating === 0) {
       toast.error('Bitte Sterne vergeben');
-      const ratingElement = document.getElementById('rating');
-      if (ratingElement) ratingElement.style.display = 'inline-block';
       return;
     }
 
@@ -115,9 +113,7 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
             <div className="left">
               <label htmlFor="rating">
                 Bewertung
-                <span className="mandatory" id="rating">
-                  *
-                </span>
+                <span className="mandatory">*</span>
               </label>
               <Rating
                 value={data.rating}

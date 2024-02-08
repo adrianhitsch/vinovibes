@@ -137,6 +137,5 @@ li.active > .icon-circle,
 
 .mandatory {
   color: var(--red);
-  display: none;
   margin-left: 5px;
 }

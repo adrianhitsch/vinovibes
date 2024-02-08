@@ -68,8 +68,8 @@
 .detail-tags .tag {
   position: relative;
   background: var(--surface-color);
-  border-radius: 5px;
-  padding: 5px 10px;
+  border-radius: 6px;
+  padding: 7px 14px;
   font-size: 0.8rem;
 }
 
