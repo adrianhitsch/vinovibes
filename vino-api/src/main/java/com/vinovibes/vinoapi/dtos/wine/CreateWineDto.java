@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CreateWineDto {
 
-    private Long wineId;
     private String name;
     private String country;
     private String region;

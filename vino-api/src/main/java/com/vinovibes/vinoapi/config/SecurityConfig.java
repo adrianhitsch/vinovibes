@@ -43,8 +43,11 @@ public class SecurityConfig {
                         "/api/reset-password"
                     )
                     .permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api-docs/**", "/swagger-ui/**")
+                    .permitAll()
                     .anyRequest()
-                    .authenticated()
+//                    .authenticated()
+                        .permitAll()
             );
         return http.build();
     }
