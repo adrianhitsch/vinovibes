@@ -6,6 +6,7 @@ import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -22,8 +23,10 @@ import org.thymeleaf.context.Context;
 public class EmailService {
 
     private final JavaMailSender mailSender;
-
     private final TemplateEngine templateEngine;
+
+    @Value("${cors.allowed-origin}")
+    private String allowedOrigin;
 
     /**
      * Method for sending a verification email. The user's first name and OTP are used to create the email.
@@ -47,6 +50,7 @@ public class EmailService {
         Context context = new Context();
         context.setVariable("name", user.getFirstName());
         context.setVariable("token", user.getToken().getValue());
+        context.setVariable("baseUrl", allowedOrigin);
         String process = templateEngine.process("forgotPasswordEmailTemplate", context);
         sendHtmlEmail(user.getEmail(), "Setze dein VinoVibes Passwort zurück", process);
     }
