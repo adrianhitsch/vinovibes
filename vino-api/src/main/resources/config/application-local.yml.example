@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    username:
+    password:
+    url:
+  mail:
+    host:
+    port:
+    username:
+    password:
+
+cors:
+    allowed-origin: http://localhost:3000

@@ -1,0 +1,70 @@
+.create-vino {
+  display: flex;
+  height: 100%;
+  padding: 35px;
+  justify-content: space-around;
+}
+.create-vino > div {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 30%;
+}
+
+.create-vino > div button {
+  margin-top: auto;
+}
+
+.create-vino .wrapper > div {
+  height: 49px;
+  flex-direction: unset;
+  gap: 0px;
+}
+
+.create-vino .wrapper .p-mention {
+  height: 150px;
+}
+
+.create-vino .wrapper > *:nth-child(2) {
+  margin-top: 8px;
+}
+
+.create-vino .wrapper.image {
+  height: 500px;
+  border: 3px dashed #707070;
+  border-radius: 16px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.create-vino .wrapper.image img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.create-vino .wrapper.image .p-fileupload {
+  margin-top: auto;
+}
+
+.p-dropdown-header {
+  border-color: var(--surface-secondary-color);
+}
+
+.p-dropdown-items,
+.p-dropdown-header {
+  background: var(--surface-color);
+  color: var(--white) !important;
+}
+
+.p-dropdown-item {
+  color: var(--white);
+}
+
+.p-dropdown-item:hover,
+.p-dropdown-item.p-highlight {
+  background: var(--surface-secondary-color);
+  color: var(--white) !important;
+}

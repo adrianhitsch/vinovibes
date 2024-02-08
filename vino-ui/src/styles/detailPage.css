@@ -1,0 +1,114 @@
+.detail-image {
+  max-width: 30%;
+  overflow: hidden;
+  box-shadow: 3px 0px 6px #00000029;
+}
+
+.content-card.detail {
+  display: flex;
+  height: calc(100dvh - 190px);
+}
+
+.detail-info {
+  padding: 35px;
+  padding-left: 55px;
+  width: 100%;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-info > * {
+  margin-bottom: 12px;
+}
+
+.detail-country {
+  margin-bottom: 0px;
+}
+
+.detail-producer {
+  text-align: left;
+  font: normal normal 300 18px/25px Rubik;
+  letter-spacing: 0px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.detail-price {
+  margin-top: auto;
+  margin-bottom: 30px;
+}
+
+.detail-description {
+  font: italic normal 300 18px/25px Rubik;
+}
+
+.detail .button-container {
+  position: relative;
+  gap: 50px;
+}
+.detail .button-container p {
+  font-weight: lighter;
+  position: absolute;
+  left: 283px;
+  top: 57px;
+  font-size: 10px;
+}
+
+.detail h1 {
+  font-size: 2rem;
+}
+
+.detail-tags {
+  display: flex;
+  gap: 14px;
+}
+
+.detail-tags .tag {
+  position: relative;
+  background: var(--surface-color);
+  border-radius: 6px;
+  padding: 7px 14px;
+  font-size: 0.8rem;
+}
+
+.tag .tag-name {
+  font-weight: lighter;
+  font-size: 14px;
+}
+
+.tag .tag-count {
+  background: var(--button-gradient);
+  border-radius: 50%;
+  height: 19px;
+  width: 19px;
+  position: absolute;
+  right: -7px;
+  top: -7px;
+  font-size: 12px;
+  text-align: center;
+  line-height: 19px;
+}
+
+.icon.big {
+  width: 32px;
+  height: 32px;
+}
+
+.detail .price {
+  display: flex;
+  margin-top: 30px;
+  gap: 18px;
+}
+
+.detail .price span:last-child {
+  font-size: 1.6rem;
+  line-height: 30px;
+}
+
+.detail-image img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
