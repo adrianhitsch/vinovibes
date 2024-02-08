@@ -41,10 +41,11 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
     int sumAllValueByWineId(Long wineId);
 
     /**
-     * Method for getting the count of all ratings by wine id.
+     * Method for getting the count of all ratings by wine id with a price set.
      * @param wineId wineId
      * @return int count
      */
+    @Query("SELECT COUNT(r) FROM Rating r WHERE r.wineId = ?1 AND r.price IS NOT NULL")
     int countAllByWineId(Long wineId);
 
     /**
