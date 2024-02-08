@@ -26,6 +26,14 @@ public interface WineMapper {
      * @return wine
      */
     @Mapping(target = "type", source = "type", qualifiedByName = "stringToWineType")
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "rating", ignore = true)
+    @Mapping(target = "restaurantPrice", ignore = true)
+    @Mapping(target = "storePrice", ignore = true)
+    @Mapping(target = "disabled", ignore = true)
+    @Mapping(target = "creationDate", ignore = true)
+    @Mapping(target = "lastUpdateDate", ignore = true)
+    @Mapping(target = "creatorId", ignore = true)
     Wine toWineFromCreateWineDto(CreateWineDto createWineDto);
 
     /**
