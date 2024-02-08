@@ -19,6 +19,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service for wines.
+ */
 @Service
 @RequiredArgsConstructor
 public class WineService {
@@ -26,6 +29,11 @@ public class WineService {
     private final WineRepository wineRepository;
     private final WineMapper wineMapper;
 
+    /**
+     * Method for getting a wine by id. If the id is valid, the wine is returned.
+     * @param id id
+     * @return wineDTO
+     */
     public WineDto getWineDtoById(Long id) {
         Wine wine = wineRepository
             .findById(id)
@@ -33,10 +41,23 @@ public class WineService {
         return wineMapper.toWineDto(wine);
     }
 
+    /**
+     * Method for creating a wine.
+     * @param wine wine
+     * @return wine
+     */
     public Wine createWine(Wine wine) {
         return wineRepository.save(wine);
     }
 
+    /**
+     * Method for getting all wines.
+     * Skip and take are used for pagination.
+     * Sort by and sort direction are used for sorting.
+     * Type is used for filtering by type.
+     * @param wineFilterDto wine filter DTO
+     * @return list of wineDTOs
+     */
     public List<WineDto> getWines(WineFilterDto wineFilterDto) {
         Sort.Direction direction = "asc".equalsIgnoreCase(wineFilterDto.sortDirection())
             ? Sort.Direction.ASC
@@ -64,6 +85,11 @@ public class WineService {
         return wineDtos;
     }
 
+    /**
+     * Method for updating a wine. If the no wine is found, an exception is thrown.
+     * @param id id
+     * @param wineDto wineDTO
+     */
     public void updateWine(Long id, WineDto wineDto) {
         Optional<Wine> existingWineOptional = wineRepository.findById(id);
 
@@ -76,6 +102,9 @@ public class WineService {
         }
     }
 
+    /*
+        * Method for getting an existing wine. If the wineDTO has a value, the existing wine is updated.
+     */
     private static Wine getExistingWine(WineDto wineDto, Optional<Wine> existingWineOptional) {
         if (existingWineOptional.isPresent()) {
             Wine existingWine = existingWineOptional.get();
@@ -103,10 +132,12 @@ public class WineService {
         }
     }
 
-    public Optional<Wine> getWineById(Long wineId) {
-        return wineRepository.findById(wineId);
-    }
-
+    /**
+     * Method for updating a wine rating.
+     * If the wine is not found, an exception is thrown.
+     * @param wineId wine id
+     * @param rating rating
+     */
     public void updateWineRating(Long wineId, double rating) {
         Optional<Wine> existingWineOptional = wineRepository.findById(wineId);
         if (existingWineOptional.isPresent()) {
@@ -118,6 +149,13 @@ public class WineService {
         }
     }
 
+    /**
+     * Method for updating a wine price.
+     * If the wine is not found, an exception is thrown.
+     * @param wineId wine id
+     * @param newPrice new price
+     * @param priceType price type
+     */
     public void updateWinePrice(Long wineId, double newPrice, PriceType priceType) {
         Optional<Wine> existingWineOptional = wineRepository.findById(wineId);
         if (existingWineOptional.isPresent()) {

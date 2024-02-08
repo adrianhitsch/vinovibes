@@ -9,12 +9,23 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
-
+/**
+ * Filter for JWT authentication.
+ */
 @RequiredArgsConstructor
 public class JWTAuthFilter extends OncePerRequestFilter {
 
     private final UserAuthProvider userAuthProvider;
 
+    /**
+     * Method for filtering requests. If the request contains a valid JWT token, the user is authenticated.
+     * If the token is invalid, an exception is thrown.
+     * @param request request
+     * @param response response
+     * @param filterChain filter chain
+     * @throws ServletException servlet exception
+     * @throws IOException IO exception
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
         throws ServletException, IOException {

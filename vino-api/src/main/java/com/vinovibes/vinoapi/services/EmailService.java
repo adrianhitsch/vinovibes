@@ -14,6 +14,9 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+/**
+ * Service for sending emails.
+ */
 @Service
 @RequiredArgsConstructor
 public class EmailService {
@@ -22,6 +25,11 @@ public class EmailService {
 
     private final TemplateEngine templateEngine;
 
+    /**
+     * Method for sending a verification email. The user's first name and OTP are used to create the email.
+     * Template engine is used to process the email template.
+     * @param user user
+     */
     public void sendVerificationEmail(User user) {
         Context context = new Context();
         context.setVariable("name", user.getFirstName());
@@ -30,6 +38,11 @@ public class EmailService {
         sendHtmlEmail(user.getEmail(), "Verifiziere deinen VinoVibes Account", process);
     }
 
+    /**
+     * Method for sending a forgot password email. The user's first name and token are used to create the email.
+     * Template engine is used to process the email template.
+     * @param user user
+     */
     public void sendForgotPasswordEmail(User user) {
         Context context = new Context();
         context.setVariable("name", user.getFirstName());
@@ -38,6 +51,13 @@ public class EmailService {
         sendHtmlEmail(user.getEmail(), "Setze dein VinoVibes Passwort zurück", process);
     }
 
+    /**
+     * Method for sending an email with HTML content. The email is sent asynchronously.
+     * If any of the parameters are null, an exception is thrown.
+     * @param to email address
+     * @param subject subject
+     * @param htmlContent HTML content
+     */
     @Async
     protected void sendHtmlEmail(String to, String subject, String htmlContent) {
         try {

@@ -7,6 +7,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for token.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

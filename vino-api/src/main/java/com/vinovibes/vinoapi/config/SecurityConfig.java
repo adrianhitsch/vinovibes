@@ -11,6 +11,9 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 
+/**
+ * Configuration class for security.
+ */
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
@@ -18,6 +21,12 @@ public class SecurityConfig {
 
     private final UserAuthProvider userAuthProvider;
 
+    /**
+     * Bean for security filter chain. Configures security for the application.
+     * @param http http security
+     * @return security filter chain
+     * @throws Exception exception
+     */
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http

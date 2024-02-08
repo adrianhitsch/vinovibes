@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for wine characteristics.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

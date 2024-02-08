@@ -4,6 +4,9 @@ import com.vinovibes.vinoapi.dtos.errors.ErrorDto;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+/**
+ * Exception class for application.
+ */
 @Getter
 public class AppException extends RuntimeException {
 

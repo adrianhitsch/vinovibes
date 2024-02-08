@@ -1,6 +1,5 @@
 package com.vinovibes.vinoapi.entities.rating;
 
-import com.vinovibes.vinoapi.entities.user.User;
 import com.vinovibes.vinoapi.enums.PriceType;
 import jakarta.persistence.*;
 import java.util.Date;
@@ -9,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for rating.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

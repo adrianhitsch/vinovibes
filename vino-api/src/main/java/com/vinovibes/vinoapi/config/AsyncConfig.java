@@ -9,10 +9,17 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
+/**
+ * Configuration class for async tasks.
+ */
 @Configuration
 @EnableAsync
 public class AsyncConfig implements AsyncConfigurer {
 
+    /**
+     * Bean for task executor.
+     * @return task executor
+     */
     @Override
     @Bean(name = "taskExecutor")
     public Executor getAsyncExecutor() {
@@ -21,6 +28,10 @@ public class AsyncConfig implements AsyncConfigurer {
         return executor;
     }
 
+    /**
+     * Bean for async uncaught exception handler.
+     * @return async uncaught exception handler
+     */
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return new CustomAsyncExceptionHandler();

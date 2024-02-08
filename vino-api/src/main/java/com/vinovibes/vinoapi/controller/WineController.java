@@ -11,6 +11,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller for wines.
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/wine")
@@ -19,12 +22,29 @@ public class WineController {
     private final WineService wineService;
     private final WineFacade wineFacade;
 
+    /**
+     * Method for getting a wine by id. If the id is valid, the wine is returned.
+     * @param id id
+     * @return wineDTO in response entity
+     */
     @GetMapping("/{id}")
     public ResponseEntity<WineDto> getWineById(@PathVariable Long id) {
         WineDto wine = wineService.getWineDtoById(id);
         return ResponseEntity.ok(wine);
     }
 
+    /**
+     * Method for getting all wines. If the wineFilterDTO is valid, the wines are returned.
+     * Skip and take are used for pagination.
+     * Sort by and sort direction are used for sorting.
+     * Type is used for filtering by type.
+     * @param skip skip
+     * @param take take
+     * @param sortBy sort by
+     * @param sortDirection sort direction
+     * @param type type
+     * @return list of wineDTOs in response entity
+     */
     @GetMapping("/wines")
     public ResponseEntity<List<WineDto>> getWines(
         @Valid @RequestParam int skip,
@@ -38,12 +58,23 @@ public class WineController {
         return ResponseEntity.ok(wines);
     }
 
+  /**
+   * Method for updating a wine. If the id and wineDTO are valid, the wine is updated.
+   * @param id id
+   * @param wineDto wineDTO
+   * @return response entity with message
+   */
     @PutMapping("/update/{id}")
     public ResponseEntity<String> updateWine(@PathVariable Long id, @RequestBody WineDto wineDto) {
         wineService.updateWine(id, wineDto);
-        return ResponseEntity.ok("Works");
+        return ResponseEntity.ok("Wine with id " + id + " updated");
     }
 
+    /**
+     * Method for creating a wine. If the createWineDTO is valid, the wine is created.
+     * @param wineDto createWineDTO
+     * @return wineDTO in response entity
+     */
     @PostMapping("/create")
     public ResponseEntity<WineDto> createWine(@RequestBody CreateWineDto wineDto) {
         WineDto wine = wineFacade.createWine(wineDto);

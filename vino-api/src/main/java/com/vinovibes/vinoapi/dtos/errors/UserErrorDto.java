@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.RequiredArgsConstructor;
 
+/**
+ * DTO for user error.
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @RequiredArgsConstructor

@@ -21,6 +21,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
+/**
+ * Class for user authentication provider.
+ */
 @RequiredArgsConstructor
 @Component
 public class UserAuthProvider {
@@ -30,11 +33,19 @@ public class UserAuthProvider {
     @Value("${security.jwt.token.secret-key:secret-key}")
     private String secretKey;
 
+    /**
+     * Method for initializing the secret key.
+     */
     @PostConstruct
     protected void init() {
         secretKey = Base64.getEncoder().encodeToString(secretKey.getBytes());
     }
 
+    /**
+     * Method for creating a JWT token.
+     * @param userDto user DTO
+     * @return JWT token
+     */
     public String createToken(UserDto userDto) {
         Date now = new Date();
         Date expiresAt = new Date(now.getTime() + 3_600_000); // One hour
@@ -48,6 +59,11 @@ public class UserAuthProvider {
             .sign(Algorithm.HMAC256(secretKey));
     }
 
+    /**
+     * Method for validating a JWT token.
+     * @param token JWT token
+     * @return authentication
+     */
     public Authentication validateToken(String token) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey);
         JWTVerifier verifier = JWT.require(algorithm).build();
@@ -59,6 +75,11 @@ public class UserAuthProvider {
         return new UsernamePasswordAuthenticationToken(user, null, Collections.emptyList());
     }
 
+    /**
+     * Method for getting a user by email.
+     * @param email email
+     * @return user
+     */
     private User getUser(String email) {
         Optional<User> user = userService.getUserByEmail(email);
         if (user.isEmpty()) {
