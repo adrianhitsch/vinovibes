@@ -65,5 +65,6 @@ public class WineDto {
     @Schema(description = "Wine category", example = "RED", requiredMode = Schema.RequiredMode.REQUIRED)
     @NotNull
     private WineType type;
+
     private String imageUrl;
 }
