@@ -20,6 +20,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+/**
+ * Facade for user authentication.
+ */
 @Service
 @RequiredArgsConstructor
 public class UserFacade {
@@ -31,11 +34,21 @@ public class UserFacade {
     private final TokenService tokenService;
     private final UserMapper userMapper;
 
+    /**
+     * Method for logging in a user.
+     * @param credentialsDto credentialsDTO
+     * @return userDTO
+     */
     public UserDto login(CredentialsDto credentialsDto) {
         User user = userService.login(credentialsDto);
         return userMapper.toUserDto(user);
     }
 
+    /**
+     * Method for registering a new user. If the Otp is set, the user is registered and an email is sent.
+     * @param signUpDto signUpDTO
+     * @return userDTO
+     */
     public UserDto register(SignUpDto signUpDto) {
         User user = userService.register(signUpDto);
         try {
@@ -49,6 +62,12 @@ public class UserFacade {
         return userMapper.toUserDto(user);
     }
 
+    /**
+     * Method for verifying an One Time Password. Checks if the user is already active. Checks if the OTP is valid.
+     * Sets the user status to active and the OTP to null. Returns the userDTO.
+     * @param verificationDto verificationDTO
+     * @return userDTO
+     */
     public UserDto verifyOTP(VerificationDto verificationDto) {
         User user = userService
             .getUserByEmail(verificationDto.email())
@@ -73,6 +92,11 @@ public class UserFacade {
         return userMapper.toUserDto(user);
     }
 
+    /**
+     * Method for requesting a new One Time Password. If the user is already active, an exception is thrown.
+     * Generates a new OTP and sends an email to the user.
+     * @param emailDto emailDTO
+     */
     public void requestNewOTP(EmailDto emailDto) {
         User user = userService
             .getUserByEmail(emailDto.email())
@@ -87,11 +111,20 @@ public class UserFacade {
         emailService.sendVerificationEmail(user);
     }
 
+    /**
+     * Method for getting the current user.
+     * @return userDTO
+     */
     public UserDto getCurrentUser() {
         User user = userService.getCurrentUser();
         return userMapper.toUserDto(user);
     }
 
+    /**
+     * Method for requesting a password reset. If the user is unknown, an exception is thrown.
+     * Sets the user status to forgot password and generates a new token. Sends a password reset email to the user.
+     * @param emailDto emailDTO
+     */
     public void forgotPassword(EmailDto emailDto) {
         User user = userService
             .getUserByEmail(emailDto.email())
@@ -103,6 +136,13 @@ public class UserFacade {
         emailService.sendForgotPasswordEmail(user);
     }
 
+    /**
+     * Method for resetting the password. If the passwordResetDTO is invalid, an exception is thrown.
+     * Checks if the token is valid and not expired. Checks if the user is in forgot password state.
+     * Sets the new password and the user status to active. Returns the userDTO.
+     * @param passwordResetDto password reset DTO
+     * @return userDTO
+     */
     public UserDto resetPassword(PasswordResetDto passwordResetDto) {
         boolean valid = userService.checkPasswordResetDto(passwordResetDto);
         if (!valid) {

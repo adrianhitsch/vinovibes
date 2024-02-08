@@ -12,6 +12,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * Entity for One Time Password.
+ */
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder

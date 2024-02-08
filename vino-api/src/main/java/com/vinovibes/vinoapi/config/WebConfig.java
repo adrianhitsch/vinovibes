@@ -12,6 +12,9 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+/**
+ * Configuration class for web.
+ */
 @Configuration
 @EnableWebMvc
 public class WebConfig {
@@ -19,6 +22,10 @@ public class WebConfig {
     @Value("${cors.allowed-origin}")
     private String allowedOrigin;
 
+    /**
+     * Bean for CORS filter.
+     * @return filter registration bean
+     */
     @Bean
     FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
