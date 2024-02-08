@@ -11,3 +11,9 @@ spring:
 
 cors:
     allowed-origin: https://vino-vibes.com
+
+springdoc:
+    api-docs:
+        path: /api-docs
+    swagger-ui:
+        path: /swagger-ui/index.html

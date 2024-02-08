@@ -3,6 +3,7 @@ package com.vinovibes.vinoapi.config;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -17,7 +18,8 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 @RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig {
+@Profile("local")
+public class LocalSecurityConfig {
 
     private final UserAuthProvider userAuthProvider;
 
@@ -46,8 +48,7 @@ public class SecurityConfig {
                     .requestMatchers(HttpMethod.GET, "/api-docs/**", "/swagger-ui/**")
                     .permitAll()
                     .anyRequest()
-//                    .authenticated()
-                        .permitAll()
+                    .authenticated()
             );
         return http.build();
     }
