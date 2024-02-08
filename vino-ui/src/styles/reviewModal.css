@@ -134,6 +134,10 @@
   padding-bottom: 4px;
 }
 
+.wrapper .p-mention {
+  height: 180px;
+}
+
 .p-mention textarea {
   min-height: 200px;
   max-height: 200px;
@@ -197,6 +201,14 @@
   overflow: auto;
 }
 
+label.rating {
+  position: relative;
+  top: 18px;
+}
+
+.wrapper.rating > div {
+  gap: 10px;
+}
 /* Rating */
 
 .p-rating-item:focus {

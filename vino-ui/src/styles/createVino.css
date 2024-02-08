@@ -34,8 +34,37 @@
   border: 3px dashed #707070;
   border-radius: 16px;
   padding: 12px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
-.create-vino .wrapper.image button {
+.create-vino .wrapper.image img {
+  object-fit: contain;
+  width: 100%;
+  height: 100%;
+}
+
+.create-vino .wrapper.image .p-fileupload {
   margin-top: auto;
+}
+
+.p-dropdown-header {
+  border-color: var(--surface-secondary-color);
+}
+
+.p-dropdown-items,
+.p-dropdown-header {
+  background: var(--surface-color);
+  color: var(--white) !important;
+}
+
+.p-dropdown-item {
+  color: var(--white);
+}
+
+.p-dropdown-item:hover,
+.p-dropdown-item.p-highlight {
+  background: var(--surface-secondary-color);
+  color: var(--white) !important;
 }

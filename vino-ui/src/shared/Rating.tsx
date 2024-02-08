@@ -30,7 +30,7 @@ const RatingItem = ({ rating }: any): JSX.Element => {
           </div>
           <div className="rating-price">
             <span className={`icon icon-${rating.priceType.toLowerCase()}`}></span>
-            <span>{rating.price.toFixed(2)} €</span>
+            <span>{rating.price?.toFixed(2)} €</span>
           </div>
         </div>
         <div className="rating-text">{rating.userComment}</div>

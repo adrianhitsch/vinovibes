@@ -40,7 +40,7 @@ const StarRating = ({ stars, size }: RatingProps) => {
           ></span>
         </div>
       ))}
-      <span>{stars.toFixed(1)}</span>
+      <span>{stars?.toFixed(1)}</span>
     </div>
   );
 };

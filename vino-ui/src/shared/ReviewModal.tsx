@@ -80,6 +80,13 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
       priceType: data.priceType,
     };
 
+    if (data?.rating === 0) {
+      toast.error('Bitte Sterne vergeben');
+      const ratingElement = document.getElementById('rating');
+      if (ratingElement) ratingElement.style.display = 'inline-block';
+      return;
+    }
+
     if (location.state.id === undefined) return;
 
     await api('/rating/create', {
@@ -104,9 +111,14 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
           </button>
         </div>
         <div className="modal-body">
-          <div className="wrapper">
+          <div className="wrapper rating">
             <div className="left">
-              <label htmlFor="rating">Bewertung</label>
+              <label htmlFor="rating">
+                Bewertung
+                <span className="mandatory" id="rating">
+                  *
+                </span>
+              </label>
               <Rating
                 value={data.rating}
                 onChange={(e: any) =>
@@ -120,7 +132,9 @@ const ReviewModal = ({ closeModal }: ReviewModalProps): JSX.Element => {
           </div>
           <div className="wrapper">
             <div className="left">
-              <label htmlFor="rating">Preis</label>
+              <label htmlFor="rating" className="rating">
+                Preis
+              </label>
               <div className="switch-container">
                 <LocationSwitch
                   onChange={(state: any) =>
