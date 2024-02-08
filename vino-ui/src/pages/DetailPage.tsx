@@ -23,6 +23,7 @@ interface DetailDataProps {
   vintage: number;
   restaurantPrice: number;
   storePrice: number;
+  imageUrl: string;
 }
 
 const DetailPage = () => {
@@ -76,14 +77,13 @@ const DetailPage = () => {
       <div className="content-container">
         <div className="content-card detail">
           <div className="detail-image">
-            <img src={detailImage} alt="" />
+            <img src={detailData?.imageUrl} alt="" />
           </div>
           <div className="detail-info">
             <StarRating stars={detailData?.rating || 0} />
             <h1 className="detail-name">{detailData?.name}</h1>
             <div className="detail-country">{detailData?.country}</div>
             <div className="detail-producer">{detailData?.producer}</div>
-            <div className="detail-year">{detailData?.vintage}</div>
             <div className="detail-tags">
               {tags.map((tag) => (
                 <div className="tag">

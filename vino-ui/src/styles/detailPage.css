@@ -11,7 +11,7 @@
 
 .detail-info {
   padding: 35px;
-  padding-bottom: 15px;
+  padding-left: 55px;
   width: 100%;
   position: relative;
   overflow: auto;
@@ -31,6 +31,13 @@
   text-align: left;
   font: normal normal 300 18px/25px Rubik;
   letter-spacing: 0px;
+  font-size: 12px;
+  font-weight: lighter;
+}
+
+.detail-price {
+  margin-top: auto;
+  margin-bottom: 30px;
 }
 
 .detail-description {
@@ -38,14 +45,15 @@
 }
 
 .detail .button-container {
-  margin-top: auto;
   position: relative;
+  gap: 50px;
 }
 .detail .button-container p {
+  font-weight: lighter;
   position: absolute;
-  left: 218px;
-  top: 53px;
-  font-size: 12px;
+  left: 283px;
+  top: 57px;
+  font-size: 10px;
 }
 
 .detail h1 {
@@ -63,6 +71,11 @@
   border-radius: 5px;
   padding: 5px 10px;
   font-size: 0.8rem;
+}
+
+.tag .tag-name {
+  font-weight: lighter;
+  font-size: 14px;
 }
 
 .tag .tag-count {

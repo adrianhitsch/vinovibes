@@ -21,6 +21,7 @@ type productType = {
   region: string;
   type: string;
   vintage: number;
+  imageUrl: string;
 };
 
 type productProps = {
@@ -37,7 +38,7 @@ const Product = ({ productInfo }: productProps) => {
   return (
     <div className="product" key={productInfo.id} onClick={handleClick}>
       <div className="product-image">
-        <img src={productImage} alt="" />
+        <img src={productInfo.imageUrl} alt="" />
       </div>
       <div className="product-info">
         <StarRating stars={productInfo.rating} size="small" />
