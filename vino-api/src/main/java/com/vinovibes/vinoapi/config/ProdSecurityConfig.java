@@ -45,8 +45,6 @@ public class ProdSecurityConfig {
                         "/api/reset-password"
                     )
                     .permitAll()
-                    .requestMatchers(HttpMethod.GET, "/api-docs/**", "/swagger-ui/**")
-                    .permitAll()
                     .anyRequest()
                     .authenticated()
             );
